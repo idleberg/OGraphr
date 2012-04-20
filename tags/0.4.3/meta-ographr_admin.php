@@ -349,6 +349,13 @@ function ographr_render_form() {
 						<td><small><strong>(required)</strong></small></td>
 						</tr>
 						
+						<!-- FLICKR -->	
+						<tr valign="center"> 
+						<th align="left" width="140px" scope="row"><label>Flickr:</label></th> 
+						<td width="30px"><input type="text" size="75" name="ographr_options[flickr_api]" value="<?php if ($options['flickr_api']) { echo $options['flickr_api']; } else { echo FLICKR_API_KEY; } ?>" /></td> 
+						<td><small>(optional)</small></td>
+						</tr>
+						
 						<!-- OFFICIAL.FM -->	
 						<tr valign="center"> 
 						<th align="left" width="140px" scope="row"><label>Official.fm:</label></th> 

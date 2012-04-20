@@ -424,6 +424,7 @@ class OGraphr_Core {
 			// Get API keys
 			$soundcloud_api = $options['soundcloud_api'];
 			$bandcamp_api = $options['bandcamp_api'];
+			$flickr_api = $options['flickr_api'];
 			$official_api = $options['official_api'];
 			$ustream_api = $options['ustream_api'];
 		
