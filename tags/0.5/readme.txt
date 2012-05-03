@@ -1,9 +1,9 @@
 === OGraphr ===
 Contributors: yathosho
-Tags: opengraph,open-graph,metatags,facebook,google+,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,official.fm,ustream,viddler,html5 video,jwplayer,flickr,justin.tv.8tracks
+Tags: opengraph,open-graph,metatags,facebook,google+,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,official.fm,ustream,viddler,html5 video,jwplayer,flickr,justin.tv,8tracks
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 0.5
+Stable tag: 0.5.1
 
 This retrieves the artwork of embedded audio and video players widget and embeds it into Facebook-compatible metatags.
 
@@ -30,7 +30,7 @@ Currently, these widgets are supported:
 *  JWPlayer
 *  Standard HTML5 video-tags
 
-OpenGraph tags will be used by social-media sites such as Facebook or Google+ to style a shared link or webpages "liked" by any user. As images attract more attention, you will hopeful find this plug-in useful.
+OpenGraph tags will be used by social-media sites such as Facebook or Google+ to style a shared link or webpages "liked" by any user. As images attract more attention, you will (hopefully) find this plug-in useful.
 
 == Installation ==
 
@@ -66,8 +66,11 @@ You probably don't. All new Viddler players use HTML5-compliant poster images an
 
 == Changelog ==
 
+= 0.5.1 =
+* refined dialogs
+
 = 0.5 =
-* added option to save thumbnail URLs as post-meta ("on-post")
+* added option to save thumbnail-URLs as post-meta ("on-post")
 * added support for 8tracks
 * added option to disable plugin on front page
 * added timer to debugger output
