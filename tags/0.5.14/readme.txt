@@ -78,7 +78,7 @@ Depending on the amount of embed codes in your site, retrieving images and other
 == Changelog ==
 
 = 0.5.14 =
-* plugin now uses inbuilt JQuery
+* plugin now uses Wordpress' internal JQuery
 * disabled upgrade function, needs fixing
 
 = 0.5.13 =
