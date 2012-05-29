@@ -142,9 +142,6 @@ class OGraphr_Admin_Core {
 		register_setting( 'ographr_plugin_options', 'ographr_options', array($this, 'ographr_validate_options') );
 		
 		global $options;
-		
-		if (version_compare($options['last_update'], OGRAPHR_VERSION) == -1)
-			OGraphr_Core::ographr_self_update();
 	}
 
 	// ------------------------------------------------------------------------------
