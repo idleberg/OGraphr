@@ -31,7 +31,6 @@ $admin_core = new OGraphr_Admin_Core();
 register_uninstall_hook(__FILE__, 'ographr_delete_plugin_options');
 add_action('admin_init', array(&$admin_core, 'ographr_init') );
 add_action('admin_menu', array(&$admin_core, 'ographr_add_options_page') );
-add_action('admin_head', array(&$admin_core, 'ographr_stylesheet') );
 add_action('admin_footer', array(&$admin_core, 'ographr_javascript') );
 
 class OGraphr_Admin_Core {
@@ -58,6 +57,16 @@ class OGraphr_Admin_Core {
 			delete_post_meta($ographr_id, 'ographr_urls');
 			delete_post_meta($ographr_id, 'ographr_indexed');
 		}
+		$today = date("Y-m-d");
+		$yesterday = strtotime("yesterday");
+		$yesterday = date("Y-m-d", $yesterday);	
+		$stats[$yesterday] = array(
+								'posts_total' => $published,
+								'posts_indexed' => '0'
+								);
+		$stats = serialize($stats);
+		//$stats = base64_encode(serialize($stats));
+		update_option('ographr_data', $stats);
 	}
 
 	// ------------------------------------------------------------------------------
@@ -89,6 +98,7 @@ class OGraphr_Admin_Core {
 							"website_description" => "",
 							"not_always" => "0",
 							"add_adminbar" => "0",
+							"add_graph" => "0",
 							"add_comment" => "1",
 							"add_title" => "1",
 							"add_excerpt" => "1",
@@ -101,6 +111,7 @@ class OGraphr_Admin_Core {
 							"enable_flickr" => "1",
 							"enable_hulu" => "1",
 							"enable_justintv" => "1",
+							"enable_livestream" => "1",
 							"enable_mixcloud" => "1",
 							"enable_official" => "1",
 							"enable_soundcloud" => "1",
@@ -139,6 +150,17 @@ class OGraphr_Admin_Core {
 
 	// Init plugin options to white list our options
 	function ographr_init(){
+		// 0.6
+		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/inc/style.css', __FILE__) );
+		wp_register_script( 'OGraphr_JScript', plugins_url('/inc/scripts.js', __FILE__) );
+				
+		if (OGRAPHR_BETA == TRUE) {
+			wp_register_style( 'JQPlot_Stylesheet', plugins_url('/inc/jquery.jqplot.min.css', __FILE__) );
+			wp_register_script( 'JQPlot_Core', plugins_url('/inc/jquery.jqplot.min.js', __FILE__) );
+			wp_register_script( 'JQPlot_highlighter', plugins_url('/inc/jqplot.highlighter.min.js', __FILE__) );
+			wp_register_script( 'JQPlot_dateAxis', plugins_url('/inc/jqplot.dateAxisRenderer.min.js', __FILE__) );
+		}		
+		
 		register_setting( 'ographr_plugin_options', 'ographr_options', array($this, 'ographr_validate_options') );
 		
 		//global $options;
@@ -153,7 +175,33 @@ class OGraphr_Admin_Core {
 
 	// Add menu page
 	function ographr_add_options_page() {
-		add_options_page('OGraphr Settings', 'OGraphr', 'manage_options', __FILE__, array($this, 'ographr_render_form'));
+		//add_options_page('OGraphr Settings', 'OGraphr', 'manage_options', __FILE__, array($this, 'ographr_render_form'));
+		
+		// 0.6
+		$page = add_submenu_page( 'options-general.php', 
+		                                 __( 'OGraphr Settings', 'OGraphr' ), 
+		                                 __( 'OGraphr', 'OGraphr' ),
+		                                 'manage_options',
+		                                 __FILE__, 
+		                                 array($this, 'ographr_render_form') );
+		
+		add_action( 'admin_print_styles-' . $page, array($this, 'my_plugin_admin_styles') );
+	}
+	
+	function my_plugin_admin_styles() {
+	       /*
+	        * It will be called only on your plugin admin page, enqueue our stylesheet here
+	        */
+			wp_enqueue_style( 'OGraphr_Stylesheet' );
+			wp_enqueue_script( 'OGraphr_JScript' );
+		
+			if (OGRAPHR_BETA == TRUE) {
+				wp_enqueue_style( 'JQPlot_Stylesheet' );
+				wp_enqueue_script( 'JQPlot_Core' );
+				wp_enqueue_script( 'JQPlot_highlighter' );
+				wp_enqueue_script( 'JQPlot_dateAxis' );
+			}
+	 
 	}
 
 
@@ -264,6 +312,8 @@ class OGraphr_Admin_Core {
 									<label><input name="ographr_options[enable_hulu]" type="checkbox" value="1" <?php if (isset($options['enable_hulu'])) { checked('1', $options['enable_hulu']); } ?> />&nbsp;Hulu</label>&nbsp;
 							
 									<label><input name="ographr_options[enable_justintv]" type="checkbox" value="1" <?php if (isset($options['enable_justintv'])) { checked('1', $options['enable_justintv']); } ?> />&nbsp;Justin.tv</label>&nbsp;
+									
+									<label><input name="ographr_options[enable_livestream]" type="checkbox" value="1" <?php if (isset($options['enable_livestream'])) { checked('1', $options['enable_livestream']); } ?> />&nbsp;Livestream</label>&nbsp;
 							
 									<label><input name="ographr_options[enable_mixcloud]" type="checkbox" value="1" <?php if (isset($options['enable_mixcloud'])) { checked('1', $options['enable_mixcloud']); } ?> />&nbsp;Mixcloud</label>&nbsp;
 							
@@ -356,7 +406,7 @@ class OGraphr_Admin_Core {
 								<tr valign="top"> 
 									<th align="left" width="140px" scope="row"><label>Custom URLs:</label></th> 
 									<td colspan="2"><textarea name="ographr_options[filter_custom_urls]" cols="76%" rows="4" class="disable_filters"><?php echo $options['filter_custom_urls']; ?></textarea><br/>
-										<small><strong>BETA:</strong> You can enter filenames and URLs (e.g. <em><? echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</small></td> 
+										<small><strong>Beta:</strong> You can enter filenames and URLs (e.g. <em><? echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</small></td> 
 								</tr>
 							
 								<!-- LIMIT ACCESS -->
@@ -626,17 +676,19 @@ class OGraphr_Admin_Core {
 								<tr valign="center"> 
 									<th align="left" scope="row"><label>Google+ Snippets:</label></th> 
 									<td colspan="2">
-										<label><input name="ographr_options[add_google_meta]" type="checkbox" value="1" <?php if (isset($options['add_google_meta'])) { checked('1', $options['add_google_meta']); } ?> /> Meta-tags (<a href="https://developers.google.com/+/plugins/snippet/" target="_blank">?</a>)</label>
+										<label><input name="ographr_options[add_google_meta]" type="checkbox" value="1" <?php if (isset($options['add_google_meta'])) { checked('1', $options['add_google_meta']); } ?> /> Meta-tags (<a href="https://developers.google.com/+/plugins/snippet/" target="_blank">?</a>)</label>&nbsp;
 
-										<label><input name="ographr_options[add_image_prop]" type="checkbox" value="1" <?php if (isset($options['add_image_prop'])) { checked('1', $options['add_image_prop']); } ?> /> Image properties (<a href="http://schema.org/docs/gs.html" target="_blank">?</a>)</label>
+										<label><input name="ographr_options[add_image_prop]" type="checkbox" value="1" <?php if (isset($options['add_image_prop'])) { checked('1', $options['add_image_prop']); } ?> /> Image properties (<a href="http://schema.org/docs/gs.html" target="_blank">?</a>)</label>&nbsp;
 									</td>
 								</tr>
 								
-								<!-- GOOGLE SNIPPETS -->
+								<!-- INTERFACE -->
 								<tr valign="center"> 
 									<th align="left" scope="row"><label>Interface:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_adminbar]" type="checkbox" value="1" <?php if (isset($options['add_adminbar'])) { checked('1', $options['add_adminbar']); } ?> /> Add menu to admin bar</label>&nbsp;
+										
+										<label><input name="ographr_options[add_graph]" type="checkbox" value="1" <?php if (isset($options['add_graph'])) { checked('1', $options['add_graph']); } if(!OGRAPHR_BETA) print 'disabled="disabled"'; ?>/> Add statistics graph</label>&nbsp;
 									</td>
 								</tr>
 								
@@ -725,6 +777,9 @@ class OGraphr_Admin_Core {
 									}
 									
 								?>
+							<?php if ((OGRAPHR_BETA == TRUE) && ($options['exec_mode'] == 1) && ($options['add_graph'] == 1)) { ?>								
+								<div id="chartdiv" style="height:110px;width:100%; "></div>
+							<?php } ?>
 							<p style="font-size:8pt;">
 								<? print "Posts indexed: $posts_harvested / $posts_published <span style=\"color:#999;\">&nbsp;$posts_percent%</span>"; ?><br/>
 								<? print "Pages indexed: $pages_harvested / $pages_published <span style=\"color:#999;\">&nbsp;$pages_percent%</span>"; ?>
@@ -771,218 +826,91 @@ class OGraphr_Admin_Core {
 
 	//add JQuery to footer
 	function ographr_javascript() {
-		?>
-		<script type="text/javascript">
-		jQuery(document).ready(function() {
-				if (! jQuery("#show_advanced").attr('checked') ) {
-					jQuery('.advanced_opt').hide();
-				}
-				jQuery("#show_advanced").click(function(){
-					jQuery(".advanced_opt").fadeToggle('slow');
-				});
-							
-				jQuery("#enable_plugin").click(enable_cb);
-				jQuery("#enable_images").click(enable_images);
-				<?php if(!OGRAPHR_DEBUG) print 'jQuery("#enable_delete").click(enable_delete);'; ?>
 	
-				jQuery("#enable_expiry input").click( function() {
-				    var val = parseInt( this.value );
-				    if ( val === 1 ) {
-				        jQuery("select.no_expiry").removeAttr('disabled');
-				    } else {
-				        jQuery("select.no_expiry").attr( 'disabled', 'disabled' );
-				    }
-				});
+		if (OGRAPHR_BETA == TRUE) {
+			$stats = get_option('ographr_data');
+			if(empty($stats)) {
+				$published = wp_count_posts();
+				$published = $published->publish;
 				
-		});
+				$yesterday = strtotime("yesterday");
+				$yesterday = date("Y-m-d", $yesterday);		
+				$stats[$yesterday] = array(
+										'posts_total' => $published,
+										'posts_indexed' => '0'
+										);
+			} else {
+				$stats = unserialize($stats);
+				//$stats = unserialize(base64_decode($stats));
+			}
+			
+			//var_dump($stats);
+				
+			foreach($stats as $key => $value) {
+				$posts_total = "$posts_total, ['$key', $value[posts_total]]";
+			}
+			$posts_total = substr($posts_total, 2);
 	
-		function enable_cb() {
-			if (this.checked) {
-				jQuery("input.enable_triggers").removeAttr("disabled");
-			} else {
-				jQuery("input.enable_triggers").attr("disabled", true);
+			foreach($stats as $key => $value) {
+				$posts_indexed = "$posts_indexed, ['$key', $value[posts_indexed]]";
 			}
-		}
-		
-		function enable_images() {
-			if (this.checked) {
-				jQuery("input.disable_filters, textarea.disable_filters").removeAttr("disabled");
-			} else {
-				jQuery("input.disable_filters, textarea.disable_filters").attr("disabled", true);
+			$posts_indexed = substr($posts_indexed, 2);	
+			
+			if (OGRAPHR_DEBUG == TRUE ) {
+				print "<!--xx $posts_total -->\n";
+				print "<!--xx $posts_indexed -->\n";
 			}
-		}
-		
-		<?php if (!OGRAPHR_DEBUG) { ?>
-			function enable_delete() {
-				if (this.checked) {
-					jQuery("input.enable_delete").removeAttr("disabled");
-				} else {
-					jQuery("input.enable_delete").attr("disabled", true);
-				}
-			}
-		<?php } ?>
-
-	    </script>
-		<?php
-	}
-
-	//add CSS to header
-	function ographr_stylesheet() {
 		?>
-		<style type="text/css">
-		table#outer {
-			width: 100%;
-			border: 0 none;
-			padding:0;
-			margin:0; 
-		}
-		table#outer fieldset {
-			border: 0 none;
-			padding:0;
-			margin:0;
-		}
-		table#outer td.left, table#outer td.right {
-			vertical-align:top;
-		}
-		table#outer td.left {
-			padding: 0 8px 0 0;
-		}
-		table#outer td.right {
-			padding: 0 0 0 8px;
-			width: 210px;
-		}
-		td.right ul, td.right ul li {
-			list-style: none;
-			padding:0;
-			margin:0;
+	
+		<script type="text/javascript">
+					
+			function render_stats() {
+
+				var line1=[<? print $posts_indexed; ?>];
+				var line2=[<? print $posts_total; ?>];
+				  var plot1 = jQuery.jqplot('chartdiv', [line1, line2], {
+					series:[{color:'#bd8cbf'},{color:'#8560a8'}],
+					axesDefaults: {
+						pad: 0,
+						tickOptions: {
+							showLabel: false,
+						},
+					},							
+					seriesDefaults: {
+						lineWidth: '1.5',
+						showMarker: true,
+						markerOptions: {
+							size:4,
+						},
+						rendererOptions: {
+							smooth: true,}
+						},
+					grid: {
+			            drawBorder: false,
+			            shadow: false,
+						background: '#fcfcfc',
+						borderWidth: '1'
+					},
+					axes:{
+				        xaxis:{
+				          renderer:jQuery.jqplot.DateAxisRenderer,
+				          tickOptions:{
+				            formatString:'%b&nbsp;%#d'
+				          }		
+				        }
+				      },
+				      highlighter: {
+				        show: true,
+				        sizeAdjust: 7.5
+				      },
+				      cursor: {
+				        show: false
+				      }
+				  });
 			}
-		td.right a {
-			text-decoration:none;
-			background-position:0px 60%;
-			background-repeat:no-repeat;
-			padding: 4px 0px 2px 22px;
-			border: 0 none;
-			display:block;}
-		td.right a.lhome {
-			background-image:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUAAADeACH///8AAABwQ/WkAAAABHRSTlP///8AQCqp9AAAAAFiS0dEAxEMTPIAAAAJcEhZcwAAAEgAAABIAEbJaz4AAAAJdnBBZwAAABAAAAAQAFzGrcMAAABHSURBVAjXY2BgYOBnEA0NDWYQCA0NYTgKIo6lpaUAiWVLGI4tS50CFVuWBuSGLQOylk5bAhH7GBrqwvCHgUGE4f///2DiAAAcwB84mfGumgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNC0xM1QxNDoyOToyMiswMjowMJVTIygAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTItMDQtMTNUMTQ6Mjk6MjIrMDI6MDDkDpuUAAAAAElFTkSuQmCC);
-		}
-		td.right a.lpaypal {
-			background-image:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAFfKj/FAAAAB3RJTUUH1wYQEhELxx+pjgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAARnQU1BAACxjwv8YQUAAAAnUExURZwMDOfv787W3tbe55y1xgAxY/f39////73O1oSctXOUrZSlva29zmehiRYAAAABdFJOUwBA5thmAAAAdElEQVR42m1O0RLAIAgyG1Gr///eYbXrbjceFAkxM4GzwAyse5qgqEcB5gyhB+kESwi8cYfgnu2DMEcfFDDNwCakR06T4uq5cK0n9xOQPXByE3JEpYG2hKYgHdnxZgUeglxjCV1vihx4N1BluM6JC+8v//EAp9gC4zRZsZgAAAAASUVORK5CYII=)
-		}
-		td.right a.lamazon {
-			background-image:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAFfKj/FAAAAB3RJTUUH1wYQESUI53q1mgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAARnQU1BAACxjwv8YQUAAABgUExURerBhcOLOqB1OX1gOE5DNjc1NYKBgfGnPNqZO4hnOEM8NWZSN86SO1pKNnFZN7eDOuWgPJRuOVBOTpuamo+NjURCQubm5v///9rZ2WloaKinp11bW3Z0dPPy8srKyrSzs09bnaIAAACiSURBVHjaTY3ZFoMgDAUDchuruFIN1qX//5eNYJc85EyG5EIBBNACEibsimi5UaUURJtI5wm+KwgSJflVkOFscBUTM1vgrmacThfomGVLO9MhIYFsF8wyx6Jnl88HUxEay+wYmlM6oNKcNYrIC58iHMcIyQlZRNmf/2LRQUX8bYwh3PCYWmOGrueargdXGO5d6UGm5FSmBqzXEzK2cN9PcXsD9XsKTHawijcAAAAASUVORK5CYII=)
-		}
-		td.right a.lwp {
-			background-image:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACWklEQVR42n1TyWoaUBR11UU+oJ/QQqHL0C/qwkU2bl2EYEiixeCQSRIFN4EEEodYDYRYUUwgQwuNrVoTcNiIaOtEnT2955LQkrR9cOG9e8857w7vGQyPltVqfbm8vGxfWVm5Ehvf2xV9jBn+twRostls3wOBQOLu7u5juVz+QeOePsaIeUKcn59/JoHYxsZGvlarFdLpNHw+H8QHi8WC7e1tXFxcoNFofCOGWHL+vNkhoE/NZrNN8NLS0l8tGo1C1k9iWdID+TVT6/V62ePjY0QiEayuriIcDuuetre3B6kfw+GQAhgMBmVyRPSV3i7g04dgoVCAy+VSgel0qr79/X3Y7XaUyiU9t5pNxk81CxHIVSqVK97OJU2D0+mEw+HA7e2t+o6OjvR8eBjQ883nG5Aj3C8UGIxGo8bW1habBNljZ2cHa2triMVimoVMAe+koT6vTwVkIpCSOZGmCvDg9XpxdnamhFQqBbfbrZ3neTweY319XUup1+vweDzo9/sU6FCgwHRCoRB2d3cxmUxQrVb1xmw2i0QioSLBYFCFT05OIKP8XYI0ws2GZDIZ+P1+lEolJRwcHGjti4uLEAeKxSJJEDzi8bg2kQN4GGO90+nkObJkMqkCrVZLp2EymSAxTCdT5HM5sFftdjtHDrn6FpiFPI7rbrfboYjMmSAICAsLC7i8vNQszs/PIY+tQ6ze/vgpb25ufuVTlgbpCDkNGrPiYkwwmSdP+fFnkoZ+kJqvhdOgcU/fvz7TjNhzsRdib2ZnZ98ajcb3ZrO5Mjc3Bxr39DFGzD2WnJlfboSSy4YB5JcAAAAASUVORK5CYII=)
-		}
-		td.right a.ltwitter {	background-image:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB20lEQVR4nKWTPWhTURzFf+/mJXl5uby+JFaTfiwawWArQYmDU0GHTtKgc9VBEfxqVeokKuokVARDYxEpLh0KunQQFBR0EIu0RdpBKqh0EIy2tc9Y4/twKA3pCxRKzvi/95x77jn8Fc/zaASiIfZmBMSFoS7RVzy+oYA4X8jWXegrmmJgZBJpvszv29W5oYAmjVExMDIp+oerL0WNpivEklniKca/WqfF5Uc9tRylNsSjY+8+PPm00MFKGcq/XuG5J0KxrTMVo1lHDcKKhbr03bIXS+3u3VOLdQ7ymdZxogYkkhBPdonYtulKxNAJhiGggiaxZUxqTfGCuPTwaZ0DIJ0bnZ54v4yJY4PjgBpcJa/h31/4swzWEu61HsXfwtzZzuYXq8QQhLT1ZICASu+e9vmZM4feVr8gzt03186PdbTc7t0u5/FcUBR/6Ejh2ldzLfcyW2QeQAXQInpB9D8Yw/Om0KJmZmf6J064DdVn0HUYPJCa2mHqRcCqZvB5wbqRG3p++Ee5kiUUBhkD3VhnXwY8+3o2MXdxb+tJ4I2/RgncHJz40j08W2r7+NuTqEFQBFLFPpiMlG7tT83uTkTvAM9qTflb6AaOAOmamQW8Bh4D3/yZ+AU2jYa38T+I6JdNPFroagAAAABJRU5ErkJggg==)
-		}
-		td.right ul li {
-			padding:0;
-			margin:0;
-		}
-		table#outer td dl {
-			padding:0;
-			margin: 10px 0 20px 0;
-			background-color: white;
-			border: 1px solid #dfdfdf;
-		}
-		table#outer td dl {
-			-moz-border-radius: 5px;
-			-khtml-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			border-radius: 5px;
-		}
-		table h3, table h4 {
-			-moz-border-radius-topleft: 5px;
-			-moz-border-radius-topright: 5px;
-			-khtml-border-top-left-radius: 5px;
-			-khtml-border-top-right-radius: 5px;
-			-webkit-border-top-left-radius: 5px;
-			-webkit-border-top-right-radius: 5px;
-			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;
-		}
-		table td dl dd{
-			-moz-border-radius-bottomleft: 5px;
-			-moz-border-radius-bottomright: 5px;
-			-khtml-border-bottom-left-radius: 5px;
-			-khtml-border-bottom-right-radius: 5px;
-			-webkit-border-bottom-left-radius: 5px;
-			-webkit-border-bottom-right-radius: 5px;
-			border-bottom-left-radius: 5px;
-			border-bottom-right-radius: 5px;
-		}
-		table#outer dl h3, table#outer td.right dl h4 {
-			font-size: 10pt;
-			font-weight: bold;
-			margin:0;
-			padding: 4px 10px 4px 10px;
-			background-color: ##F1F1F1;
-			background-image:-ms-linear-gradient(top,#f9f9f9,#ececec);
-			background-image:-moz-linear-gradient(top,#f9f9f9,#ececec);
-			background-image:-o-linear-gradient(top,#f9f9f9,#ececec);
-			background-image:-webkit-gradient(linear,left top,left bottom,from(#f9f9f9),to(#ececec));
-			background-image:-webkit-linear-gradient(top,#f9f9f9,#ececec);
-			background-image:linear-gradient(top,#f9f9f9,#ececec);
-			text-shadow: white 0 1px 0;
-		}
-		table#outer td.left dl h4 {
-			font-size: 10pt;
-			font-weight: bold;
-			margin:0;
-			padding: 4px 0 4px 0;
-		}
-		dd {
-			background-color: #f8f8f8;
-		}
-		table#outer td.left dd {
-			margin:0;
-			padding: 10px 20px 10px 20px;
-		}
-		table#outer td.right dd {
-			margin:0;
-			padding: 5px 10px 5px 10px;
-		}
-		table#outer .info {
-			color: #555;
-			font-size: .85em;
-		}
-		table#outer p {
-			padding:5px 0 5px 0;
-			margin:0;
-		}
-		input.yi_warning:hover {
-			background: #ce0000;
-			color: #fff;
-		}
-		table#outer .yifooter {
-			text-align: center;
-			font-size: .85em;
-		}
-		table#outer .yifooter a, table#outer .yifooter a:link {
-			text-decoration:none;
-		}
-		table#outer td small {
-			color: #555; font-size: .85em;
-		}
-		table#outer hr {
-			border: none 0;
-			border-top: 1px solid #BBBBBB;
-			height: 1px;
-		}
-		table#outer ul {
-			list-style:none;
-		}
-		table#outer ul.mybullet {
-			list-style-type:disc;
-			padding-left: 20px;
-		}
-		.yiinfo {
-			font-size:85%;
-			line-height: 115%;
-			}
-		</style>
-		<?php
+	    </script>
+	
+		<?php } // OGRAPHR_BETA == TRUE
 	}
+
 }; // end of class

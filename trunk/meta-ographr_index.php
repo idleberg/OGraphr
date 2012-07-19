@@ -3,7 +3,7 @@
 Plugin Name: OGraphr
 Plugin URI: http://ographr.whyeye.org
 Description: This plugin scans posts for videos (YouTube, Vimeo, Dailymotion, Hulu, Blip.tv) and music players (SoundCloud, Mixcloud, Bandcamp, Official.fm) and adds their thumbnails as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink.
-Version: 0.5.14
+Version: 0.6
 Author: Jan T. Sott
 Author URI: http://whyeye.org
 License: GPLv2 
@@ -28,11 +28,13 @@ Thanks to Sutherland Boswell, Michael Wöhrer, and Matthias Gutjahr!
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.5.14");
+    define("OGRAPHR_VERSION", "0.6");
 	// force output of all values in comment tags
 	define("OGRAPHR_DEBUG", FALSE);
 	// enables features that are still marked beta
 	define("OGRAPHR_BETA", FALSE);
+	// replace default description with user agent in use
+	define("OGRAPHR_UATEST", FALSE);
 	// specify timeout for all cURL instances
 	define("OGRAPHR_TIMEOUT", 10);
 
@@ -89,8 +91,8 @@ Thanks to Sutherland Boswell, Michael Wöhrer, and Matthias Gutjahr!
 	define("JUSTINTV_IMAGE_SIZE", "image_url_large");
 	
 // USER-AGENTS
-	// Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko) Version/5.1.2 Safari/534.52.74
-	define('DIGG_USERAGENT', '/Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 10_7_([0-9]+)\) AppleWebKit/i');
+	// Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727)
+	define('DIGG_USERAGENT', '/Mozilla\/5\.0 \(compatible; MSIE 8\.0; Windows NT 5\.1; Trident\/4\.0; \.NET CLR 1\.1\.4322; \.NET CLR 2\.0\.50727\)/i');
 	// facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)
 	define('FACEBOOK_USERAGENT', '/facebookexternalhit/i');
 	// Mozilla/5.0 (Windows NT 6.1; rv:6.0) Gecko/20110814 Firefox/6.0
@@ -453,6 +455,8 @@ class OGraphr_Core {
 							update_post_meta($post_id, 'ographr_urls', $thumbnails_db);
 							$indexed = date("U"); // Y-m-d H:i:s
 							update_post_meta($post_id, 'ographr_indexed', $indexed);
+							// 0.6
+							$this->ographr_save_stats();
 						}
 					}
 				}
@@ -499,7 +503,7 @@ class OGraphr_Core {
 					// Blog title
 					$title = get_settings('blogname');
 					if($title) {
-						if (($options['add_google_meta']) && (preg_match(GOOGLEPLUS_USERAGENT,$user_agent)))
+						if (($options['add_google_meta']) && ((preg_match(GOOGLEPLUS_USERAGENT,$user_agent)) || (OGRAPHR_DEBUG)) )
 							print "<meta name=\"title\" content=\"$title\" />\n";
 						print "<meta property=\"og:title\" content=\"$title\" />\n";
 					}
@@ -508,21 +512,24 @@ class OGraphr_Core {
 					$wp_tagline = get_bloginfo('description');
 					$description = str_replace("%tagline%", $wp_tagline, $description);
 					if($description) {
-						if (($options['add_google_meta']) && (preg_match(GOOGLEPLUS_USERAGENT,$user_agent)))
+						if (($options['add_google_meta']) && ((preg_match(GOOGLEPLUS_USERAGENT,$user_agent)) || (OGRAPHR_DEBUG)) )
 							print "<meta name=\"description\" content=\"$description\" />\n";
 						print "<meta property=\"og:description\" content=\"$description\" />\n";
 					}
 				} else { //single posts
 					if ($options['add_title'] && ($title)) {
 						// Post title
-						if (($options['add_google_meta']) && (preg_match(GOOGLEPLUS_USERAGENT,$user_agent)))
+						if (($options['add_google_meta']) && ((preg_match(GOOGLEPLUS_USERAGENT,$user_agent)) || (OGRAPHR_DEBUG)) )
 							print "<meta name=\"title\" content=\"$title\" />\n";
 						print "<meta property=\"og:title\" content=\"$title\" />\n"; 
 					}
 					
 					if($options['add_excerpt'] && ($description = wp_strip_all_tags((get_the_excerpt()), true))) {
 						// Post excerpt
-						if (($options['add_google_meta']) && (preg_match(GOOGLEPLUS_USERAGENT,$user_agent)))
+						if (OGRAPHR_UATEST == TRUE) {
+							$description = $user_agent;
+						}
+						if ( ($options['add_google_meta']) && ((preg_match(GOOGLEPLUS_USERAGENT,$user_agent)) || (OGRAPHR_DEBUG)) )
 							print "<meta name=\"description\" content=\"$description\" />\n";
 						print "<meta property=\"og:description\" content=\"$description\" />\n";
 					}
@@ -562,7 +569,7 @@ class OGraphr_Core {
 				} else if ($thumbnails) { // investigate?
 					foreach ($thumbnails as $thumbnail) {
 						if ($thumbnail) {
-							$thumbnail = preg_replace('/\?([A-Za-z0-9_-]+)\Z/', '', $thumbnail); // remove suffix
+							//$thumbnail = preg_replace('/\?([A-Za-z0-9_-]+)\Z/', '', $thumbnail); // remove suffix
 							print "<meta property=\"og:image\" content=\"$thumbnail\" />\n";
 						}
 					}
@@ -801,6 +808,17 @@ class OGraphr_Core {
 			}
 		}
 		
+		// LIVESTREAM	
+		if($options['enable_livestream']) {					
+			$livestream_thumbnails = $this->find_livestream_widgets($markup);
+			if (isset($livestream_thumbnails)) {			
+				foreach ($livestream_thumbnails as $livestream_thumbnail) {
+					if ($livestream_thumbnail)
+						$thumbnails[] = $livestream_thumbnail;
+				}
+			}
+		}
+		
 		// MIXCLOUD	
 		if($options['enable_mixcloud']) {					
 			$mixcloud_thumbnails = $this->find_mixcloud_widgets($markup);
@@ -859,7 +877,7 @@ class OGraphr_Core {
 		}
 
 		// VIDDLER
-		if(($options['enable_viddler']) && (OGRAPHR_BETA == TRUE)) {
+		if($options['enable_viddler']) {
 			$viddler_thumbnails = $this->find_viddler_widgets($markup, $options['viddler_api']);
 			if (isset($viddler_thumbnails)) {
 				foreach ($viddler_thumbnails as $viddler_thumbnail) {
@@ -1187,6 +1205,34 @@ class OGraphr_Core {
 		return $justintv_thumbnails;
 	} //end find_justintv_widgets
 	
+	function find_livestream_widgets($markup) {
+		// Standard embed code
+		preg_match_all('/cdn.livestream.com\/embed\/([A-Za-z0-9\-_]+)/i', $markup, $matches);
+		$matches = array_unique($matches[1]);
+
+		// Now if we've found a Livestream ID, let's set the thumbnail URL
+		foreach($matches as $match) {
+			$livestream_thumbnail = "http://thumbnail.api.livestream.com/thumbnail?name=$match";
+			if((OGRAPHR_DEBUG == TRUE) && (is_single()) || (is_front_page())) {
+				if ($livestream_thumbnail)
+					print "\t Livestream: $livestream_thumbnail\n";
+				else
+					print "\t Livestream: Error from URL ($livestream_thumbnail)\n";
+			}
+			
+			if (isset($livestream_thumbnail)) {
+				if ($options['exec_mode'] == 1)  {
+					$exists = $this->remote_exists($livestream_thumbnail);
+					if($exists) 
+						$livestream_thumbnails[] = $livestream_thumbnail;
+				} else {
+					$livestream_thumbnails[] = $livestream_thumbnail;
+				}
+			}
+		}
+		return $livestream_thumbnails;
+	} // end find_livestream_widgets
+	
 	function find_mixcloud_widgets($markup) {
 		// Standard embed code
 		preg_match_all('/mixcloudLoader.swf\?feed=https?%3A%2F%2Fwww.mixcloud.com%2F([A-Za-z0-9\-_\%]+)/i', $markup, $matches);
@@ -1300,6 +1346,7 @@ class OGraphr_Core {
 			$json_query = "artwork_url";
 			$soundcloud_thumbnail = $this->get_json_thumbnail($service, $json_url, $json_query);
 			$soundcloud_thumbnail = str_replace('-large.', '-' . SOUNDCLOUD_IMAGE_SIZE . '.', $soundcloud_thumbnail); // replace 100x100 default image
+			$soundcloud_thumbnail = preg_replace('/\?([A-Za-z0-9_-]+)\Z/', '', $soundcloud_thumbnail); // remove suffix
 
 			if((OGRAPHR_DEBUG == TRUE) && (is_single()) || (is_front_page())) {
 				if ($soundcloud_thumbnail)
@@ -1598,6 +1645,7 @@ class OGraphr_Core {
 		if (is_array($widget_thumbnails))
 			foreach($widget_thumbnails as $widget_thumbnail)
 				$widget_thumbnail =  htmlentities($widget_thumbnail);
+				//$widget_thumbnail = preg_replace('/\?([A-Za-z0-9_-]+)\Z/', '', $widget_thumbnail); // remove suffix
 				
 		if(!(empty($widget_thumbnails))) {
 
@@ -1606,8 +1654,46 @@ class OGraphr_Core {
 		
 			$indexed = date("U"); //Y-m-d H:i:s
 			update_post_meta($post_id, 'ographr_indexed', $indexed);
+			// 0.6
+			$this->ographr_save_stats();
 		}
 
+	}
+	
+	// 0.6
+	function ographr_save_stats() {
+				
+		$stats = get_option('ographr_data');
+		
+		if(!$stats) {
+			$yesterday = strtotime("yesterday");
+			$yesterday = date("Y-m-d", $yesterday);		
+			$stats[$yesterday] = array(
+									'posts_total' => '0',
+									'posts_indexed' => '0'
+									);
+		} else {
+			$stats = unserialize($stats);
+			//$stats = unserialize(base64_decode($stats));
+		}
+		
+		// create function!
+		$posts_published = wp_count_posts();
+		$posts_published = $posts_published->publish;
+		$args = array( 'numberposts' => $posts_published, 'meta_key' => 'ographr_urls' );
+		$myposts = get_posts( $args );
+		$posts_harvested = count($myposts);
+			
+		$today = date("Y-m-d");
+	
+		$stats[$today] = array(
+								'posts_total' => $posts_published,
+								'posts_indexed' => $posts_harvested
+								);
+
+		$stats = serialize($stats);
+		//$stats = base64_encode(serialize($stats)); 
+		update_option('ographr_data', $stats);
 	}
 	
 	
@@ -1664,21 +1750,16 @@ class OGraphr_Core {
 			if ($content)
 				$doc->loadHTML($content);
 			
-			/*
-			// add Schema properties to body tag
-			$bodies = $doc->getElementsByTagName('body');
-			foreach ($bodies as $body) {
-				$body->setAttribute('itemtype', 'http://schema.org/Blog');
-			}
-			*/
+			// $body->setAttribute('itemtype', 'http://schema.org/Blog');
 			
 			// add Schema properties to all image tags,
 			$imgs = $doc->getElementsByTagName('img');
 			foreach ($imgs as $img) {
 				$img->setAttribute('itemprop', 'image');
 			}
-		
-			$content = $doc->saveHTML();
+
+			//$content = $doc->saveHTML();			
+			$content = preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $doc->saveHTML()));
 		}
 		
 		return $content;
