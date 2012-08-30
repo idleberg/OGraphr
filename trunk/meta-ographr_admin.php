@@ -96,6 +96,12 @@ class OGraphr_Admin_Core {
 		
 			if ($tmp['delete_postmeta'] == 1)
 				$this->ographr_delete_postmeta();
+				
+			// Set default locale to Wordpress language
+			if (WPLANG)
+				$tmp_locale = WPLANG;
+			else
+				$tmp_locale = "_none";
 			
 			delete_option('ographr_options'); // so we don't have to reset all the 'off' checkboxes too! (don't think this is needed but leave for now)
 			$arr = array(	"exec_mode" => "1",
@@ -114,6 +120,7 @@ class OGraphr_Admin_Core {
 							"add_comment" => "1",
 							"add_title" => "1",
 							"add_excerpt" => "1",
+							"locale" => $tmp_locale,
 							"add_permalink" => "1",
 							"enable_eight_tracks" => "1",
 							"enable_bambuser" => "1",
@@ -140,7 +147,6 @@ class OGraphr_Admin_Core {
 							"add_attached_image" => "1",
 							"add_post_thumbnail" => "0",
 							"add_google_meta" => "0",
-							"add_image_prop" => "0",
 							"filter_smilies" => "1",
 							"filter_themes" => "0",
 							"filter_gravatar" => "1",
@@ -170,15 +176,15 @@ class OGraphr_Admin_Core {
 		global $options;
 		
 		// 0.6
-		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/inc/style.css', __FILE__) );
-		wp_register_script( 'OGraphr_JScript', plugins_url('/inc/scripts.js', __FILE__) );
+		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/inc/style.min.css', __FILE__) );
+		wp_register_script( 'OGraphr_JScript', plugins_url('/inc/scripts.min.js', __FILE__), array('jquery'), null, true );
 		
 		
 		if ($options['add_graph']) {
 			wp_register_style( 'JQPlot_Stylesheet', plugins_url('/inc/jquery.jqplot.min.css', __FILE__) );
-			wp_register_script( 'JQPlot_Core', plugins_url('/inc/jquery.jqplot.min.js', __FILE__) );
-			wp_register_script( 'JQPlot_highlighter', plugins_url('/inc/jqplot.highlighter.min.js', __FILE__) );
-			wp_register_script( 'JQPlot_dateAxis', plugins_url('/inc/jqplot.dateAxisRenderer.min.js', __FILE__) );
+			wp_register_script( 'JQPlot_Core', plugins_url('/inc/jquery.jqplot.min.js', __FILE__), array('jquery'), null, true );
+			wp_register_script( 'JQPlot_highlighter', plugins_url('/inc/jqplot.highlighter.min.js', __FILE__), array('jquery'), null, true );
+			wp_register_script( 'JQPlot_dateAxis', plugins_url('/inc/jqplot.dateAxisRenderer.min.js', __FILE__), array('jquery'), null, true );
 		}		
 		
 		register_setting( 'ographr_plugin_options', 'ographr_options', array($this, 'ographr_validate_options') );
@@ -212,7 +218,7 @@ class OGraphr_Admin_Core {
 	        * It will be called only on your plugin admin page, enqueue our stylesheet here
 	        */
 	
-	global $options;
+			global $options;
 	
 			wp_enqueue_style( 'OGraphr_Stylesheet' );
 			wp_enqueue_script( 'OGraphr_JScript' );
@@ -312,9 +318,8 @@ class OGraphr_Admin_Core {
 								<label><input name="ographr_options[add_excerpt]" type="checkbox" value="1" <?php if (isset($options['add_excerpt'])) { checked('1', $options['add_excerpt']); } ?> /> Add excerpt </label>&nbsp;
 
 								<label><input name="ographr_options[add_permalink]" type="checkbox" value="1" <?php if (isset($options['add_permalink'])) { checked('1', $options['add_permalink']); } ?> /> Add permalink </label>&nbsp;
-
-								</td>
-							</tr>
+								
+								</tr>
 						
 							<!-- TRIGGERS -->
 							<tr valign="top" class="advanced_opt"> 
@@ -716,14 +721,178 @@ class OGraphr_Admin_Core {
 										<label><input name="ographr_options[add_post_thumbnail]" type="checkbox" value="1" class="post_thumbnail" <?php if (isset($options['add_post_thumbnail'])) { checked('1', $options['add_post_thumbnail']); }; if ($options['add_attached_image']) { print 'disabled="disabled"'; } ?> /> Post thumbnail (<a href="http://codex.wordpress.org/Post_Thumbnails" target="_blank">?</a>)</label>&nbsp;
 									</td>
 								</tr>
+								
+								<!-- LANGUAGE -->
+								<tr valign="center"> 
+									<th align="left" scope="row"><label>Language:</label></th> 
+									<td colspan="2">
+								
+								<select name='ographr_options[locale]'>
+									<option value='_none' <?php selected('_none', $options['locale']); ?>>(none)</option>
+									<option value='sq_AL' <?php selected('sq_AL', $options['locale']); ?>>Albanian (Albania)</option>
+									<option value='sq' <?php selected('sq', $options['locale']); ?>>Albanian</option>
+									<option value='ar_DZ' <?php selected('ar_DZ', $options['locale']); ?>>Arabic (Algeria)</option>
+									<option value='ar_BH' <?php selected('ar_BH', $options['locale']); ?>>Arabic (Bahrain)</option>
+									<option value='ar_EG' <?php selected('ar_EG', $options['locale']); ?>>Arabic (Egypt)</option>
+									<option value='ar_IQ' <?php selected('ar_IQ', $options['locale']); ?>>Arabic (Iraq)</option>
+									<option value='ar_JO' <?php selected('ar_JO', $options['locale']); ?>>Arabic (Jordan)</option>
+									<option value='ar_KW' <?php selected('ar_KW', $options['locale']); ?>>Arabic (Kuwait)</option>
+									<option value='ar_LB' <?php selected('ar_LB', $options['locale']); ?>>Arabic (Lebanon)</option>
+									<option value='ar_LY' <?php selected('ar_LY', $options['locale']); ?>>Arabic (Libya)</option>
+									<option value='ar_MA' <?php selected('ar_MA', $options['locale']); ?>>Arabic (Morocco)</option>
+									<option value='ar_OM' <?php selected('ar_OM', $options['locale']); ?>>Arabic (Oman)</option>
+									<option value='ar_QA' <?php selected('ar_QA', $options['locale']); ?>>Arabic (Qatar)</option>
+									<option value='ar_SA' <?php selected('ar_SA', $options['locale']); ?>>Arabic (Saudi Arabia)</option>
+									<option value='ar_SD' <?php selected('ar_SD', $options['locale']); ?>>Arabic (Sudan)</option>
+									<option value='ar_SY' <?php selected('ar_SY', $options['locale']); ?>>Arabic (Syria)</option>
+									<option value='ar_TN' <?php selected('ar_TN', $options['locale']); ?>>Arabic (Tunisia)</option>
+									<option value='ar_AE' <?php selected('ar_AE', $options['locale']); ?>>Arabic (United Arab Emirates)</option>
+									<option value='ar_YE' <?php selected('ar_YE', $options['locale']); ?>>Arabic (Yemen)</option>
+									<option value='ar' <?php selected('ar', $options['locale']); ?>>Arabic</option>
+									<option value='be_BY' <?php selected('be_BY', $options['locale']); ?>>Belarusian (Belarus)</option>
+									<option value='be' <?php selected('be', $options['locale']); ?>>Belarusian</option>
+									<option value='bg_BG' <?php selected('bg_BG', $options['locale']); ?>>Bulgarian (Bulgaria)</option>
+									<option value='bg' <?php selected('bg', $options['locale']); ?>>Bulgarian</option>
+									<option value='ca_ES' <?php selected('ca_ES', $options['locale']); ?>>Catalan (Spain)</option>
+									<option value='ca' <?php selected('ca', $options['locale']); ?>>Catalan</option>
+									<option value='zh_CN' <?php selected('zh_CN', $options['locale']); ?>>Chinese (China)</option>
+									<option value='zh_HK' <?php selected('zh_HK', $options['locale']); ?>>Chinese (Hong Kong)</option>
+									<option value='zh_SG' <?php selected('zh_SG', $options['locale']); ?>>Chinese (Singapore)</option>
+									<option value='zh_TW' <?php selected('zh_TW', $options['locale']); ?>>Chinese (Taiwan)</option>
+									<option value='zh' <?php selected('zh', $options['locale']); ?>>Chinese</option>
+									<option value='hr_HR' <?php selected('hr_HR', $options['locale']); ?>>Croatian (Croatia)</option>
+									<option value='hr' <?php selected('hr', $options['locale']); ?>>Croatian</option>
+									<option value='cs_CZ' <?php selected('cs_CZ', $options['locale']); ?>>Czech (Czech Republic)</option>
+									<option value='cs' <?php selected('cs', $options['locale']); ?>>Czech</option>
+									<option value='da_DK' <?php selected('da_DK', $options['locale']); ?>>Danish (Denmark)</option>
+									<option value='da' <?php selected('da', $options['locale']); ?>>Danish</option>
+									<option value='nl_BE' <?php selected('nl_BE', $options['locale']); ?>>Dutch (Belgium)</option>
+									<option value='nl_NL' <?php selected('nl_NL', $options['locale']); ?>>Dutch (Netherlands)</option>
+									<option value='nl' <?php selected('nl', $options['locale']); ?>>Dutch</option>
+									<option value='en_AU' <?php selected('en_AU', $options['locale']); ?>>English (Australia)</option>
+									<option value='en_CA' <?php selected('en_CA', $options['locale']); ?>>English (Canada)</option>
+									<option value='en_IN' <?php selected('en_IN', $options['locale']); ?>>English (India)</option>
+									<option value='en_IE' <?php selected('en_IE', $options['locale']); ?>>English (Ireland)</option>
+									<option value='en_MT' <?php selected('en_MT', $options['locale']); ?>>English (Malta)</option>
+									<option value='en_NZ' <?php selected('en_NZ', $options['locale']); ?>>English (New Zealand)</option>
+									<option value='en_PH' <?php selected('en_PH', $options['locale']); ?>>English (Philippines)</option>
+									<option value='en_SG' <?php selected('en_SG', $options['locale']); ?>>English (Singapore)</option>
+									<option value='en_ZA' <?php selected('en_ZA', $options['locale']); ?>>English (South Africa)</option>
+									<option value='en_GB' <?php selected('en_GB', $options['locale']); ?>>English (United Kingdom)</option>
+									<option value='en_US' <?php selected('en_US', $options['locale']); ?>>English (United States)</option>
+									<option value='en' <?php selected('en', $options['locale']); ?>>English</option>
+									<option value='et_EE' <?php selected('et_EE', $options['locale']); ?>>Estonian (Estonia)</option>
+									<option value='et' <?php selected('et', $options['locale']); ?>>Estonian</option>
+									<option value='fi_FI' <?php selected('fi_FI', $options['locale']); ?>>Finnish (Finland)</option>
+									<option value='fi' <?php selected('fi', $options['locale']); ?>>Finnish</option>
+									<option value='fr_BE' <?php selected('fr_BE', $options['locale']); ?>>French (Belgium)</option>
+									<option value='fr_CA' <?php selected('fr_CA', $options['locale']); ?>>French (Canada)</option>
+									<option value='fr_FR' <?php selected('fr_FR', $options['locale']); ?>>French (France)</option>
+									<option value='fr_LU' <?php selected('fr_LU', $options['locale']); ?>>French (Luxembourg)</option>
+									<option value='fr_CH' <?php selected('fr_CH', $options['locale']); ?>>French (Switzerland)</option>
+									<option value='fr' <?php selected('fr', $options['locale']); ?>>French</option>
+									<option value='de_AT' <?php selected('de_AT', $options['locale']); ?>>German (Austria)</option>
+									<option value='de_DE' <?php selected('de_DE', $options['locale']); ?>>German (Germany)</option>
+									<option value='de_LU' <?php selected('de_LU', $options['locale']); ?>>German (Luxembourg)</option>
+									<option value='de_CH' <?php selected('de_CH', $options['locale']); ?>>German (Switzerland)</option>
+									<option value='de' <?php selected('de', $options['locale']); ?>>German</option>
+									<option value='el_CY' <?php selected('el_CY', $options['locale']); ?>>Greek (Cyprus)</option>
+									<option value='el_GR' <?php selected('el_GR', $options['locale']); ?>>Greek (Greece)</option>
+									<option value='el' <?php selected('el', $options['locale']); ?>>Greek</option>
+									<option value='iw_IL' <?php selected('iw_IL', $options['locale']); ?>>Hebrew (Israel)</option>
+									<option value='iw' <?php selected('iw', $options['locale']); ?>>Hebrew</option>
+									<option value='hi_IN' <?php selected('hi_IN', $options['locale']); ?>>Hindi (India)</option>
+									<option value='hu_HU' <?php selected('hu_HU', $options['locale']); ?>>Hungarian (Hungary)</option>
+									<option value='hu' <?php selected('hu', $options['locale']); ?>>Hungarian</option>
+									<option value='is_IS' <?php selected('is_IS', $options['locale']); ?>>Icelandic (Iceland)</option>
+									<option value='is' <?php selected('is', $options['locale']); ?>>Icelandic</option>
+									<option value='in_ID' <?php selected('in_ID', $options['locale']); ?>>Indonesian (Indonesia)</option>
+									<option value='in' <?php selected('in', $options['locale']); ?>>Indonesian</option>
+									<option value='ga_IE' <?php selected('ga_IE', $options['locale']); ?>>Irish (Ireland)</option>
+									<option value='ga' <?php selected('ga', $options['locale']); ?>>Irish</option>
+									<option value='it_IT' <?php selected('it_IT', $options['locale']); ?>>Italian (Italy)</option>
+									<option value='it_CH' <?php selected('it_CH', $options['locale']); ?>>Italian (Switzerland)</option>
+									<option value='it' <?php selected('it', $options['locale']); ?>>Italian</option>
+									<option value='ja_JP' <?php selected('ja_JP', $options['locale']); ?>>Japanese (Japan)</option>
+									<option value='ja_JP_JP' <?php selected('ja_JP_JP', $options['locale']); ?>>Japanese (Japan,JP)</option>
+									<option value='ja' <?php selected('ja', $options['locale']); ?>>Japanese</option>
+									<option value='ko_KR' <?php selected('ko_KR', $options['locale']); ?>>Korean (South Korea)</option>
+									<option value='ko' <?php selected('ko', $options['locale']); ?>>Korean</option>
+									<option value='lv_LV' <?php selected('lv_LV', $options['locale']); ?>>Latvian (Latvia)</option>
+									<option value='lv' <?php selected('lv', $options['locale']); ?>>Latvian</option>
+									<option value='lt_LT' <?php selected('lt_LT', $options['locale']); ?>>Lithuanian (Lithuania)</option>
+									<option value='lt' <?php selected('lt', $options['locale']); ?>>Lithuanian</option>
+									<option value='mk_MK' <?php selected('mk_MK', $options['locale']); ?>>Macedonian (Macedonia)</option>
+									<option value='mk' <?php selected('mk', $options['locale']); ?>>Macedonian</option>
+									<option value='ms_MY' <?php selected('ms_MY', $options['locale']); ?>>Malay (Malaysia)</option>
+									<option value='ms' <?php selected('ms', $options['locale']); ?>>Malay</option>
+									<option value='mt_MT' <?php selected('mt_MT', $options['locale']); ?>>Maltese (Malta)</option>
+									<option value='mt' <?php selected('mt', $options['locale']); ?>>Maltese</option>
+									<option value='no_NO' <?php selected('no_NO', $options['locale']); ?>>Norwegian (Norway)</option>
+									<option value='no_NO_NY' <?php selected('no_NO_NY', $options['locale']); ?>>Norwegian (Norway,Nynorsk)</option>
+									<option value='no' <?php selected('no', $options['locale']); ?>>Norwegian</option>
+									<option value='pl_PL' <?php selected('pl_PL', $options['locale']); ?>>Polish (Poland)</option>
+									<option value='pl' <?php selected('pl', $options['locale']); ?>>Polish</option>
+									<option value='pt_BR' <?php selected('pt_BR', $options['locale']); ?>>Portuguese (Brazil)</option>
+									<option value='pt_PT' <?php selected('pt_PT', $options['locale']); ?>>Portuguese (Portugal)</option>
+									<option value='pt' <?php selected('pt', $options['locale']); ?>>Portuguese</option>
+									<option value='ro_RO' <?php selected('ro_RO', $options['locale']); ?>>Romanian (Romania)</option>
+									<option value='ro' <?php selected('ro', $options['locale']); ?>>Romanian</option>
+									<option value='ru_RU' <?php selected('ru_RU', $options['locale']); ?>>Russian (Russia)</option>
+									<option value='ru' <?php selected('ru', $options['locale']); ?>>Russian</option>
+									<option value='sr_BA' <?php selected('sr_BA', $options['locale']); ?>>Serbian (Bosnia and Herzegovina)</option>
+									<option value='sr_ME' <?php selected('sr_ME', $options['locale']); ?>>Serbian (Montenegro)</option>
+									<option value='sr_CS' <?php selected('sr_CS', $options['locale']); ?>>Serbian (Serbia and Montenegro)</option>
+									<option value='sr_RS' <?php selected('sr_RS', $options['locale']); ?>>Serbian (Serbia)</option>
+									<option value='sr' <?php selected('sr', $options['locale']); ?>>Serbian</option>
+									<option value='sk_SK' <?php selected('sk_SK', $options['locale']); ?>>Slovak (Slovakia)</option>
+									<option value='sk' <?php selected('sk', $options['locale']); ?>>Slovak</option>
+									<option value='sl_SI' <?php selected('sl_SI', $options['locale']); ?>>Slovenian (Slovenia)</option>
+									<option value='sl' <?php selected('sl', $options['locale']); ?>>Slovenian</option>
+									<option value='es_AR' <?php selected('es_AR', $options['locale']); ?>>Spanish (Argentina)</option>
+									<option value='es_BO' <?php selected('es_BO', $options['locale']); ?>>Spanish (Bolivia)</option>
+									<option value='es_CL' <?php selected('es_CL', $options['locale']); ?>>Spanish (Chile)</option>
+									<option value='es_CO' <?php selected('es_CO', $options['locale']); ?>>Spanish (Colombia)</option>
+									<option value='es_CR' <?php selected('es_CR', $options['locale']); ?>>Spanish (Costa Rica)</option>
+									<option value='es_DO' <?php selected('es_DO', $options['locale']); ?>>Spanish (Dominican Republic)</option>
+									<option value='es_EC' <?php selected('es_EC', $options['locale']); ?>>Spanish (Ecuador)</option>
+									<option value='es_SV' <?php selected('es_SV', $options['locale']); ?>>Spanish (El Salvador)</option>
+									<option value='es_GT' <?php selected('es_GT', $options['locale']); ?>>Spanish (Guatemala)</option>
+									<option value='es_HN' <?php selected('es_HN', $options['locale']); ?>>Spanish (Honduras)</option>
+									<option value='es_MX' <?php selected('es_MX', $options['locale']); ?>>Spanish (Mexico)</option>
+									<option value='es_NI' <?php selected('es_NI', $options['locale']); ?>>Spanish (Nicaragua)</option>
+									<option value='es_PA' <?php selected('es_PA', $options['locale']); ?>>Spanish (Panama)</option>
+									<option value='es_PY' <?php selected('es_PY', $options['locale']); ?>>Spanish (Paraguay)</option>
+									<option value='es_PE' <?php selected('es_PE', $options['locale']); ?>>Spanish (Peru)</option>
+									<option value='es_PR' <?php selected('es_PR', $options['locale']); ?>>Spanish (Puerto Rico)</option>
+									<option value='es_ES' <?php selected('es_ES', $options['locale']); ?>>Spanish (Spain)</option>
+									<option value='es_US' <?php selected('es_US', $options['locale']); ?>>Spanish (United States)</option>
+									<option value='es_UY' <?php selected('es_UY', $options['locale']); ?>>Spanish (Uruguay)</option>
+									<option value='es_VE' <?php selected('es_VE', $options['locale']); ?>>Spanish (Venezuela)</option>
+									<option value='es' <?php selected('es', $options['locale']); ?>>Spanish</option>
+									<option value='sv_SE' <?php selected('sv_SE', $options['locale']); ?>>Swedish (Sweden)</option>
+									<option value='sv' <?php selected('sv', $options['locale']); ?>>Swedish</option>
+									<option value='th_TH' <?php selected('th_TH', $options['locale']); ?>>Thai (Thailand)</option>
+									<option value='th_TH_TH' <?php selected('th_TH_TH', $options['locale']); ?>>Thai (Thailand,TH)</option>
+									<option value='th' <?php selected('th', $options['locale']); ?>>Thai</option>
+									<option value='tr_TR' <?php selected('tr_TR', $options['locale']); ?>>Turkish (Turkey)</option>
+									<option value='tr' <?php selected('tr', $options['locale']); ?>>Turkish</option>
+									<option value='uk_UA' <?php selected('uk_UA', $options['locale']); ?>>Ukrainian (Ukraine)</option>
+									<option value='uk' <?php selected('uk', $options['locale']); ?>>Ukrainian</option>
+									<option value='vi_VN' <?php selected('vi_VN', $options['locale']); ?>>Vietnamese (Vietnam)</option>
+									<option value='vi' <?php selected('vi', $options['locale']); ?>>Vietnamese</option>
+								</select>
+								
+								<?php if (WPLANG) { print "<small>Wordpress is currently set to <em>" . WPLANG . "</em></small>"; } ?>
+								
+								</td>
+							</tr>
 							
 								<!-- GOOGLE SNIPPETS -->
 								<tr valign="center"> 
 									<th align="left" scope="row"><label>Google+ Snippets:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_google_meta]" type="checkbox" value="1" <?php if (isset($options['add_google_meta'])) { checked('1', $options['add_google_meta']); } ?> /> Meta-tags (<a href="https://developers.google.com/+/plugins/snippet/" target="_blank">?</a>)</label>&nbsp;
-
-										<label><input name="ographr_options[add_image_prop]" type="checkbox" value="1" <?php if (isset($options['add_image_prop'])) { checked('1', $options['add_image_prop']); } ?> /> Image properties (<a href="http://schema.org/docs/gs.html" target="_blank">?</a>)</label>&nbsp;
 									</td>
 								</tr>
 								
@@ -837,8 +1006,8 @@ class OGraphr_Admin_Core {
 									<div id="chartdiv" style="height:110px;width:100%; "></div>
 								<?php } ?>
 								<p style="font-size:8pt;">
-									<? print "Posts indexed: $posts_harvested / $posts_published <span style=\"color:#999;\">&nbsp;$posts_percent%</span>"; ?><br/>
-									<? print "Pages indexed: $pages_harvested / $pages_published <span style=\"color:#999;\">&nbsp;$pages_percent%</span>"; ?>
+									<?php print "Posts indexed: $posts_harvested / $posts_published <span style=\"color:#999;\">&nbsp;$posts_percent%</span>"; ?><br/>
+									<?php print "Pages indexed: $pages_harvested / $pages_published <span style=\"color:#999;\">&nbsp;$pages_percent%</span>"; ?>
 								</p>
 								
 								</dd>

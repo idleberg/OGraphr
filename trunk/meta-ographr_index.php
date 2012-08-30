@@ -2,8 +2,8 @@
 /*
 Plugin Name: OGraphr
 Plugin URI: http://ographr.whyeye.org
-Description: This plugin scans posts for videos (YouTube, Vimeo, Dailymotion, Hulu, Blip.tv) and music players (SoundCloud, Mixcloud, Bandcamp, Official.fm) and adds their thumbnails as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink.
-Version: 0.6.9
+Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social websites can use these to style shared or "liked" articles.
+Version: 0.6.10
 Author: Jan T. Sott
 Author URI: http://whyeye.org
 License: GPLv2 
@@ -28,7 +28,7 @@ Thanks to Sutherland Boswell, Michael Wöhrer, and Matthias Gutjahr!
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.6.9");
+    define("OGRAPHR_VERSION", "0.6.10");
 	// force output of all values in comment tags
 	define("OGRAPHR_DEBUG", FALSE);
 	// enables features that are still marked beta
@@ -115,7 +115,6 @@ add_action('delete_post', array(&$core,'ographr_delete_stats'));
 add_action('admin_notices', array(&$core,'ographr_admin_notice'));
 add_action('admin_bar_menu', array(&$core,'ographr_admin_bar'), 150);
 add_filter('plugin_action_links', array(&$core, 'ographr_plugin_action_links'), 10, 2 );
-add_filter('the_content', array(&$core, 'ographr_add_google_snips'));
 
 if ( is_admin() )
 	require_once dirname( __FILE__ ) . '/meta-ographr_admin.php';
@@ -399,11 +398,10 @@ class OGraphr_Core {
 				if ($options['filter_smilies']) { print "\t Emoticons are filtered \n"; }
 				if ($options['filter_themes']) { print "\t Themes are filtered\n"; }
 				if ($options['add_google_meta']) { print "\t Google+ Snippets are active\n"; }
-				if ($options['add_image_prop']) { print "\t Schema.org image properties are being added\n"; }
 				
 				if ($options['filter_custom_urls']) {
 					foreach(preg_split("/((\r?\n)|(\n?\r))/", $options['filter_custom_urls']) as $line){
-						print "\t Custom URL /$line/ is filtered\n";
+						print "\t Custom filter: $line\n";
 						}
 				}
 				
@@ -575,6 +573,12 @@ class OGraphr_Core {
 				// Add site name
 				if ($site_name) {
 					print "<meta property=\"og:site_name\" content=\"$site_name\" />\n";
+				}
+				
+				// Add locale
+				$locale = $options['locale'];
+				if (($locale) && ($locale != "_none")) {
+					print "<meta property=\"og:locale\" content=\"$locale\" />\n";
 				}
 			
 				// Add type
@@ -1945,33 +1949,7 @@ class OGraphr_Core {
 	        }
 	    }	
 	}
-	
-	function ographr_add_google_snips($content) {
-		
-		global $options;
-				
-		if (($options['add_image_prop']) && ( is_single() ) && ((preg_match(GOOGLEPLUS_USERAGENT,$user_agent)) || (OGRAPHR_DEBUG)) ) {
-			
-			$doc = new DOMDocument();
-			if ($content)
-				$doc->loadHTML($content);
-			
-			// $body->setAttribute('itemtype', 'http://schema.org/Blog');
-			
-			// add Schema properties to all image tags,
-			$imgs = $doc->getElementsByTagName('img');
-			foreach ($imgs as $img) {
-				$img->setAttribute('itemprop', 'image');
-			}
 
-			//$content = $doc->saveHTML();			
-			$content = preg_replace('/^<!DOCTYPE.+?>/', '', str_replace( array('<html>', '</html>', '<body>', '</body>'), array('', '', '', ''), $doc->saveHTML()));
-		}
-		
-		return $content;
-	}
-
-	
 }; // end of class
 
 ?>
