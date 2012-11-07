@@ -81,7 +81,7 @@ Probably not. Link elements were a common way to add website thumbnails before F
 
 = How can I use new features marked as beta? =
 
-As beta features can be unstable, they can only be enabled through the plugin's source. Open the file `meta-ographr_index.php` and set `OGRAPHR_BETA to `TRUE`. Note that with each new version, you have to re-enable this setting.
+As beta features can be unstable, they can only be enabled through the plugin's source. Open the file `meta-ographr_index.php` and set `OGRAPHR_BETA` to `TRUE`. Note that with each new version, you have to re-enable this setting.
 
 == Screenshots ==
 
