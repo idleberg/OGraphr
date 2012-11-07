@@ -80,7 +80,7 @@ Since Google+ is probably the only site using these meta-tags, they will only be
 Probably not. Link elements were a common way to add website thumbnails before Facebook introduced its Open Graph protocol. There might be a couple of sites still retrieving thumbnails through link elements, Digg used to be one of them.
 
 = How can I use new features marked as beta? =
-`
+
 As beta features can be unstable, they can only be enabled through the plugin's source. Open the file `meta-ographr_index.php` and set `OGRAPHR_BETA to `TRUE`. Note that with each new version, you have to re-enable this setting.
 
 == Screenshots ==
