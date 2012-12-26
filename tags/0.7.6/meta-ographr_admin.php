@@ -1188,44 +1188,4 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		<?php } // OGRAPHR_BETA == TRUE
 	}
 
-}; // end of classves']) { print "true"; } else { print "false"; } ?>,
-						fillAlpha: 0.9,
-						markerOptions: {
-							size:<?php if ($interval >= 35) { print 0; } else { print 5; } ?>,
-						 	<?php if ($options['fill_curves']) { print 'color: "#ed1c24",'; } ?>
-						},
-						rendererOptions: {
-							smooth: <? if ($options['smooth_curves']) { print "true"; } else { print "false"; } ?>,
-							}
-						},
-					grid: {
-			            drawBorder: false,
-			            shadow: false,
-						background: '#fcfcfc',
-						borderWidth: '1'
-					},
-					axes:{
-				        xaxis:{
-				          renderer:jQuery.jqplot.DateAxisRenderer,
-				          tickInterval:'<?php if ($interval > 8760) { print "10 years"; } else if ($interval > 720 ) { print "1 year"; } else if ($interval > 90 ) { print "1 month"; } else if ($interval > 21 ) { print "1 week"; } else { print "1 day"; } ?>',
-				          min: <? print '"' . date("F j, Y", strtotime(array_shift(array_keys($stats))) ) . '"'; ?>,
-				          tickOptions:{
-				            formatString:'%b&nbsp;%#d'
-				          }		
-				        }
-				      },
-				      highlighter: {
-				        show: true,
-				        sizeAdjust: 7.5
-				      },
-				      cursor: {
-				        show: false
-				      }
-				  });
-			}
-	    </script>
-	
-		<?php } // OGRAPHR_BETA == TRUE
-	}
-
 }; // end of class
