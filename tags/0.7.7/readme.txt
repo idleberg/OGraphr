@@ -484,16 +484,4 @@ Review your settings!
 Activate triggers after upgrading
 
 = 0.2 =
-Please adjust your settings after upgrading Upgrade Notice ==
-
-= 0.6 =
-Due to the ongoing Official.tv make-over, API requests will not work for an undisclosed time
-
-= 0.5 =
-Review your settings!
-
-= 0.2.3 =
-Activate triggers after upgrading
-
-= 0.2 =
 Please adjust your settings after upgrading
