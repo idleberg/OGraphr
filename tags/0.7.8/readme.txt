@@ -493,4 +493,4 @@ Review your settings!
 Activate triggers after upgrading
 
 = 0.2 =
-Please adjust your settings after upgradinggs after upgrading
+Please adjust your settings after upgrading
