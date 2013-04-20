@@ -98,7 +98,7 @@ As beta features can be unstable, they can only be enabled through the plugin's 
 
 == Changelog ==
 
-== 0.8.1 ==
+= 0.8.1 =
 * changed method to write/read data
 * fixed Rdio and Ustream player strings
 
