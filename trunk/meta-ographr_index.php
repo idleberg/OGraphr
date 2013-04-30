@@ -1837,7 +1837,6 @@ class OGraphr_Core {
        		}
 	       		
 		} else if( (isset($options['enable_beta'])) && ($options['enable_beta'] != 0) && (current_user_can('manage_options')) ) {
-			print_r($options['enable_beta']);
 			echo '<div class="updated">
 	       		<p>OGraphr is currently running with beta features enabled.';
 	    	if(OGRAPHR_DEVMODE == TRUE) {
