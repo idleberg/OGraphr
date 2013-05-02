@@ -1963,22 +1963,4 @@ class OGraphr_Core {
 
 }; // end of class
 
-?>=meta-ographr/meta-ographr_admin.php')
-	                ),
-					array(
-	                    'id' => 'ographr-home',
-						'parent' => 'ographr',
-	                    'title' => 'Website',
-						'href' => 'http://wordpress.org/extend/plugins/meta-ographr/'
-	                )
-	            );
-
-	        foreach ($menu_items as $menu_item) {
-	            $wp_admin_bar->add_menu($menu_item);
-	        }
-	    }	
-	}
-
-}; // end of class
-
 ?>
