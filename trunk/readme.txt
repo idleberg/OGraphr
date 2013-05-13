@@ -1,6 +1,6 @@
 === OGraphr ===
 Contributors: yathosho
-Donate link: https://flattr.com/thing/ec467d2d2efd7a56e2b6f000b8cc5fff
+Donate link: http://whyeye.org/donate
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam
 Requires at least: 3.0
 Tested up to: 3.5.1
