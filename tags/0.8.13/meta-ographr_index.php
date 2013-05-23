@@ -2012,5 +2012,4 @@ class OGraphr_Core {
 	}
 
 }; // end of class
-?>s
 ?>
