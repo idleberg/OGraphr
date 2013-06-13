@@ -36,18 +36,14 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 ## Screenshots
 
 ![a link with a Mixcloud player shared on Facebook](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-1.png?r=726378)
-***i. )** a link with a Mixcloud player shared on Facebook*
+***i.)** a link with a Mixcloud player shared on Facebook*
 
 ![a link with a SoundCloud player shared on Google+](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-2.png?r=726378)
-***ii. )** a link with a SoundCloud player shared on Google+*
+***ii.)** a link with a SoundCloud player shared on Google+*
 
 ![a link with a Vimeo player shared on Twitter](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-3.png?r=726378)
-***iii. )** a link with a Vimeo player shared on Twitter*
+***iii.)** a link with a Vimeo player shared on Twitter*
 
-## FAQ
-
-### What is the Open Graph protocol?
-The [Open Graph protocol](# OGraphr for Wordpress
 ___
 
 ## Description
