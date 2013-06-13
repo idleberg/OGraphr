@@ -79,7 +79,7 @@ Version 2, June 1991
 	Everyone is permitted to copy and distribute verbatim copies
 	of this license document, but changing it is not allowed.
 
-	[full license text][5]
+[*full license text*][5]
 
 ## Donate
 
