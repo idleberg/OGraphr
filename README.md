@@ -35,9 +35,10 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 ## Screenshots
 
+*a link with a Mixcloud player shared on Facebook*
 ![a link with a Mixcloud player shared on Facebook](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-1.png?r=726378)
 
-*a link with a Mixcloud player shared on Facebook*
+
 
 ![a link with a SoundCloud player shared on Google+](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-2.png?r=726378)
 
