@@ -33,19 +33,7 @@ Currently, these media embeds are supported:
 
 Open Graph tags will be used by social network sites such as Facebook, Twitter or Google+ to style a shared link or webpages "liked" by any user. Images supposedly attract more attention, so you might find this plug-in useful.
 
-## Screenshots
-
-*a link with a Mixcloud player shared on Facebook*
-
-![a link with a Mixcloud player shared on Facebook](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-1.png?r=726378)
-
-*a link with a SoundCloud player shared on Google+*
-
-![a link with a SoundCloud player shared on Google+](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-2.png?r=726378)
-
-*a link with a Vimeo player shared on Twitter*
-
-![a link with a Vimeo player shared on Twitter](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-3.png?r=726378)
+[View Screenshots](http://wordpress.org/plugins/meta-ographr/screenshots/)
 
 ## FAQ
 
@@ -91,7 +79,7 @@ Version 2, June 1991
 	Everyone is permitted to copy and distribute verbatim copies
 	of this license document, but changing it is not allowed.
 
-[full license text][5]
+	[full license text][5]
 
 ## Donate
 
