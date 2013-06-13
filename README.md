@@ -47,49 +47,6 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 *a link with a Vimeo player shared on Twitter*
 
-## Description
-
-This plugin adds several [Open Graph][1] tags to the header of your Wordpress site. These include meta information such as site name, a description (the excerpt of a post), the permalink, author, categories and images for your post. As a specialty, images from embedded video and audio players are retrieved as well. Other types of meta-tags are supported as well, including [Google+ Snippets][2], [Twitter Cards][3] and [canonical links][4].
-
-Currently, these media embeds are supported:
-
-* 8tracks
-* Bambuser
-* Bandcamp
-* Blip.tv
-* DailyMotion
-* Flickr videos
-* Hulu
-* Internet Archive
-* Justin.tv/Twitch.tv
-* Livestream
-* Mixcloud
-* MyVideo
-* Official.fm
-* Rdio
-* Socialcam
-* SoundCloud
-* Ustream
-* Viddler
-* Vimeo
-* YouTube
-* JW Player
-* NVB Player
-* Standard HTML5 video-tags
-
-Open Graph tags will be used by social network sites such as Facebook, Twitter or Google+ to style a shared link or webpages "liked" by any user. Images supposedly attract more attention, so you might find this plug-in useful.
-
-## Screenshots
-
-![a link with a Mixcloud player shared on Facebook](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-1.png?r=726378)
-***i. )** a link with a Mixcloud player shared on Facebook*
-
-![a link with a SoundCloud player shared on Google+](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-2.png?r=726378)
-***ii. )** a link with a SoundCloud player shared on Google+*
-
-![a link with a Vimeo player shared on Twitter](http://s.wordpress.org/extend/plugins/meta-ographr/screenshot-3.png?r=726378)
-***iii. )** a link with a Vimeo player shared on Twitter*
-
 ## FAQ
 
 ### What is the Open Graph protocol?
