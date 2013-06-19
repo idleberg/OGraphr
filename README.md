@@ -1,5 +1,4 @@
 # OGraphr for Wordpress
-___
 
 ## Description
 
