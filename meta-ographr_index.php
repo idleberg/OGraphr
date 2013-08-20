@@ -3,7 +3,7 @@
 Plugin Name: OGraphr
 Plugin URI: http://ographr.whyeye.org
 Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social networks can use these to style shared or "liked" articles.
-Version: 0.8.18
+Version: 0.8.19
 Author: Jan T. Sott
 Author URI: http://whyeye.org
 License: GPLv2 
@@ -28,7 +28,7 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.18");
+    define("OGRAPHR_VERSION", "0.8.19");
 	// enables developer settings on Wordpress interface, can be overwritten from plug-in settings once activated
 	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
@@ -78,6 +78,10 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 	// default artwork size (mini=16x16, tiny=20x20, small=32x32, badge=47x47, t67x67, large=100x100, t300x300, crop=400x400, t500x500)
 	define("SOUNDCLOUD_IMAGE_SIZE", "t500x500");
 	
+// SPOTIFY
+	// default artwork size (60, 85, 120, 300, and 640)
+	define("SPOTIFY_IMAGE_SIZE", "640");
+
 // VIMEO
 	// default snapshot size (thumbnail_small=100, thumbnail_medium=200, thumbnail_large=640)
 	define("VIMEO_IMAGE_SIZE", "thumbnail_large");
@@ -173,6 +177,7 @@ class OGraphr_Core {
 							"enable_rdio" => "1",
 							"enable_socialcam" => NULL,
 							"enable_soundcloud" => "1",
+							"enable_spotify" => "1",
 							"enable_ustream" => "1",
 							"enable_viddler" => NULL,
 							"enable_vimeo" => "1",
@@ -500,6 +505,7 @@ class OGraphr_Core {
 					if (isset($options['enable_rdio'])) { print "\t Rdio enabled\n"; }
 					if (isset($options['enable_socialcam'])) { print "\t Socialcam enabled\n"; }
 					if (isset($options['enable_soundcloud'])) { print "\t SoundCloud enabled\n"; }
+					if (isset($options['enable_spotify'])) { print "\t Spotify enabled\n"; }
 					if (isset($options['enable_ustream'])) { print "\t Ustream enabled\n"; }
 					if (isset($options['enable_viddler'])) { print "\t Viddler enabled\n"; }
 					if (isset($options['enable_vimeo'])) { print "\t Vimeo enabled\n"; }
@@ -1526,7 +1532,6 @@ class OGraphr_Core {
 										'hd' => 98,
 									),
 								),
-					
 					'soundcloud_playlist' => array(
 									'name' => 'SoundCloud playlist',
 									'patterns' => array(
@@ -1535,6 +1540,16 @@ class OGraphr_Core {
 									'url' => 'http://api.soundcloud.com/playlists/%MATCH%.json?client_id=' . $options['soundcloud_api'],
 									'queries' => array(
 										'img' => 'artwork_url'
+									),
+								),
+					'spotify' => array(
+									'name' => 'Spotify',
+									'patterns' => array(
+										'/embed.spotify.com\/\?uri=spotify:((album|artist|track):([A-Za-z0-9]+))/i' // https://embed.spotify.com/?uri=spotify:track:5e6574xvOP2cKCeLQOVRs3
+									),
+									'url' => 'https://embed.spotify.com/oembed/?url=spotify:%MATCH%', // https://embed.spotify.com/oembed/?url=spotify:artist:7ae4vgLLhir2MCjyhgbGOQ
+									'queries' => array(
+										'img' => 'thumbnail_url'
 									),
 								),
 					'ustream' => array(
@@ -1707,6 +1722,11 @@ class OGraphr_Core {
 			if( ($services['name'] == "SoundCloud track") || ($services['name'] == "SoundCloud playlist") ){
 				$json_thumbnail['img'] = str_replace('-large.', '-' . SOUNDCLOUD_IMAGE_SIZE . '.', $json_thumbnail['img']); // replace 100x100 default image
 			}
+
+			// Spotify special treatment
+			if($services['name'] == "Spotify") {
+				$json_thumbnail['img'] = str_replace('cover', SPOTIFY_IMAGE_SIZE, $json_thumbnail['img']); 
+			}
 			
 			// debugger output
 			if( ( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) && (is_single()) || (is_front_page())) {
@@ -1821,18 +1841,17 @@ class OGraphr_Core {
 						delete_post_meta($ographr_id, 'ographr_indexed');
 					}
 				}
-			}
 
-			
+				if (version_compare($options['last_update'], "0.8.19", '<')) {
+					$options['enable_spotify'] = 1;
+				}
+			}
 
 			//save current version to db
 			$options['last_update'] = OGRAPHR_VERSION;
 
 			update_option('ographr_options', $options);
 		}
-
-			
-		
 	}
 
 	// check for PHP version when activation

@@ -522,6 +522,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										<label><input name="ographr_options[enable_socialcam]" type="checkbox" value="1" <?php if ((isset($options['enable_socialcam'])) && ($options['socialcam_api'])) { checked('1', $options['enable_socialcam']); } ?> />&nbsp;Socialcam</label>&nbsp;
 								
 										<label><input name="ographr_options[enable_soundcloud]" type="checkbox" value="1" <?php if (isset($options['enable_soundcloud'])) { checked('1', $options['enable_soundcloud']); } ?> />&nbsp;SoundCloud</label>&nbsp;
+
+										<label><input name="ographr_options[enable_spotify]" type="checkbox" value="1" <?php if (isset($options['enable_spotify'])) { checked('1', $options['enable_spotify']); } ?> />&nbsp;Spotify</label>&nbsp;
 								
 										<label><input name="ographr_options[enable_ustream]" type="checkbox" value="1" <?php if (isset($options['enable_ustream'])) { checked('1', $options['enable_ustream']); } ?> />&nbsp;Ustream</label>&nbsp;
 								

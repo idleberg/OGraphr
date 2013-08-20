@@ -22,6 +22,7 @@ Currently, these media embeds are supported:
 * Rdio
 * Socialcam
 * SoundCloud
+* Spotify
 * Ustream
 * Viddler
 * Vimeo
