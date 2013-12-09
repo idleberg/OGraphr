@@ -3,8 +3,8 @@ Contributors: yathosho
 Donate link: http://whyeye.org/donate
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 0.8.19
+Tested up to: 3.8
+Stable tag: 0.8.20
 License: GPLv2
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -44,7 +44,7 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 == Installation ==
 
-1. It is recommended to use PHP 5.2 (or later)
+1. It is required to use PHP 5.2 (or later)
 2. Upload the folder `meta-ographr` with all its contents to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Review the preferences to make use of all features
@@ -103,6 +103,10 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 5. advanced settings page for OGraphr 0.7
 
 == Changelog ==
+
+= 0.8.20 =
+* fixed nonce field
+* updated contact information
 
 = 0.8.19 =
 * added support for Spotify (thanks MiniGod - http://stackoverflow.com/a/18294883/1329116)

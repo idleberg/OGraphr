@@ -411,7 +411,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						
 						
 						<!-- *********************** BEGIN: Main Content ******************* -->
-						<form name="ographr-admin" method="post" action="http://wp.whyeye.org/wp-admin/options-general.php?page=meta-ographr.php">
+						<form name="ographr-admin" method="post" action="<?php print get_admin_url() . "options-general.php?page=meta-ographr.php";?>">
 						<?php wp_nonce_field('ographr_save_options','ographr_admin_options_form'); ?>
 						<fieldset class="options">
 
@@ -1274,8 +1274,6 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<li><a class="lwp" href="http://wordpress.org/tags/meta-ographr?forum_id=10" title="Seek help on the OGraphr support forum on Wordpress.com" target="_blank">Need help?</a></li>
 								<li class="advanced_opt"><a title="Read what changed over the last versions" class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/changelog/" target="_blank">Changelog</a></li>
 								<li class="advanced_opt"><a class="lwp" href="http://plugins.svn.wordpress.org/meta-ographr/" title="Browse the Subversion repository for older releases of this plug-in" target="_blank">SVN</a></li>
-							
-								<li><a class="lhome" href="http://whyeye.org" title="Find more software on the author's website" target="_blank">whyEye.org</a></li>
 								<li>&nbsp;</li>
 								<li><a href="https://twitter.com/whyeye_org" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @whyeye_org</a>
 								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>

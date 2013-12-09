@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: OGraphr
-Plugin URI: http://ographr.whyeye.org
+Plugin URI: https://github.com/idleberg/OGraphr
 Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social networks can use these to style shared or "liked" articles.
-Version: 0.8.19
+Version: 0.8.20
 Author: Jan T. Sott
-Author URI: http://whyeye.org
+Author URI: https://github.com/idleberg
 License: GPLv2 
 */
 
@@ -28,7 +28,7 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.19");
+    define("OGRAPHR_VERSION", "0.8.20");
 	// enables developer settings on Wordpress interface, can be overwritten from plug-in settings once activated
 	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
@@ -329,7 +329,6 @@ class OGraphr_Core {
 	// The Main Dish
 	//
 	public function ographr_main_dish($post_id=null) {
-
 		
 		//global $options;
 		$options = get_option('ographr_options');
@@ -346,7 +345,6 @@ class OGraphr_Core {
 				return;
 			}
 		}
-		
 		
 		// enable on front
 		if ((!$enable_plugin_on_front = $options['enable_plugin_on_front']) && (!is_single()) && (!is_page())) {
@@ -634,7 +632,7 @@ class OGraphr_Core {
 								
 				// Let's print all this
 				if(($options['add_comment']) && ($options['debug_level'] == 0) || ( ($options['debug_level'] > 0) && (!current_user_can('edit_plugins')) ) ){
-					print "<!-- OGraphr v" . OGRAPHR_VERSION . " - http://ographr.whyeye.org -->\n";
+					print "<!-- OGraphr v" . OGRAPHR_VERSION . " - https://github.com/idleberg/OGraphr -->\n";
 				}
 		
 				// Add title & description
@@ -1281,8 +1279,7 @@ class OGraphr_Core {
 					$thumbnails[]['img'] = $attached_thumbnail[0];
 				}
 			}
-		}
-		
+		}	
 		
 		// JWPlayer
 		if (isset($options['enable_jwplayer'])) {
@@ -1783,9 +1780,7 @@ class OGraphr_Core {
 
 		if (isset($json_thumbnails))
 			return $json_thumbnails;
-		
-	} //end find_json_widgets
-	
+	} //end find_json_widgets	
 	
 	// initialize
 	public function ographr_core_init() {
