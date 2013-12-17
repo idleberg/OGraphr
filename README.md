@@ -83,11 +83,10 @@ Version 2, June 1991
 
 ## Donate
 
-[<img src="https://raw.github.com/balupton/flattr-buttons/master/badge-89x18.gif" />][6]
+You are welcome support this project using [Flattr](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/OGraphr) or Bitcoin `17CXJuPsmhuTzFV2k4RKYwpEHVjskJktRd`
 
 [1]: http://ogp.me/
 [2]: https://developers.google.com/+/plugins/snippet/
 [3]: https://dev.twitter.com/docs/cards
 [4]: http://developers.whatwg.org/links.html
 [5]: http://www.gnu.org/licenses/gpl-2.0.html
-[6]: https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/OGraphr/&title=OGraphr&description=A%20plug-in%20for%20Wordpress%20that%20retrieves%20images%20from%20streaming%20services%20and%20inserts%20them%20as%20Open%20Graph%20tags&language=en_GB&tags=opengraph,metatags,wordpress&hidden=0&category=software
