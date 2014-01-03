@@ -513,6 +513,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 										<label><input name="ographr_options[enable_mixcloud]" type="checkbox" value="1" <?php if (isset($options['enable_mixcloud'])) { checked('1', $options['enable_mixcloud']); } ?> />&nbsp;Mixcloud</label>&nbsp;
 										
+										<label><input name="ographr_options[enable_muzu]" type="checkbox" value="1" <?php if ((isset($options['enable_muzu'])) && ($options['muzu_api'])) { checked('1', $options['enable_muzu']); } ?> />&nbsp;Muzu.tv</label>&nbsp;
+
 										<label><input name="ographr_options[enable_myvideo]" type="checkbox" value="1" <?php if ((isset($options['enable_myvideo'])) && ($options['myvideo_dev_api']) && ($options['myvideo_web_api'])) { checked('1', $options['enable_myvideo']); } ?> />&nbsp;MyVideo</label>&nbsp;
 								
 										<label><input name="ographr_options[enable_official]" type="checkbox" value="1" <?php if (isset($options['enable_official'])) { checked('1', $options['enable_official']); } ?> />&nbsp;Official.fm</label>&nbsp;
@@ -534,6 +536,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										<label><input name="ographr_options[enable_youtube]" type="checkbox" value="1" <?php if (isset($options['enable_youtube'])) { checked('1', $options['enable_youtube']); } ?> />&nbsp;YouTube</label>
 								
 										<? if((!isset($options['bandcamp_api'])) && (isset($options['enable_bandcamp']))) { echo '<br/><span style="color:red;font-size:x-small;">Bandcamp requires a valid <a href="#bandcamp_api_key" style="color:red;">API key</a></span>';} ?>
+										<? if((!isset($options['muzu_api'])) && (isset($options['enable_muzu']))) { echo '<br/><span style="color:red;font-size:x-small;">Muzu.tv requires a valid <a href="#muzu_api_key" style="color:red;">API key</a></span>';} ?>
 										<? if((!isset($options['myvideo_dev_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_developer_key" style="color:red;">Developer API key</a></span>';} ?>
 										<? if((!isset($options['myvideo_web_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_website_key" style="color:red;">Website API key</a></span>';} ?>
 										<? if((!isset($options['socialcam_api'])) && (isset($options['enable_socialcam']))) { echo '<br/><span style="color:red;font-size:x-small;">Socialcam requires a valid <a href="#socialcam_api_key" style="color:red;">API key</a></span>';} ?>
@@ -757,6 +760,13 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<th align="left" width="140px" scope="row"><label>Flickr:</label></th> 
 							<td width="30px"><input type="text" size="75" name="ographr_options[flickr_api]" value="<?php if (($options['flickr_api'] != FLICKR_API_KEY) && ($options['flickr_api'])) { echo $options['flickr_api']; } ?>" /></td> 
 							<td><a href="http://www.flickr.com/services/apps/create/apply/" title="Get an API key" target="_blank" id="help_link">?</a></td>
+							</tr>
+
+							<!-- MUZU.TV -->	
+							<tr valign="center"> 
+							<th align="left" width="140px" scope="row"><label><a name="muzu_api_key" id="muzu_api_key"></a>Muzu.tv:</label></th> 
+							<td width="30px"><input type="text" size="75" class="required" name="ographr_options[muzu_api]" value="<?php echo $options['muzu_api']; ?>" /></td>
+							<td><a href="http://www.muzu.tv/api/apiKeyRequest/" title="Get an API key" target="_blank" id="help_link">?</a></td>
 							</tr>
 							
 							<!-- MYVIDEO DEVELOPER -->	

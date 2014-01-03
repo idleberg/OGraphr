@@ -3,7 +3,7 @@
 Plugin Name: OGraphr
 Plugin URI: https://github.com/idleberg/OGraphr
 Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social networks can use these to style shared or "liked" articles.
-Version: 0.8.20
+Version: 0.8.21
 Author: Jan T. Sott
 Author URI: https://github.com/idleberg
 License: GPLv2 
@@ -28,7 +28,7 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.20");
+    define("OGRAPHR_VERSION", "0.8.21");
 	// enables developer settings on Wordpress interface, can be overwritten from plug-in settings once activated
 	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
@@ -172,6 +172,7 @@ class OGraphr_Core {
 							"enable_justintv" => "1",
 							"enable_livestream" => "1",
 							"enable_mixcloud" => "1",
+							"enable_muzu" => NULL,
 							"enable_myvideo" => NULL,
 							"enable_official" => "1",
 							"enable_rdio" => "1",
@@ -285,7 +286,7 @@ class OGraphr_Core {
 		if ($services['name'] == "Blip.tv") {
 			$output = preg_match('/(?:blip_ws_results\(\[)(.*)(?:\]\);)/smi', $output, $match); // fix Blip.tv JSON file
 			$output = $match[1];
-		} else if ($services['name'] == "Vimeo") {
+		} else if (($services['name'] == "Muzu.tv") || ($services['name'] == "Vimeo")) {
 			$output = substr($output, 1, -1);
 		}
 		
@@ -498,6 +499,7 @@ class OGraphr_Core {
 					if (isset($options['enable_justintv'])) { print "\t Justin.tv enabled\n"; }
 					if (isset($options['enable_livestream'])) { print "\t Livestream enabled\n"; }
 					if (isset($options['enable_mixcloud'])) { print "\t Mixcloud enabled\n"; }
+					if (isset($options['enable_muzu'])) { print "\t Muzu.tv enabled\n"; }
 					if (isset($options['enable_myvideo'])) { print "\t MyVideo enabled\n"; }
 					if (isset($options['enable_official'])) { print "\t Official.fm enabled\n"; }
 					if (isset($options['enable_rdio'])) { print "\t Rdio enabled\n"; }
@@ -516,6 +518,7 @@ class OGraphr_Core {
 					if ($bambuser_api = $options['bambuser_api']) { print "\t Bambuser: $bambuser_api\n"; }
 					if ($bandcamp_api = $options['bandcamp_api']) { print "\t Bandcamp: $bandcamp_api\n"; }
 					if ($flickr_api = $options['flickr_api']) { print "\t Flickr: $flickr_api\n"; }
+					if ($muzu_api = $options['muzu_api']) { print "\t Muzu.tv: $muzu_api\n"; }
 					if ($myvideo_dev_api = $options['myvideo_dev_api']) { print "\t MyVideo (Developer): $myvideo_dev_api\n"; }
 					if ($myvideo_web_api = $options['myvideo_web_api']) { print "\t MyVideo (Website): $myvideo_web_api\n"; }
 					if ($socialcam_api = $options['socialcam_api']) { print "\t Socialcam: $socialcam_api\n"; }
@@ -1470,6 +1473,18 @@ class OGraphr_Core {
 										'img' => 'pictures->' . MIXCLOUD_IMAGE_SIZE,
 										'wd' => 460,
 										'hd' => 460,
+									),
+								),
+					'muzu' => array(
+									'name' => 'Muzu.tv',
+									'patterns' => array(
+										'/player.muzu.tv\/player\/getPlayer\/(?:a|i)\/2074\/vidId=([0-9]+)/i'
+									),
+									'url' => 'http://www.muzu.tv/api/video/details/?id=%MATCH%&format=json&muzuid=' . $options['muzu_api'],
+									'queries' => array(
+										'img' => 'thumbnail_2->url',
+										'wd' => 'thumbnail_2->width',
+										'hd' => 'thumbnail_2->height',
 									),
 								),
 					'myvideo' => array(

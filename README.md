@@ -17,6 +17,7 @@ Currently, these media embeds are supported:
 * Justin.tv/Twitch.tv
 * Livestream
 * Mixcloud
+* Muzu.tv
 * MyVideo
 * Official.fm
 * Rdio
