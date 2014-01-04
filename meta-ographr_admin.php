@@ -426,11 +426,11 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<th align="left" width="140px" scope="row"><label>Link Title:</label></th> 
 								<td width="30px">
 									<input type="text" size="75" name="ographr_options[website_title]" value="<?php if ($options['website_title']) { echo $options['website_title']; } else { echo '%postname%';} ?>" /><br/>
-									<small>
-										<code>%postname%</code> &#8211; page or post title<br/>
-										<code>%sitename%</code> &#8211; your blog's name (<em><? if($mywp['blog_name'] = get_option('blogname')) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br/>
-										<code>%siteurl%</code> &#8211; the URL of your blog (<em><? $wp_url = get_option('home'); $wp_url = (preg_replace('/https?:\/\//', NULL, $wp_url)); echo $wp_url; ?></em>)
-									</small>
+									<p class="description">
+										<code>%postname%</code> &mdash; page or post title<br/>
+										<code>%sitename%</code> &mdash; your blog's name (<em><? if($mywp['blog_name'] = get_option('blogname')) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br/>
+										<code>%siteurl%</code> &mdash; the URL of your blog (<em><? $wp_url = get_option('home'); $wp_url = (preg_replace('/https?:\/\//', NULL, $wp_url)); echo $wp_url; ?></em>)
+									</p>
 								</td> 
 								<td>&nbsp;</td>
 								</tr>
@@ -440,18 +440,19 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<th align="left" scope="row"><label>Thumbnail:</label></th> 
 									<td colspan="2">
 										<input type="text" size="75" name="ographr_options[website_thumbnail]" value="<?php echo $options['website_thumbnail']; ?>" /><br/>
-										<small>
-											<code>%screenshot%</code> &#8211; your theme's default screenshot
-											<?php
-											$theme_path = get_bloginfo('template_url');
-											$result = $this->remote_exists($theme_path . '/screenshot.png');
-											if ($result) {
-												print '(<a href="' . $theme_path . '/screenshot.png" target="_blank">preview</a>)';
-											} else {
-												print "(<span style=\"color:red;\">none</span>)";
-											}
-												 ?>
-										</small>
+										
+										<p class="description">
+												<code>%screenshot%</code> &mdash; your theme's default screenshot
+												<?php
+												$theme_path = get_bloginfo('template_url');
+												$result = $this->remote_exists($theme_path . '/screenshot.png');
+												if ($result) {
+													print '(<a href="' . $theme_path . '/screenshot.png" target="_blank">preview</a>)';
+												} else {
+													print "(<span style=\"color:red;\">none</span>)";
+												}
+													 ?>
+										</p>
 									</td>
 								</tr>
 							
@@ -466,23 +467,43 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<th align="left" scope="row"><label>Meta-tags:</label></th> 
 									<td colspan="2">
 
-										<label><input name="ographr_options[add_title]" type="checkbox" value="1" <?php if (isset($options['add_title'])) { checked('1', $options['add_title']); } ?> /> Add page title </label>&nbsp;
+										<ul class="horizontal">
+											<li>
+												<ul>
+													<li><label><input name="ographr_options[add_title]" type="checkbox" value="1" <?php if (isset($options['add_title'])) { checked('1', $options['add_title']); } ?> /> Add page title </label></li>
+													<li><label><input name="ographr_options[add_excerpt]" type="checkbox" value="1" <?php if (isset($options['add_excerpt'])) { checked('1', $options['add_excerpt']); } ?> /> Add excerpt </label></li>
+													<li><label><input name="ographr_options[add_permalink]" type="checkbox" value="1" class="atoggle" data-atarget="select.link_type" data-astate="1" <?php if (isset($options['add_permalink'])) { checked('1', $options['add_permalink']); } ?> /> Add link </label></li>
+													<li><label><input name="ographr_options[add_author]" type="checkbox"  class="atoggle" value="1" data-atarget="input.allow_admin_tag" data-astate="1" <?php if (isset($options['add_author'])) { checked('1', $options['add_author']); } ?> /> Add author </label></li>
+													<li><label><input name="ographr_options[add_section]" type="checkbox" value="1" <?php if (isset($options['add_section'])) { checked('1', $options['add_section']); } ?> /> Add category </label></li>
+												</ul>
+											</li>
+											<li>
+												<ul>
+													<li><label><input name="ographr_options[add_tags]" type="checkbox" value="1" <?php if (isset($options['add_tags'])) { checked('1', $options['add_tags']); } ?> /> Add tags </label></li>
+													<li><label><input name="ographr_options[add_pubtime]" type="checkbox" value="1" <?php if (isset($options['add_pubtime'])) { checked('1', $options['add_pubtime']); } ?> /> Add published time </label></li>
+													<li><label class="advanced_opt"><input name="ographr_options[add_modtime]" type="checkbox" value="1" <?php if (isset($options['add_modtime'])) { checked('1', $options['add_modtime']); } ?> /> Add modified time </label></li>
+													<li><label class="advanced_opt"><input name="ographr_options[add_embeds]" type="checkbox" value="1" <?php if (isset($options['add_embeds'])) { checked('1', $options['add_embeds']); } ?> /> Add embedded media </label></li>
+												</ul>
+											</li>
+										</ul>
 
-										<label><input name="ographr_options[add_excerpt]" type="checkbox" value="1" <?php if (isset($options['add_excerpt'])) { checked('1', $options['add_excerpt']); } ?> /> Add excerpt </label>&nbsp;
-
-										<label><input name="ographr_options[add_permalink]" type="checkbox" value="1" class="atoggle" data-atarget="select.link_type" data-astate="1" <?php if (isset($options['add_permalink'])) { checked('1', $options['add_permalink']); } ?> /> Add link </label>&nbsp;
-																		
-										<label><input name="ographr_options[add_author]" type="checkbox"  class="atoggle" value="1" data-atarget="input.allow_admin_tag" data-astate="1" <?php if (isset($options['add_author'])) { checked('1', $options['add_author']); } ?> /> Add author </label>&nbsp;
-
-										<label><input name="ographr_options[add_section]" type="checkbox" value="1" <?php if (isset($options['add_section'])) { checked('1', $options['add_section']); } ?> /> Add category </label>&nbsp;
-
-										<label><input name="ographr_options[add_tags]" type="checkbox" value="1" <?php if (isset($options['add_tags'])) { checked('1', $options['add_tags']); } ?> /> Add tags </label>&nbsp;
-
-										<label><input name="ographr_options[add_pubtime]" type="checkbox" value="1" <?php if (isset($options['add_pubtime'])) { checked('1', $options['add_pubtime']); } ?> /> Add published time </label>&nbsp;
 										
-										<label class="advanced_opt"><input name="ographr_options[add_modtime]" type="checkbox" value="1" <?php if (isset($options['add_modtime'])) { checked('1', $options['add_modtime']); } ?> /> Add modified time </label>&nbsp;
 
-										<label class="advanced_opt"><input name="ographr_options[add_embeds]" type="checkbox" value="1" <?php if (isset($options['add_embeds'])) { checked('1', $options['add_embeds']); } ?> /> Add embedded media </label>&nbsp;
+										&nbsp;
+
+										&nbsp;
+																		
+										&nbsp;
+
+										
+
+										&nbsp;
+
+										&nbsp;
+										
+										&nbsp;
+
+										&nbsp;
 
 									</td>
 								</tr>
@@ -490,51 +511,47 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<!-- TRIGGERS -->
 								<tr valign="top" class="advanced_opt"> 
 									<th align="left" scope="row"><label>Triggers:</label></th> 
-									<td colspan="2">								
-										<label><input name="ographr_options[enable_etracks]" type="checkbox" value="1" <?php if ((isset($options['enable_etracks'])) && ($options['enable_etracks'])) { checked('1', $options['enable_etracks']); } ?> />&nbsp;8tracks</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_bambuser]" type="checkbox" value="1" <?php if ((isset($options['enable_bambuser'])) && ($options['bambuser_api'])) { checked('1', $options['enable_bambuser']); } ?> />&nbsp;Bambuser</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_bandcamp]" type="checkbox" value="1" <?php if ((isset($options['enable_bandcamp'])) && ($options['bandcamp_api'])) { checked('1', $options['enable_bandcamp']); } ?> />&nbsp;Bandcamp</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_bliptv]" type="checkbox" value="1" <?php if (isset($options['enable_bliptv'])) { checked('1', $options['enable_bliptv']); } ?> />&nbsp;Blip.tv</label>&nbsp;
+									<td colspan="2">	
+										<ul class="horizontal">
+											<li>
+												<ul>
+													<li><label><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Audio</strong></label></li>
+													<li><label><input name="ographr_options[enable_etracks]" type="checkbox" value="1" <?php if ((isset($options['enable_etracks'])) && ($options['enable_etracks'])) { checked('1', $options['enable_etracks']); } ?> />&nbsp;8tracks</label></li>
+													<li><label><input name="ographr_options[enable_bandcamp]" type="checkbox" value="1" <?php if ((isset($options['enable_bandcamp'])) && ($options['bandcamp_api'])) { checked('1', $options['enable_bandcamp']); } ?> />&nbsp;Bandcamp</label></li>
+													<li><label><input name="ographr_options[enable_mixcloud]" type="checkbox" value="1" <?php if (isset($options['enable_mixcloud'])) { checked('1', $options['enable_mixcloud']); } ?> />&nbsp;Mixcloud</label></li>
+													<li><label><input name="ographr_options[enable_official]" type="checkbox" value="1" <?php if (isset($options['enable_official'])) { checked('1', $options['enable_official']); } ?> />&nbsp;Official.fm</label></li>
+													<li><label><input name="ographr_options[enable_rdio]" type="checkbox" value="1" <?php if (isset($options['enable_rdio'])) { checked('1', $options['enable_rdio']); } ?> />&nbsp;Rdio</label></li>
+													<li><label><input name="ographr_options[enable_soundcloud]" type="checkbox" value="1" <?php if (isset($options['enable_soundcloud'])) { checked('1', $options['enable_soundcloud']); } ?> />&nbsp;SoundCloud</label></li>
+													<li><label><input name="ographr_options[enable_spotify]" type="checkbox" value="1" <?php if (isset($options['enable_spotify'])) { checked('1', $options['enable_spotify']); } ?> />&nbsp;Spotify</label></li>
+												</ul>
+											</li>
+											<li>
+												<ul >
+													<li><label><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Video</strong></label></li>
+													<li><label><input name="ographr_options[enable_bliptv]" type="checkbox" value="1" <?php if (isset($options['enable_bliptv'])) { checked('1', $options['enable_bliptv']); } ?> />&nbsp;Blip.tv</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_dailymotion]" type="checkbox" value="1" <?php if (isset($options['enable_dailymotion'])) { checked('1', $options['enable_dailymotion']); } ?> />&nbsp;Dailymotion</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_flickr]" type="checkbox" value="1" <?php if (isset($options['enable_flickr'])) { checked('1', $options['enable_flickr']); } ?> />&nbsp;Flickr</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_hulu]" type="checkbox" value="1" <?php if (isset($options['enable_hulu'])) { checked('1', $options['enable_hulu']); } ?> />&nbsp;Hulu</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_internetarchive]" type="checkbox" value="1" <?php if ((isset($options['enable_internetarchive'])) && ($options['enable_internetarchive'])) { checked('1', $options['enable_internetarchive']); } ?> />&nbsp;Internet Archive</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_muzu]" type="checkbox" value="1" <?php if ((isset($options['enable_muzu'])) && ($options['muzu_api'])) { checked('1', $options['enable_muzu']); } ?> />&nbsp;Muzu.tv</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_myvideo]" type="checkbox" value="1" <?php if ((isset($options['enable_myvideo'])) && ($options['myvideo_dev_api']) && ($options['myvideo_web_api'])) { checked('1', $options['enable_myvideo']); } ?> />&nbsp;MyVideo</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_viddler]" type="checkbox" value="1" <?php if ((isset($options['enable_viddler'])) && ($options['viddler_api'])) { checked('1', $options['enable_viddler']); } ?> />&nbsp;Viddler</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_vimeo]" type="checkbox" value="1" <?php if (isset($options['enable_vimeo'])) { checked('1', $options['enable_vimeo']); } ?> />&nbsp;Vimeo</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_youtube]" type="checkbox" value="1" <?php if (isset($options['enable_youtube'])) { checked('1', $options['enable_youtube']); } ?> />&nbsp;YouTube</label></li>
+												</ul>
+											</li>
+											<li>
+												<ul>
+													<li><label><input class="select-all"  type="checkbox" value="0"><strong>&nbsp;Stream</strong></label></li>
+													<li><label><input name="ographr_options[enable_bambuser]" type="checkbox" value="1" <?php if ((isset($options['enable_bambuser'])) && ($options['bambuser_api'])) { checked('1', $options['enable_bambuser']); } ?> />&nbsp;Bambuser</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_justintv]" type="checkbox" value="1" <?php if (isset($options['enable_justintv'])) { checked('1', $options['enable_justintv']); } ?> />&nbsp;Justin.tv</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_livestream]" type="checkbox" value="1" <?php if (isset($options['enable_livestream'])) { checked('1', $options['enable_livestream']); } ?> />&nbsp;Livestream</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_socialcam]" type="checkbox" value="1" <?php if ((isset($options['enable_socialcam'])) && ($options['socialcam_api'])) { checked('1', $options['enable_socialcam']); } ?> />&nbsp;Socialcam</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_ustream]" type="checkbox" value="1" <?php if (isset($options['enable_ustream'])) { checked('1', $options['enable_ustream']); } ?> />&nbsp;Ustream</label>&nbsp;</li>
+												</ul>
+											</li>
+										</ul>
 
-										<label><input name="ographr_options[enable_dailymotion]" type="checkbox" value="1" <?php if (isset($options['enable_dailymotion'])) { checked('1', $options['enable_dailymotion']); } ?> />&nbsp;Dailymotion</label>&nbsp;
-										
-										<label><input name="ographr_options[enable_flickr]" type="checkbox" value="1" <?php if (isset($options['enable_flickr'])) { checked('1', $options['enable_flickr']); } ?> />&nbsp;Flickr</label>&nbsp;
-
-										<label><input name="ographr_options[enable_hulu]" type="checkbox" value="1" <?php if (isset($options['enable_hulu'])) { checked('1', $options['enable_hulu']); } ?> />&nbsp;Hulu</label>&nbsp;
-										
-										<label><input name="ographr_options[enable_internetarchive]" type="checkbox" value="1" <?php if ((isset($options['enable_internetarchive'])) && ($options['enable_internetarchive'])) { checked('1', $options['enable_internetarchive']); } ?> />&nbsp;Internet Archive</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_justintv]" type="checkbox" value="1" <?php if (isset($options['enable_justintv'])) { checked('1', $options['enable_justintv']); } ?> />&nbsp;Justin.tv</label>&nbsp;
-										
-										<label><input name="ographr_options[enable_livestream]" type="checkbox" value="1" <?php if (isset($options['enable_livestream'])) { checked('1', $options['enable_livestream']); } ?> />&nbsp;Livestream</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_mixcloud]" type="checkbox" value="1" <?php if (isset($options['enable_mixcloud'])) { checked('1', $options['enable_mixcloud']); } ?> />&nbsp;Mixcloud</label>&nbsp;
-										
-										<label><input name="ographr_options[enable_muzu]" type="checkbox" value="1" <?php if ((isset($options['enable_muzu'])) && ($options['muzu_api'])) { checked('1', $options['enable_muzu']); } ?> />&nbsp;Muzu.tv</label>&nbsp;
-
-										<label><input name="ographr_options[enable_myvideo]" type="checkbox" value="1" <?php if ((isset($options['enable_myvideo'])) && ($options['myvideo_dev_api']) && ($options['myvideo_web_api'])) { checked('1', $options['enable_myvideo']); } ?> />&nbsp;MyVideo</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_official]" type="checkbox" value="1" <?php if (isset($options['enable_official'])) { checked('1', $options['enable_official']); } ?> />&nbsp;Official.fm</label>&nbsp;
-										
-										<label><input name="ographr_options[enable_rdio]" type="checkbox" value="1" <?php if (isset($options['enable_rdio'])) { checked('1', $options['enable_rdio']); } ?> />&nbsp;Rdio</label>&nbsp;
-										
-										<label><input name="ographr_options[enable_socialcam]" type="checkbox" value="1" <?php if ((isset($options['enable_socialcam'])) && ($options['socialcam_api'])) { checked('1', $options['enable_socialcam']); } ?> />&nbsp;Socialcam</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_soundcloud]" type="checkbox" value="1" <?php if (isset($options['enable_soundcloud'])) { checked('1', $options['enable_soundcloud']); } ?> />&nbsp;SoundCloud</label>&nbsp;
-
-										<label><input name="ographr_options[enable_spotify]" type="checkbox" value="1" <?php if (isset($options['enable_spotify'])) { checked('1', $options['enable_spotify']); } ?> />&nbsp;Spotify</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_ustream]" type="checkbox" value="1" <?php if (isset($options['enable_ustream'])) { checked('1', $options['enable_ustream']); } ?> />&nbsp;Ustream</label>&nbsp;
-								
-										<label><input name="ographr_options[enable_viddler]" type="checkbox" value="1" <?php if ((isset($options['enable_viddler'])) && ($options['viddler_api'])) { checked('1', $options['enable_viddler']); } ?> />&nbsp;Viddler</label>&nbsp;
-
-										<label><input name="ographr_options[enable_vimeo]" type="checkbox" value="1" <?php if (isset($options['enable_vimeo'])) { checked('1', $options['enable_vimeo']); } ?> />&nbsp;Vimeo</label>&nbsp;
-
-										<label><input name="ographr_options[enable_youtube]" type="checkbox" value="1" <?php if (isset($options['enable_youtube'])) { checked('1', $options['enable_youtube']); } ?> />&nbsp;YouTube</label>
-								
 										<? if((!isset($options['bandcamp_api'])) && (isset($options['enable_bandcamp']))) { echo '<br/><span style="color:red;font-size:x-small;">Bandcamp requires a valid <a href="#bandcamp_api_key" style="color:red;">API key</a></span>';} ?>
 										<? if((!isset($options['muzu_api'])) && (isset($options['enable_muzu']))) { echo '<br/><span style="color:red;font-size:x-small;">Muzu.tv requires a valid <a href="#muzu_api_key" style="color:red;">API key</a></span>';} ?>
 										<? if((!isset($options['myvideo_dev_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_developer_key" style="color:red;">Developer API key</a></span>';} ?>
@@ -555,6 +572,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								</tbody></table>
 								<div class="submit">
 										<input type="submit" class="button-primary" value="Save all changes" />
+										<a href="#wpbody-content" class="button-secondary">Back to top</a>
 									</div>
 							</div>
 						</div>
@@ -566,7 +584,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<table width="100%" cellspacing="2" cellpadding="5"> 
 								<tbody>
 							
-								<tr valign="center" class="advanced_opt"> 
+								<tr valign="top" class="advanced_opt"> 
 									<th align="left" scope="row"><label>Functionality:</label></th> 
 									<td colspan="2">
 									<label title="Enable plug-in on front page"><input name="ographr_options[enable_plugin_on_front]" type="checkbox" class="atoggle" value="1" data-atarget="input.enable_triggers" data-astate="1" <?php if (isset($options['enable_plugin_on_front'])) { checked('1', $options['enable_plugin_on_front']); } ?>/> Enable plug-in </label>&nbsp;
@@ -580,7 +598,9 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<th align="left" width="140px" scope="row"><label>Custom Description:</label></th> 
 									<td colspan="2" width="30px">
 										<input type="text" size="75" name="ographr_options[website_description]" class="enable_triggers" value="<?php echo $options['website_description']; ?>" /><br/>
-										<small><code>%tagline%</code> &#8211; your blog's tagline (<em><? if(get_bloginfo('description')) { echo get_bloginfo('description'); } else { echo '<span style="color:red;">empty</span>';} ?></em>)</small>
+										<p class="description">
+											<code>%tagline%</code> &mdash; your blog's tagline (<em><? if(get_bloginfo('description')) { echo get_bloginfo('description'); } else { echo '<span style="color:red;">empty</span>';} ?></em>)
+										</p>
 									</td> 
 								</tr>
 							
@@ -588,6 +608,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<div class="submit">
 									<input type="submit" class="button-primary" value="Save all changes" />
+									<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>		
 							</div>
 						</div>
@@ -600,7 +621,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tbody>
 
 									<!-- FILTERS -->
-									<tr valign="center"> 
+									<tr valign="top"> 
 										<th align="left" width="140px" scope="row"><label>Filters:</label></th> 
 										<td colspan="2">
 											<label title="Filter Gravatar images"><input name="ographr_options[filter_gravatar]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_gravatar'])) { checked('1', $options['filter_gravatar']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?>/> Exclude avatars </label>&nbsp;
@@ -621,12 +642,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<tr valign="top"> 
 										<th align="left" width="140px" scope="row"><label>Custom URLs:</label></th> 
 										<td colspan="2"><textarea name="ographr_options[filter_custom_urls]" cols="76%" rows="4" class="disable_filters"><?php echo $options['filter_custom_urls']; ?></textarea><br/>
-											<small>You can enter filenames and URLs (e.g. <em><? echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</small>
+											<p class="description">You can enter filenames and URLs (e.g. <em><? echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</p>
 										</td> 
 									</tr>
 
 									<!-- AUTHOR -->	
-									<tr valign="center"> 
+									<tr valign="top"> 
 									<th align="left" width="140px" scope="row"><label>Author Links:</label></th> 
 									<td colspan="2">
 										<label><input class="allow_admin_tag" name="ographr_options[allow_admin_tag]" type="checkbox" value="1" <?php if (isset($options['allow_admin_tag'])) { checked('1', $options['allow_admin_tag']); }  if (!isset($options['add_author'])) { print 'disabled="disabled"';} ?> /> Allow author tag for user <em>admin</em>  </label><br/>
@@ -635,7 +656,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									</tr>
 
 									<!-- AGE -->	
-									<tr valign="center"> 
+									<tr valign="top"> 
 									<th align="left" width="140px" scope="row"><label>Audience:</label></th> 
 									<td colspan="2">
 										<select name='ographr_options[restrict_age]'>
@@ -651,7 +672,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									</tr>
 
 									<!-- COUNTRY -->	
-									<tr valign="center"> 
+									<tr valign="top"> 
 									<th align="left" width="140px" scope="row"><label>Country:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[restrict_country]" type="checkbox" value="1" class="atoggle" data-atarget="select.restrict_country" data-astate="1" <?php if (isset($options['restrict_country'])) { checked('1', $options['restrict_country']); } ?> /></label>&nbsp;
@@ -671,7 +692,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									</tr>
 
 									<!-- CONTENT -->	
-									<tr valign="center"> 
+									<tr valign="top"> 
 									<th align="left" width="140px" scope="row"><label>Content:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[restrict_content]" type="checkbox" value="1" <?php if (isset($options['restrict_content'])) { checked('1', $options['restrict_content']); } ?> /> Contains alcohol </label>
@@ -694,7 +715,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											
 											<!-- Checkbox -->
 											<label><input name="ographr_options[twitter_ua]" type="checkbox" value="1" <?php if (isset($options['twitter_ua'])) { checked('1', $options['twitter_ua']); } ?> /> Twitter </label><br/>
-											<small>Once a user-agent has been selected, the plug-in will only be triggered when called by any of these sites.</small>
+											<p class="description">Once a user-agent has been selected, the plug-in will only be triggered when called by any of these sites.</p>
 										</td>
 									</tr>
 
@@ -703,12 +724,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										<th align="left" width="140px" scope="row"><label>Open Graph:</label></th> 
 										<td colspan="2">
 											<label><input name="ographr_options[limit_opengraph]" type="checkbox" value="1" <?php if (isset($options['limit_opengraph'])) { checked('1', $options['limit_opengraph']); } ?> /> Only add Open Graph tags on Facebook </label><br/>
-											<small>Note that other websites such as Google+ are able to interprete Open Graph tags as well.</small>
+											<p class="description">Note that other websites such as Google+ are able to interprete Open Graph tags as well.</p>
 										</td> 
 									</tr>
 
 									<!-- JETPACK -->
-									<tr valign="center"> 
+									<tr valign="top"> 
 										<th align="left" width="140px" scope="row"><label>Jetpack:</label></th> 
 										<td colspan="2">
 											<label title="Disable Jetpack's Open Graph tags to avoid duplicate tags"><input name="ographr_options[disable_jetpack]" type="checkbox" value="1" <?php if (isset($options['disable_jetpack'])) { checked('1', $options['disable_jetpack']); } if (!is_plugin_active('jetpack/jetpack.php')) { print 'disabled="disabled"'; } ?> /> Disable Jetpack's Open Graph Tags function </label>
@@ -719,6 +740,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<div class="submit">
 										<input type="submit" class="button-primary" value="Save all changes" />
+										<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>		
 							</div>
 
@@ -815,6 +837,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 							<div class="submit">
 								<input type="submit" class="button-primary" value="Save all changes" />
+								<a href="#wpbody-content" class="button-secondary">Back to top</a>
 							</div>			
 						</div>
 
@@ -835,13 +858,13 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											<label><input name="ographr_options[exec_mode]" type="radio" class="atoggle only_once" data-atarget=".no_expiry" data-astate="1" value="1" <?php if (isset($options['exec_mode'])) { checked('1', $options['exec_mode']); } ?>  />&nbsp;Only once when saving a post (default, better performance)&nbsp;</label><br/>
 
 											<label><input name="ographr_options[exec_mode]" type="radio" class="atoggle" data-atarget=".no_expiry" data-astate="0" value="2" <?php if (isset($options['exec_mode'])) { checked('2', $options['exec_mode']); } ?>  />&nbsp;Everytime your site is visited (slow, more accurate)&nbsp;</label><br/>
-											<small>Retrieving images <em>on-post</em> decreases the loadtime of your page significantly, but on the downside the results might be outdated at some point. Should you choose to retrieve images <em>on-view</em>, it is recommended to <a href="#user_agents">restrict access</a> to decrease load times for human readers.</small>
+											<p class="description">Retrieving images <em>on-post</em> decreases the loadtime of your page significantly, but on the downside the results might be outdated at some point. Should you choose to retrieve images <em>on-view</em>, it is recommended to <a href="#user_agents">restrict access</a> to decrease load times for human readers.</p>
 										</div>
 									</td> 
 								</tr>
 									
 								<!-- DATA EXPIRY -->	
-								<tr valign="center"> 
+								<tr valign="top"> 
 								<th align="left" width="140px" scope="row"><label>Data Expiry:</label></th> 
 								<td colspan="2">
 									<select name='ographr_options[data_expiry]' class="no_expiry" <?php if ($options['exec_mode'] == 2) print 'disabled="disabled"'; ?> >
@@ -871,39 +894,44 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<th align="left" scope="row"><label>Namespace:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_prefix]" type="checkbox" value="1" <?php if (isset($options['add_prefix'])) { checked('1', $options['add_prefix']); } ?> /> Add Open Graph prefix to source </label><br/>
-										<small>Facebook advises the inclusion of the Open Graph prefix, though tags will be interpreted without one. However, your Wordpress theme needs to support <a href="http://codex.wordpress.org/Function_Reference/language_attributes" target="_blank">language attributes</a> to make this work! </small>
+										<p class="description">Facebook advises the inclusion of the Open Graph prefix, though tags will be interpreted without one. However, your Wordpress theme needs to support <a href="http://codex.wordpress.org/Function_Reference/language_attributes" target="_blank">language attributes</a> to make this work! </p>
 									</td>
 								</tr>
 									
 								<!-- MORE TRIGGERS -->
 								<a name="more_triggers"></a> 
-								<tr valign="center"> 
+								<tr valign="top"> 
 									<th align="left" scope="row"><label>More Triggers:</label></th> 
 									<td colspan="2">
 
-										<label title="Add poster images from HTML5 video-players"><input name="ographr_options[enable_videoposter]" type="checkbox" value="1" <?php if (isset($options['enable_videoposter'])) { checked('1', $options['enable_videoposter']); } ?> /> Video posters </label>&nbsp;
-
-										<label title="Add poster images from JW Player"><input name="ographr_options[enable_jwplayer]" type="checkbox" value="1" <?php if (isset($options['enable_jwplayer'])) { checked('1', $options['enable_jwplayer']); } ?> /> JW Player </label>&nbsp;
-										
-										<label title="Add poster images from NVB Player"><input name="ographr_options[enable_nvbplayer]" type="checkbox" value="1" <?php if (isset($options['enable_nvbplayer'])) { checked('1', $options['enable_nvbplayer']); } ?> /> NVB Player </label>&nbsp;
-
-										<label title="Add image tags from your post"><input name="ographr_options[add_post_images]" type="checkbox" class="atoggle" data-atarget="input.disable_filters, textarea.disable_filters" data-astate="1" value="1" <?php if (isset($options['add_post_images'])) { checked('1', $options['add_post_images']); } ?> /> Post images </label>&nbsp;
-
-										<label title="Add images uploaded through Wordpress"><input name="ographr_options[add_attached_image]" type="checkbox" value="1" class="atoggle" data-atarget="input.post_thumbnail" data-astate="0" <?php if (isset($options['add_attached_image'])) { checked('1', $options['add_attached_image']); } ?> /> Attached images </label>&nbsp;
-										
-										<label title="Add featured images from your post"><input name="ographr_options[add_post_thumbnail]" type="checkbox" value="1" class="post_thumbnail" <?php if (isset($options['add_post_thumbnail'])) { checked('1', $options['add_post_thumbnail']); }; if ($options['add_attached_image']) { print 'disabled="disabled"'; } ?> /> Featured image <a href="http://codex.wordpress.org/Post_Thumbnails" title="Wordpress Codex: Post Thumbnails" target="_blank" id="help_link">?</a></label>&nbsp;
+										<ul class="horizontal">
+											<li>
+												<ul>
+													<li><label title="Add poster images from HTML5 video-players"><input name="ographr_options[enable_videoposter]" type="checkbox" value="1" <?php if (isset($options['enable_videoposter'])) { checked('1', $options['enable_videoposter']); } ?> /> Video posters </label></li>
+													<li><label title="Add poster images from JW Player"><input name="ographr_options[enable_jwplayer]" type="checkbox" value="1" <?php if (isset($options['enable_jwplayer'])) { checked('1', $options['enable_jwplayer']); } ?> /> JW Player </label></li>
+													<li><label title="Add poster images from NVB Player"><input name="ographr_options[enable_nvbplayer]" type="checkbox" value="1" <?php if (isset($options['enable_nvbplayer'])) { checked('1', $options['enable_nvbplayer']); } ?> /> NVB Player </label></li>
+												</ul>
+											</li>
+											<li>
+												<ul >
+													<li><label title="Add image tags from your post"><input name="ographr_options[add_post_images]" type="checkbox" class="atoggle" data-atarget="input.disable_filters, textarea.disable_filters" data-astate="1" value="1" <?php if (isset($options['add_post_images'])) { checked('1', $options['add_post_images']); } ?> /> Post images </label></li>
+													<li><label title="Add images uploaded through Wordpress"><input name="ographr_options[add_attached_image]" type="checkbox" value="1" class="atoggle" data-atarget="input.post_thumbnail" data-astate="0" <?php if (isset($options['add_attached_image'])) { checked('1', $options['add_attached_image']); } ?> /> Attached images </label></li>
+													<li><label title="Add featured images from your post"><input name="ographr_options[add_post_thumbnail]" type="checkbox" value="1" class="post_thumbnail" <?php if (isset($options['add_post_thumbnail'])) { checked('1', $options['add_post_thumbnail']); }; if ($options['add_attached_image']) { print 'disabled="disabled"'; } ?> /> Featured image <a href="http://codex.wordpress.org/Post_Thumbnails" title="Wordpress Codex: Post Thumbnails" target="_blank" id="help_link">?</a></label></li>
+												</ul>
+											</li>
+										</ul>
 									</td>
 								</tr>
 
 								<!-- CANONICAL URL -->
-								<tr valign="center"> 
+								<tr valign="top"> 
 									<th align="left" scope="row"><label>Canonical URL:</label></th> 
 									<td colspan="2">
 								<label><input name="ographr_options[add_trailing_slash]" type="checkbox" value="1" <?php if (isset($options['add_trailing_slash'])) { checked('1', $options['add_trailing_slash']); } ?> /> Add trailing slash to URL if missing </label><br/>
-								<small>To avoid warnings in the Facebook <a href="http://developers.facebook.com/tools/debug" target="_blank">debug tool</a>, make sure to check the effect of this option!</small>
+								<p class="description">To avoid warnings in the Facebook <a href="http://developers.facebook.com/tools/debug" target="_blank">debug tool</a>, make sure to check the effect of this option!</p>
 								
 								<!-- LINK TYPE -->
-								<tr valign="center"> 
+								<tr valign="top"> 
 									<th align="left" scope="row"><label>Link Type:</label></th> 
 									<td colspan="2">
 								
@@ -927,21 +955,22 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									?>
 								</select>
 								<br/>
+								<p class="description">
 								<?php
 									if (!WPLANG) {
-										print "<small>Wordpress is set to default language (<em>en</em>)</small>"; 
+										print "Wordpress is set to default language (<em>en</em>)"; 
 									} else if (!defined('WPLANG')) {
-										print "<small>not defined, using default (<em>en</em>)</small>"; 
+										print "not defined, using default (<em>en</em>)"; 
 									} else {
-										print "<small>Wordpress is currently set to <code>" . WPLANG . "</code></small>";
+										print "Wordpress is currently set to <code>" . WPLANG . "</code>";
 									}
 								?>
-								
+								</p>
 								</td>
 							</tr>
 							
 								<!-- GOOGLE SNIPPETS -->
-								<tr valign="center"> 
+								<tr valign="top"> 
 									<th align="left" scope="row"><label>Alternative tags:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_twitter_meta]" type="checkbox" value="1" <?php if (isset($options['add_twitter_meta'])) { checked('1', $options['add_twitter_meta']); } ?> /> Twitter Cards <a href="https://dev.twitter.com/docs/cards" title="Twitter Documentation: Twitter Cards" target="_blank" id="help_link">?</a></label>&nbsp;
@@ -954,7 +983,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								</tr>
 								
 								<!-- INTERFACE -->
-								<tr valign="center"> 
+								<tr valign="top"> 
 									<th align="left" scope="row"><label>Interface:</label></th> 
 									<td colspan="2">
 										<label title="Add an OGraphr menu to your admin bar"><input name="ographr_options[add_adminbar]" type="checkbox" value="1" <?php if (isset($options['add_adminbar'])) { checked('1', $options['add_adminbar']); } ?> /> Add menu to admin bar</label>&nbsp;
@@ -964,7 +993,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								</tr>
 								
 								<!-- STATISTICS -->
-								<tr valign="center" class="disable_graph"> 
+								<tr valign="top" class="disable_graph"> 
 									<th align="left" scope="row"><label>Visual Graph:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[fill_curves]" class="disable_graph no_expiry" type="checkbox" value="1" <?php if (isset($options['fill_curves'])) { checked('1', $options['fill_curves']); }; if((!isset($options['add_graph'])) || ($options['exec_mode'] == 2)) print 'disabled="disabled"'; ?>/> Fill curves</label>&nbsp;
@@ -977,6 +1006,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<div class="submit">
 									<input type="submit" class="button-primary" value="Save all changes" />
+									<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>		
 							</div>
 
@@ -994,13 +1024,15 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<th align="left" width="140px" scope="row"><label>Human-readable Name:</label></th> 
 								<td colspan="2" width="30px">
 									<input type="text" size="75" name="ographr_options[fb_site_name]" value="<?php echo $options['fb_site_name']; ?>" /><br/>
-									<small><code>%sitename%</code> &#8211; your blog's name (<em><? if($wp_url) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br />
-									<code>%siteurl%</code> &#8211; the URL of your blog (<em><? echo $wp_url; ?></em>)</small>
+									<p class="description">
+										<code>%sitename%</code> &mdash; your blog's name (<em><? if($wp_url) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br />
+										<code>%siteurl%</code> &mdash; the URL of your blog (<em><? echo $wp_url; ?></em>)
+									<p>
 								</td>
 								</tr>
 							
 								<!-- OBJECT TYPE -->	
-								<tr valign="center"> 
+								<tr valign="top"> 
 								<th align="left" width="140px" scope="row"><label>Object Type:</label></th> 
 								<td colspan="2" width="30px">
 									<select name='ographr_options[fb_type]'>
@@ -1022,7 +1054,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<th align="left" width="140px" scope="row"><label>Admin ID:</label></th> 
 								<td colspan="2" width="30px">
 									<input type="text" size="75" name="ographr_options[fb_admins]" value="<?php echo $options['fb_admins']; ?>" /><br/>
-									<small>If you administer a page for your blog on Facebook, you can enter your <a href="http://developers.facebook.com/docs/reference/api/user/" target="_blank">User ID</a> above</small>
+									<p class="description">If you administer a page for your blog on Facebook, you can enter your <a href="http://developers.facebook.com/docs/reference/api/user/" target="_blank">User ID</a> above</p>
 								</td>
 								</tr>
 							
@@ -1031,13 +1063,14 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<th align="left" width="140px" scope="row"><label>Application ID:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[fb_app_id]" value="<?php echo $options['fb_app_id']; ?>" /><br/>
-									<small>If your blog uses a Facebook app, you can enter your <a href="https://developers.facebook.com/apps" target="_blank">Application ID</a> above</small>
+									<p class="description">If your blog uses a Facebook app, you can enter your <a href="https://developers.facebook.com/apps" target="_blank">Application ID</a> above</p>
 								</td>
 								</tr>	
 							
 								</tbody></table>
 								<div class="submit">
 									<input type="submit" class="button-primary" value="Save all changes" />
+									<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>		
 						</div>
 
@@ -1055,13 +1088,13 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tbody>
 
 								<!-- WEBSITE USER -->	
-								<tr valign="center"> 
+								<tr valign="top"> 
 								<th align="left" width="140px" scope="row"><label>Website User:</label></th> 
 								<td colspan="2" width="30px"><input type="text" size="75" name="ographr_options[twitter_site_user]" value="<?php echo $options['twitter_site_user']; ?>" /></td>
 								</tr>
 							
 								<!-- WEBSITE ID -->	
-								<tr valign="center"> 
+								<tr valign="top"> 
 								<th align="left" width="140px" scope="row"><label>Website ID:</label></th> 
 								<td colspan="2" width="30px"><input type="text" size="75" name="ographr_options[twitter_site_id]" value="<?php echo $options['twitter_site_id']; ?>" /></td>
 								</tr>
@@ -1072,12 +1105,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<th align="left" width="140px" scope="row"><label>Author User:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[twitter_author_user]" value="<?php echo $options['twitter_author_user']; ?>" /><br/>
-									<small>
-										<code>%user_twitter%</code> &#8211; use Twitter name saved in your <a href="<?php print get_admin_url() . "profile.php";?>">user profile</a> (requires plug-in, e.g. <a href="http://wordpress.org/extend/plugins/twitter-profile-field/" target="_blank">Twitter Profile Field</a>)<br/>
-										<code>%user_aim%</code> &#8211; abuse <em>AIM</em> name saved in your profile<br/>
-										<code>%user_jabber%</code> &#8211; abuse <em>Jabber</em> name saved in your profile<br/>
-										<code>%user_yahoo%</code> &#8211; abuse <em>Yahoo! IM</em> name saved in your profile										
-									<small>	
+									<p class="description">
+											<code>%user_twitter%</code> &mdash; use Twitter name saved in your <a href="<?php print get_admin_url() . "profile.php";?>">user profile</a> (requires plug-in, e.g. <a href="http://wordpress.org/extend/plugins/twitter-profile-field/" target="_blank">Twitter Profile Field</a>)<br/>
+											<code>%user_aim%</code> &mdash; abuse <em>AIM</em> name saved in your profile<br/>
+											<code>%user_jabber%</code> &mdash; abuse <em>Jabber</em> name saved in your profile<br/>
+											<code>%user_yahoo%</code> &mdash; abuse <em>Yahoo! IM</em> name saved in your profile
+									</p>
 								</td>
 								</tr>
 
@@ -1086,7 +1119,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<th align="left" width="140px" scope="row"><label>Author ID:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[twitter_author_id]" value="<?php echo $options['twitter_author_id']; ?>" /><br/>
-									<small>as above, you can use <code>%user_aim%</code>, <code>%user_jabber%</code> or <code>%user_yahoo%</code> &#8211; you can't use the same twice!<small>
+									<p class="description">like above, you can use <code>%user_aim%</code>, <code>%user_jabber%</code> or <code>%user_yahoo%</code> &mdash; you can't use the same twice!</p>
 								</td>
 								</tr>
 
@@ -1094,6 +1127,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<div class="submit">
 									<input type="submit" class="button-primary" value="Save all changes" />
+									<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>
 							</div>
 
@@ -1137,7 +1171,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								</tr>
 
 								<!-- UNIVERSAL APP -->
-								<tr valign="center" > 
+								<tr valign="top" > 
 									<th align="left" scope="row"><label>&nbsp;</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[app_universal]" class="atoggle" type="checkbox" value="1" data-atarget="input.app_ipad" data-astate="0" <?php if (isset($options['app_universal'])) { checked('1', $options['app_universal']); } ?> /> This is an Universal App working on both iPhone and iPad </label>
@@ -1205,6 +1239,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								</tbody></table>
 								<div class="submit">
 									<input type="submit" class="button-primary" value="Save all changes" />
+									<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>		
 							</div>
 						</div>
@@ -1219,7 +1254,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<tbody>
 								
 									<!-- AGE -->	
-										<tr valign="center"> 
+										<tr valign="top"> 
 										<th align="left" width="140px" scope="row"><label>Debug Level:</label></th> 
 										<td colspan="2">
 											<select name='ographr_options[debug_level]'>
@@ -1231,21 +1266,21 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										<td>&nbsp;</td>
 										</tr>
 
-										<tr valign="center"> 
+										<tr valign="top"> 
 										<th align="left" scope="row"><label>Beta:</label></th> 
 											<td colspan="2">
 												<label><input name="ographr_options[enable_beta]" type="checkbox" value="1" <?php if (isset($options['enable_beta'])) { checked('1', $options['enable_beta']); }; ?> /> Enable beta features </label>&nbsp;
 											</td> 
 										</tr>
 
-										<tr valign="center"> 
+										<tr valign="top"> 
 										<th align="left" scope="row"><label>User Agent:</label></th> 
 											<td colspan="2">
 												<label><input name="ographr_options[ua_testdrive]" type="checkbox" value="1" <?php if (isset($options['ua_testdrive'])) { checked('1', $options['ua_testdrive']); }; ?> /> Enable User Agent test </label>&nbsp;
 											</td> 
 										</tr>
 
-										<tr valign="center"> 
+										<tr valign="top"> 
 										<th align="left" scope="row"><label>Display:</label></th> 
 											<td colspan="2">
 												<label><input name="ographr_options[always_devmode]" type="checkbox" value="1" <?php if (isset($options['always_devmode'])) { checked('1', $options['always_devmode']); }; ?> /> Always show developer settings </label>&nbsp;
@@ -1257,6 +1292,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<div class="submit">
 									<input type="submit" class="button-primary" value="Save all changes" />
+									<a href="#wpbody-content" class="button-secondary">Back to top</a>
 								</div>		
 							</div>
 						</div>
@@ -1269,7 +1305,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						</fieldset>
 						</form>
 						<!-- *********************** END: Main Content ********************* -->
-						<p class="yifooter"><a style="" href="http://wordpress.org/extend/plugins/meta-ographr/" target="_blank">OGraphr <? echo OGRAPHR_VERSION ?></a> &copy <? $this_year = date('Y'); if (date('Y') > 2012) { print "2012-$this_year"; } else { print "2012"; } ?> by Jan T. Sott</p>
+						<br/>
+						<p class="description"><a style="" href="http://wordpress.org/extend/plugins/meta-ographr/" target="_blank">OGraphr <? echo OGRAPHR_VERSION ?></a> &copy <? $this_year = date('Y'); if (date('Y') > 2012) { print "2012-$this_year"; } else { print "2012"; } ?> by Jan T. Sott</p>
 						</td> <!-- [left] -->
 
 						<td class="right">
@@ -1295,11 +1332,10 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						<div class="postbox">
 							<h3 class="hndle">Donations</h3>
 							<div class="inside">
-							<p style="font-size:8pt;">If you like this plug-in, please consider a small donation to support its development!</p>
-							<ul>
-								<li><strong><a title="Donate money via Flattr"class="lflattr" href="https://flattr.com/submit/auto?user_id=idleberg&url=http://wordpress.org/extend/plugins/meta-ographr/&title=OGraphr&description=A%20plug-in%20for%20Wordpress%20that%20retrieves%20images%20from%20streaming%20services%20and%20inserts%20them%20as%20Open%20Graph%20tags&language=en_GB&tags=opengraph,metatags,wordpress&hidden=0&category=software" target="_blank">Flattr this!</a></strong></li>
-								<li><a title="My Amazon Wishlist" class="lamazon" href="http://www.amazon.de/registry/wishlist/PPAO8XTAGS4V/" target="_blank">My wishlist</a></li>
-							</ul>			
+							<p>If you like this plug-in, please consider a small donation!</p>
+							<script data-gittip-username="idleberg" src="//gttp.co/v1.js"></script>
+							<p><small>You can also tip me using <a title="Tip me on Flattr" href="https://flattr.com/submit/auto?user_id=idleberg">Flattr</a> or <a title="My Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/PPAO8XTAGS4V/">Amazon</a>!</small></p>
+		
 							</div>
 
 						</div>
