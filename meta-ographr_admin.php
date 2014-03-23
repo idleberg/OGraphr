@@ -146,14 +146,16 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		$tmp = get_option('ographr_options');
 	    if((isset($tmp['chk_default_options_db'])) || (!is_array($tmp))) {
 		
-			if ($tmp['delete_postmeta'] == 1)
+			if ($tmp['delete_postmeta'] == 1) {
 				$this->ographr_delete_postmeta();
+			}
 				
 			// Set default locale to Wordpress language
-			if (WPLANG)
+			if (WPLANG) {
 				$tmp_locale = WPLANG;
-			else
+			} else {
 				$tmp_locale = "_none";
+			}
 				
 			//$this->ographr_set_defaults();
 			delete_option('ographr_options');
@@ -186,8 +188,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 	// Add the Meta Box  
 	public function ographr_meta_box() { 
 		$options = get_option('ographr_options');	
-		if (!isset($options['add_metabox']))
-			return;
+		if (!isset($options['add_metabox'])) return;
 
 		$screens = array('post', 'page');
 		foreach($screens as $screen) {
@@ -206,8 +207,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		global $ographr_meta_fields, $post; 
 
 		$options = get_option('ographr_options');	
-		if (!isset($options['add_metabox']))
-			return;
+		if (!isset($options['add_metabox'])) return;
 
 		// Use nonce for verification  
 		echo '<input type="hidden" name="ographr_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';  
@@ -246,9 +246,11 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									}
 
 									$tmp[] = array('label' => '(none selected)', 'value' => NULL);
-									if(is_array($images))
-										foreach ($images as $image) 
+									if(is_array($images)){
+										foreach ($images as $image) {
 											$tmp[] = array('label' => $image['img'], 'value' => $image['img']);
+										}
+									}
 
 									$field['options'] = $tmp;
 									unset($tmp);
@@ -312,8 +314,9 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		    </tr>';
 		    if ($options['exec_mode'] == 1) {
 				$timestamp = get_post_meta($post->ID, 'ographr_indexed', true);
-				if ($timestamp != NULL)
+				if ($timestamp != NULL) {
 					echo "<tr><th></th> <td><span class=\"description\">This article was last indexed on " . gmdate("F d, Y", $timestamp) . " at " . gmdate("G:i:s", $timestamp) ."</span></td></tr>";
+				}
 			}	
 		    echo '</table>'; // end table  
 	}
@@ -323,17 +326,16 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 	    global $ographr_meta_fields;  
 	      
 	    // verify nonce  
-	    if (!wp_verify_nonce($_POST['ographr_meta_box_nonce'], basename(__FILE__)))   
-	        return $post_id;  
+	    if (!wp_verify_nonce($_POST['ographr_meta_box_nonce'], basename(__FILE__))) return $post_id;  
 	    // check autosave  
-	    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)  
-	        return $post_id;  
+	    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;  
 	    // check permissions  
 	    if ('page' == $_POST['post_type']) {  
-	        if (!current_user_can('edit_page', $post_id))  
+	        if (!current_user_can('edit_page', $post_id)) {
 	            return $post_id;  
 	        } elseif (!current_user_can('edit_post', $post_id)) {  
-	            return $post_id;  
+	            return $post_id; 
+	        }
 	    } 
 	      
 	    // loop through fields and save the data  
@@ -354,10 +356,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
     			delete_post_meta($post_id, "ographr_country_mode"); 
     			delete_post_meta($post_id, "ographr_country_code"); 
     		}
-    		if ($_POST['ographr_restrict_content'] != "on")
+    		if ($_POST['ographr_restrict_content'] != "on") {
 				delete_post_meta($post_id, "ographr_restrict_content"); 
-    		if ($_POST['ographr_disable_plugin'] != "on")
+    		}
+    		if ($_POST['ographr_disable_plugin'] != "on") {
 				delete_post_meta($post_id, "ographr_disable_plugin"); 
+    		}
 	         	        
 	    } // end foreach  
 	}  
@@ -515,7 +519,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										<ul class="horizontal">
 											<li>
 												<ul>
-													<li><label><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Audio</strong></label></li>
+													<li><label title="Click to toggle all items in this group"><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Audio</strong></label></li>
 													<li><label><input name="ographr_options[enable_etracks]" type="checkbox" value="1" <?php if ((isset($options['enable_etracks'])) && ($options['enable_etracks'])) { checked('1', $options['enable_etracks']); } ?> />&nbsp;8tracks</label></li>
 													<li><label><input name="ographr_options[enable_bandcamp]" type="checkbox" value="1" <?php if ((isset($options['enable_bandcamp'])) && ($options['bandcamp_api'])) { checked('1', $options['enable_bandcamp']); } ?> />&nbsp;Bandcamp</label></li>
 													<li><label><input name="ographr_options[enable_mixcloud]" type="checkbox" value="1" <?php if (isset($options['enable_mixcloud'])) { checked('1', $options['enable_mixcloud']); } ?> />&nbsp;Mixcloud</label></li>
@@ -527,7 +531,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											</li>
 											<li>
 												<ul >
-													<li><label><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Video</strong></label></li>
+													<li><label title="Click to toggle all items in this group"><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Video</strong></label></li>
 													<li><label><input name="ographr_options[enable_bliptv]" type="checkbox" value="1" <?php if (isset($options['enable_bliptv'])) { checked('1', $options['enable_bliptv']); } ?> />&nbsp;Blip.tv</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_dailymotion]" type="checkbox" value="1" <?php if (isset($options['enable_dailymotion'])) { checked('1', $options['enable_dailymotion']); } ?> />&nbsp;Dailymotion</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_flickr]" type="checkbox" value="1" <?php if (isset($options['enable_flickr'])) { checked('1', $options['enable_flickr']); } ?> />&nbsp;Flickr</label>&nbsp;</li>
@@ -542,7 +546,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											</li>
 											<li>
 												<ul>
-													<li><label><input class="select-all"  type="checkbox" value="0"><strong>&nbsp;Stream</strong></label></li>
+													<li><label title="Click to toggle all items in this group"><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Feed</strong></label></li>
 													<li><label><input name="ographr_options[enable_bambuser]" type="checkbox" value="1" <?php if ((isset($options['enable_bambuser'])) && ($options['bambuser_api'])) { checked('1', $options['enable_bambuser']); } ?> />&nbsp;Bambuser</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_justintv]" type="checkbox" value="1" <?php if (isset($options['enable_justintv'])) { checked('1', $options['enable_justintv']); } ?> />&nbsp;Justin.tv</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_livestream]" type="checkbox" value="1" <?php if (isset($options['enable_livestream'])) { checked('1', $options['enable_livestream']); } ?> />&nbsp;Livestream</label>&nbsp;</li>
@@ -1082,7 +1086,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<h3 class="hndle">Twitter</h3>
 							<div class="inside">
 								<p>
-									Website owners must <a href="https://dev.twitter.com/cards" target="_blank">opt-in</a> to have cards displayed for your domain, and Twitter must approve the integration. Below you can specify both your <em>@username</em> and/or your user ID. Note that user IDs never change, while <em>@usernames</em> can be changed by the user.
+									Website owners must <a href="https://dev.twitter.com/cards" target="_blank">opt-in</a> to have cards displayed for your domain, and Twitter must approve the integration. Below you can specify both your <code>@username</code> and/or your user ID. Note that user IDs never change, while <code>@username</code> can be changed by its owner.
 								</p>
 								<table width="100%" cellspacing="2" cellpadding="5"> 
 								<tbody>
@@ -1334,7 +1338,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<div class="inside">
 							<p>If you like this plug-in, please consider a small donation!</p>
 							<script data-gittip-username="idleberg" src="//gttp.co/v1.js"></script>
-							<p><small>You can also tip me using <a title="Tip me on Flattr" href="https://flattr.com/submit/auto?user_id=idleberg">Flattr</a> or <a title="My Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/PPAO8XTAGS4V/">Amazon</a>!</small></p>
+							<p><small>You can also tip me using <a title="Tip me on Flattr" href="https://flattr.com/submit/auto?user_id=idleberg&url=http://github.com/idleberg/OGraphr">Flattr</a> or <a title="My Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/PPAO8XTAGS4V/">Amazon</a>!</small></p>
 		
 							</div>
 
@@ -1531,7 +1535,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 				// does not work in WP_DEBUG mode (yet?)
 				var line1=[<? print $posts_total; ?>];
 				var line2=[<? print $posts_indexed; ?>];
-				  var plot1 = jQuery.jqplot('chartdiv', [line1, line2], {
+			  	var plot1 = jQuery.jqplot('chartdiv', [line1, line2], {
 					series:[{color:'#bd8cbf'},{color:'#8560a8'}],
 					axesDefaults: {
 						pad: 0,

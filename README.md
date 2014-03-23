@@ -91,6 +91,3 @@ You are welcome support this project using [Flattr](https://flattr.com/submit/au
 [3]: https://dev.twitter.com/docs/cards
 [4]: http://developers.whatwg.org/links.html
 [5]: http://www.gnu.org/licenses/gpl-2.0.html
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/idleberg/ographr/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
