@@ -4,7 +4,7 @@ Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 0.8.23
+Stable tag: 0.8.24
 License: GPLv2
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -106,6 +106,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 == Changelog ==
 
 = 0.8.24 =
+* Vimeo pattern updated (via [snrbrnjna](https://github.com/idleberg/OGraphr/pull/2#issuecomment-42118307))
 * updated function name to disable Jetpack Open Graph tags (for Jetpack 2.0.3 or later)
 
 = 0.8.23 =
