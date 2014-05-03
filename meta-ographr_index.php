@@ -3,7 +3,7 @@
 Plugin Name: OGraphr
 Plugin URI: https://github.com/idleberg/OGraphr
 Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social networks can use these to style shared or "liked" articles.
-Version: 0.8.23
+Version: 0.8.24
 Author: Jan T. Sott
 Author URI: https://github.com/idleberg
 License: GPLv2 
@@ -28,7 +28,7 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.23");
+    define("OGRAPHR_VERSION", "0.8.24");
 	// enables developer settings on Wordpress interface, can be overwritten from plug-in settings once activated
 	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
@@ -124,7 +124,7 @@ register_activation_hook( __FILE__, array(&$core, 'ographr_activate') );
 
 $options = get_option('ographr_options');
 if (isset($options['disable_jetpack']))
-	add_filter( 'jetpack_enable_opengraph', '__return_false', 99 );
+	add_filter( 'jetpack_enable_open_graph', '__return_false', 99 );
 
 if ( is_admin() ) {
 	require_once dirname( __FILE__ ) . '/meta-ographr_admin.php';

@@ -105,6 +105,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 == Changelog ==
 
+= 0.8.24 =
+* updated function name to disable Jetpack Open Graph tags (for Jetpack 2.0.3 or later)
+
 = 0.8.23 =
 * code clean-up
 * fixed Flattr link
