@@ -1642,7 +1642,7 @@ class OGraphr_Core {
 									'name' => 'Vimeo',
 									'patterns' => array(
 										'#<object[^>]+>.+?https?://vimeo.com/moogaloop.swf\?clip_id=([A-Za-z0-9\-_]+)&.+?</object>#s',
-										'#https?://player.vimeo.com/video/([0-9]+)#s',
+										'#https?:|//player.vimeo.com/video/([0-9]+)#s',
 										'/\[vimeo.*?]https?:\/\/w*.?vimeo.com\/([0-9]+)\[\/vimeo]/i',
 										'/^(?:href\=){0,1}https?:\/\/w*.?vimeo.com\/([A-Za-z0-9\-_]+)/i',
 									),
