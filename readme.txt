@@ -46,8 +46,11 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 == Installation ==
 
 1. It is required to use PHP 5.2 (or later)
+
 2. Upload the folder `meta-ographr` with all its contents to the `/wp-content/plugins/` directory
+
 3. Activate the plugin through the 'Plugins' menu in WordPress
+
 4. Review the preferences to make use of all features
 
 == Frequently Asked Questions ==
