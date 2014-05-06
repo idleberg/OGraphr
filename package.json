@@ -1,0 +1,16 @@
+{
+  "name":    "OGraphr-lint",
+  "version": "0.0.0",
+  "author":  "Jan T. Sott",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "grunt":                 "0.4.4",
+    "grunt-cli":             "0.1.13",
+    "grunt-contrib-watch":   "0.6.1",
+    "grunt-phplint":         "0.0.5",
+  },
+  "scripts": {
+    "test": "grunt --verbose"
+  }
+}
