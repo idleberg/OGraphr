@@ -1,4 +1,4 @@
-# OGraphr for Wordpress
+# OGraphr for Wordpress [![Build Status](https://secure.travis-ci.org/idleberg/OGraphr.png)](http://travis-ci.org/idleberg/OGraphr)
 
 ## Description
 
