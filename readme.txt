@@ -106,7 +106,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 == Changelog ==
 
 = 0.8.24 =
-* Vimeo pattern updated (via [snrbrnjna](https://github.com/idleberg/OGraphr/pull/2#issuecomment-42118307))
+* updated patterns to work with protocol-relative URLs
 * updated function name to disable Jetpack Open Graph tags (for Jetpack 2.0.3 or later)
 
 = 0.8.23 =
