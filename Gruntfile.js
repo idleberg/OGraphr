@@ -9,8 +9,8 @@
  module.exports = function(grunt) {
 
     var phpFiles = [
-        'meta-ographr_admin.php',
-    	'meta-ographr_index.php'
+        './meta-ographr_admin.php',
+    	'./meta-ographr_index.php'
     ];
 
  	grunt.initConfig({
