@@ -23,6 +23,6 @@
     "url": "https://github.com/idleberg/OGraphr/issues"
   },
    "scripts": {
-    "test": "gulp lint"
+    "test": "gulp csslint uglify"
   }
 }
