@@ -86,26 +86,7 @@ The build tools require [Node.js](http://nodejs.org/), [npm](http://npmjs.org/) 
 
 ## License
 
-OGraphr is dual-licensed as follows
-
-### The GNU General Public License v2.0 (GPLv2)
-
-Version 2, June 1991
-
-    Copyright (C) 1989, 1991 Free Software Foundation, Inc.  
-    51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
-
-    Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
-
-[full license text][5]
-
-### The MIT License (MIT)
-
-Copyright (c) 2014 Jan T. Sott
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
-
-[full license text][6]
+OGraphr is dual-licensed under [The GNU General Public License v2.0][5] and [The MIT License][6]
 
 ## Donate
 
