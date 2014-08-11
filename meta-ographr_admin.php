@@ -592,7 +592,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<td colspan="2">
 									<label title="Enable plug-in on front page"><input name="ographr_options[enable_plugin_on_front]" type="checkbox" class="atoggle" value="1" data-atarget="input.enable_triggers" data-astate="1" <?php if (isset($options['enable_plugin_on_front'])) { checked('1', $options['enable_plugin_on_front']); } ?>/> Enable plug-in </label>&nbsp;
 								
-									<labeltitle="Enable plug-in triggers on front page"><input name="ographr_options[enable_triggers_on_front]" type="checkbox" class="enable_triggers" value="1" <?php if (isset($options['enable_triggers_on_front'])) { checked('1', $options['enable_triggers_on_front']); }; if (!isset($options['enable_plugin_on_front'])) { print 'disabled="disabled"';} ?> /> Enable triggers </label>&nbsp;
+									<label title="Enable plug-in triggers on front page"><input name="ographr_options[enable_triggers_on_front]" type="checkbox" class="enable_triggers" value="1" <?php if (isset($options['enable_triggers_on_front'])) { checked('1', $options['enable_triggers_on_front']); }; if (!isset($options['enable_plugin_on_front'])) { print 'disabled="disabled"';} ?> /> Enable triggers </label>&nbsp;
 									</td> 
 								</tr>
 
