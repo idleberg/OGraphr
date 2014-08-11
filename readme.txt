@@ -112,7 +112,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * added Gulp build & lint tasks
 * added Travis CI integration
 * modified help button
-* improved HTML
+* tidied some HTML
 * updated CSS rules
 * changed file structure
 
