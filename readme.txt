@@ -109,7 +109,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 == Changelog ==
 
 = 0.8.25 =
-* added gulp task
+* added Gulp build & lint tasks
+* added Travis CI integration
+* modified help button
 * changed file structure
 
 = 0.8.24.1 =

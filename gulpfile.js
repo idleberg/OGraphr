@@ -6,9 +6,10 @@
   * Licensed under the MIT license.
   */
 
+var clean   = require('gulp-rimraf');
 var concat  = require('gulp-concat');
-var cssmin  = require('gulp-css');
 var csslint = require('gulp-csslint');
+var cssmin  = require('gulp-css');
 var gulp    = require('gulp');
 var jshint  = require('gulp-jshint');
 var phplint = require('phplint');
@@ -31,16 +32,17 @@ gulp.task(    ' php', ['phplint']);
  * Sub-tasks
  */
 
+
 // PHP Code
 gulp.task('phplint', function () {
   return phplint([
         './meta-ographr_admin.php',
         './meta-ographr_index.php'
-    ], { stdout: true });
+    ]);
 });
 
 // Custom CSS
-gulp.task('cssmin', ['csslint'], function() {
+gulp.task('cssmin', ['cssclean'], function() {
   gulp.src([
       './src/style.css'
     ])
@@ -58,7 +60,7 @@ gulp.task('csslint', function() {
 });
 
 // Custom Javascript
-gulp.task('uglify', ['jshint'], function() {
+gulp.task('uglify', ['jsclean'], function() {
   gulp.src([
       './src/scripts.js'
     ])
@@ -87,6 +89,21 @@ gulp.task('jqplot', function() {
     .pipe(gulp.dest('./app/'));
 });
 
+// Cleaning tasks
+gulp.task('cssclean', function () {
+  return gulp.src([
+      './app/*.css'
+    ], {read: false})
+    .pipe(clean());
+});
+
+gulp.task('jsclean', function () {
+  return gulp.src([
+      './app/*.js'
+    ], {read: false})
+    .pipe(clean());
+});
+
 // Watch task
 gulp.task('watch', function () {
    gulp.watch([
@@ -95,5 +112,5 @@ gulp.task('watch', function () {
             './src/scripts.js',
             './src/style.css'
          ],
-         ['default'])
+         ['lint'])
 });
