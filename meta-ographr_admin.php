@@ -422,12 +422,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						<div class="postbox">
 							<span class="hndle heading">General</span>
 							<div class="inside">
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 								
 								<!-- LINK TITLE -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Link Title:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Link Title:</label></th> 
 								<td class="width-30">
 									<input type="text" size="75" name="ographr_options[website_title]" value="<?php if ($options['website_title']) { echo $options['website_title']; } else { echo '%postname%';} ?>" /><br/>
 									<p class="description">
@@ -441,7 +441,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							
 								<!-- THUMBNAIL -->
 								<tr> 
-									<th align="left" scope="row"><label>Thumbnail:</label></th> 
+									<th class="pull-left" scope="row"><label>Thumbnail:</label></th> 
 									<td colspan="2">
 										<input type="text" size="75" name="ographr_options[website_thumbnail]" value="<?php echo $options['website_thumbnail']; ?>" /><br/>
 										
@@ -460,14 +460,14 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									</td>
 								</tr>
 								
-								<tr class="centered" class="advanced_opt"> 
-									<th align="left" scope="row"><label>&nbsp;</label></th> 
+								<tr class="centered advanced_opt"> 
+									<th class="pull-left" scope="row"><label>&nbsp;</label></th> 
 									<td colspan="2"><label><input name="ographr_options[not_always]" type="checkbox" value="1" <?php if (isset($options['not_always'])) { checked('1', $options['not_always']); } ?> /> Only add thumbnail when post contains no images </label></td> 
 								</tr>
 							
 								<!-- META TAGS -->
 								<tr> 
-									<th align="left" scope="row"><label>Meta-tags:</label></th> 
+									<th class="pull-left" scope="row"><label>Meta-tags:</label></th> 
 									<td colspan="2">
 
 										<ul class="horizontal">
@@ -513,7 +513,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							
 								<!-- TRIGGERS -->
 								<tr class="advanced_opt"> 
-									<th align="left" scope="row"><label>Triggers:</label></th> 
+									<th class="pull-left" scope="row"><label>Triggers:</label></th> 
 									<td colspan="2">	
 										<ul class="horizontal">
 											<li>
@@ -566,7 +566,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 								<!-- ADVERTISEMENT -->
 								<tr class="advanced_opt"> 
-									<th align="left" scope="row"><label>Advertisement:</label></th> 
+									<th class="pull-left" scope="row"><label>Advertisement:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_comment]" type="checkbox" value="1" <?php if (isset($options['add_comment'])) { checked('1', $options['add_comment']); } ?> /> Display plug-in name in source</label><br/>
 									</td>
@@ -584,11 +584,11 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						<div class="postbox">
 							<span class="hndle heading">Front Page</span>
 							<div class="inside">
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 							
 								<tr class="advanced_opt"> 
-									<th align="left" scope="row"><label>Functionality:</label></th> 
+									<th class="pull-left" scope="row"><label>Functionality:</label></th> 
 									<td colspan="2">
 									<label title="Enable plug-in on front page"><input name="ographr_options[enable_plugin_on_front]" type="checkbox" class="atoggle" value="1" data-atarget="input.enable_triggers" data-astate="1" <?php if (isset($options['enable_plugin_on_front'])) { checked('1', $options['enable_plugin_on_front']); } ?>/> Enable plug-in </label>&nbsp;
 								
@@ -598,7 +598,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- CUSTOM DESCRIPTION -->	
 								<tr> 
-									<th align="left" class="width-140" scope="row"><label>Custom Description:</label></th> 
+									<th class="pull-left" class="width-140" scope="row"><label>Custom Description:</label></th> 
 									<td colspan="2" class="width-30">
 										<input type="text" size="75" name="ographr_options[website_description]" class="enable_triggers" value="<?php echo $options['website_description']; ?>" /><br/>
 										<p class="description">
@@ -620,12 +620,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						<div class="postbox advanced_opt">
 							<span class="hndle heading">Restrictions</span>
 							<div class="inside">
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 
 									<!-- FILTERS -->
 									<tr> 
-										<th align="left" class="width-140" scope="row"><label>Filters:</label></th> 
+										<th class="pull-left" class="width-140" scope="row"><label>Filters:</label></th> 
 										<td colspan="2">
 											<label title="Filter Gravatar images"><input name="ographr_options[filter_gravatar]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_gravatar'])) { checked('1', $options['filter_gravatar']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?>/> Exclude avatars </label>&nbsp;
 											
@@ -643,7 +643,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 									<!-- CUSTOM URLS -->
 									<tr> 
-										<th align="left" class="width-140" scope="row"><label>Custom URLs:</label></th> 
+										<th class="pull-left" class="width-140" scope="row"><label>Custom URLs:</label></th> 
 										<td colspan="2"><textarea name="ographr_options[filter_custom_urls]" cols="76%" rows="4" class="disable_filters"><?php echo $options['filter_custom_urls']; ?></textarea><br/>
 											<p class="description">You can enter filenames and URLs (e.g. <em><? echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</p>
 										</td> 
@@ -651,7 +651,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 									<!-- AUTHOR -->	
 									<tr> 
-									<th align="left" class="width-140" scope="row"><label>Author Links:</label></th> 
+									<th class="pull-left" class="width-140" scope="row"><label>Author Links:</label></th> 
 									<td colspan="2">
 										<label><input class="allow_admin_tag" name="ographr_options[allow_admin_tag]" type="checkbox" value="1" <?php if (isset($options['allow_admin_tag'])) { checked('1', $options['allow_admin_tag']); }  if (!isset($options['add_author'])) { print 'disabled="disabled"';} ?> /> Allow author tag for user <em>admin</em>  </label><br/>
 									</td> 
@@ -660,7 +660,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 									<!-- AGE -->	
 									<tr> 
-									<th align="left" class="width-140" scope="row"><label>Audience:</label></th> 
+									<th class="pull-left" class="width-140" scope="row"><label>Audience:</label></th> 
 									<td colspan="2">
 										<select name='ographr_options[restrict_age]'>
 											<option value='_none' <?php selected('_none', $options['restrict_age']); ?> >all ages</option>
@@ -676,7 +676,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 									<!-- COUNTRY -->	
 									<tr> 
-									<th align="left" class="width-140" scope="row"><label>Country:</label></th> 
+									<th class="pull-left" class="width-140" scope="row"><label>Country:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[restrict_country]" type="checkbox" value="1" class="atoggle" data-atarget="select.restrict_country" data-astate="1" <?php if (isset($options['restrict_country'])) { checked('1', $options['restrict_country']); } ?> /></label>&nbsp;
 										<select name='ographr_options[country_mode]' class="restrict_country" <?php if (!isset($options['restrict_country'])) print 'disabled="disabled"'; ?> >
@@ -696,7 +696,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 									<!-- CONTENT -->	
 									<tr> 
-									<th align="left" class="width-140" scope="row"><label>Content:</label></th> 
+									<th class="pull-left" class="width-140" scope="row"><label>Content:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[restrict_content]" type="checkbox" value="1" <?php if (isset($options['restrict_content'])) { checked('1', $options['restrict_content']); } ?> /> Contains alcohol </label>
 									</td> 
@@ -705,7 +705,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 									<!-- LIMIT ACCESS -->
 									<tr> 
-										<th align="left" class="width-140" scope="row"><label name="user_agents" id="user_agents">User Agents:</label></th> 
+										<th class="pull-left" class="width-140" scope="row"><label name="user_agents" id="user_agents">User Agents:</label></th> 
 										<td colspan="2">
 											
 											<!-- Checkbox -->
@@ -724,7 +724,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 									<!-- OPENGRAPH -->
 									<tr> 
-										<th align="left" class="width-140" scope="row"><label>Open Graph:</label></th> 
+										<th class="pull-left" class="width-140" scope="row"><label>Open Graph:</label></th> 
 										<td colspan="2">
 											<label><input name="ographr_options[limit_opengraph]" type="checkbox" value="1" <?php if (isset($options['limit_opengraph'])) { checked('1', $options['limit_opengraph']); } ?> /> Only add Open Graph tags on Facebook </label><br/>
 											<p class="description">Note that other websites such as Google+ are able to interprete Open Graph tags as well.</p>
@@ -733,7 +733,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 									<!-- JETPACK -->
 									<tr> 
-										<th align="left" class="width-140" scope="row"><label>Jetpack:</label></th> 
+										<th class="pull-left" class="width-140" scope="row"><label>Jetpack:</label></th> 
 										<td colspan="2">
 											<label title="Disable Jetpack's Open Graph tags to avoid duplicate tags"><input name="ographr_options[disable_jetpack]" type="checkbox" value="1" <?php if (isset($options['disable_jetpack'])) { checked('1', $options['disable_jetpack']); } if (!is_plugin_active('jetpack/jetpack.php')) { print 'disabled="disabled"'; } ?> /> Disable Jetpack's Open Graph Tags function </label>
 										</td> 
@@ -756,82 +756,82 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<p>
 								Some services limit access to their API and require a valid developer key in order to make queries. These are marked <span style="font-style:italic;padding:1px;background-color:#ffd">yellow</span> in the list below. All other services will work out of the box, however, if you have reason to use your own developer keys you may enter them below.
 							</p>
-							<table cellspacing="2" cellpadding="5"> 
+							<table> 
 							<tbody>
 							
 							<!-- 8TRACKS -->	
-							<tr valign="center" class="advanced_opt"> 
-							<th align="left" class="width-140" scope="row"><label><a name="etracks_api_key" id="etracks_api_key"></a>8tracks:</label></th> 
+							<tr class="centered advanced_opt"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="etracks_api_key" id="etracks_api_key"></a>8tracks:</label></th> 
 							<td class="width-30"><input type="text"  size="75" name="ographr_options[etracks_api]" value="<?php if (($options['etracks_api'] != ETRACKS_API_KEY) && ($options['etracks_api'])) { echo $options['etracks_api']; } ?>" /></td> 
 							<td><a class="centered" href="http://8tracks.com/developers/new" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 							
 							<!-- BAMBUSER -->	
-							<tr valign="center" class="advanced_opt"> 
-							<th align="left" class="width-140" scope="row"><label><a name="bambuser_api_key" id="bambuser_api_key"></a>Bambuser:</label></th> 
+							<tr class="centered advanced_opt"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="bambuser_api_key" id="bambuser_api_key"></a>Bambuser:</label></th> 
 							<td class="width-30"><input type="text" size="75" name="ographr_options[bambuser_api]" value="<?php if (($options['bambuser_api'] != BAMBUSER_API_KEY) && ($options['bambuser_api'])) { echo $options['bambuser_api']; } ?>" /></td> 
 							<td><a class="centered" href="http://bambuser.com/api/keys" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 
 							<!-- BANDCAMP -->	
-							<tr valign="center"> 
-							<th align="left" class="width-140" scope="row"><label><a name="bandcamp_api_key" id="bandcamp_api_key"></a>Bandcamp:</label></th> 
+							<tr class="centered"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="bandcamp_api_key" id="bandcamp_api_key"></a>Bandcamp:</label></th> 
 							<td class="width-30"><input type="text" size="75" class="required" name="ographr_options[bandcamp_api]" value="<?php echo $options['bandcamp_api']; ?>" /></td>
 							<td><a class="centered" href="http://bandcamp.com/developer#key_request" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 						
 							<!-- FLICKR -->	
-							<tr valign="center" class="advanced_opt"> 
-							<th align="left" class="width-140" scope="row"><label>Flickr:</label></th> 
+							<tr class="centered advanced_opt"> 
+							<th class="pull-left" class="width-140" scope="row"><label>Flickr:</label></th> 
 							<td class="width-30"><input type="text" size="75" name="ographr_options[flickr_api]" value="<?php if (($options['flickr_api'] != FLICKR_API_KEY) && ($options['flickr_api'])) { echo $options['flickr_api']; } ?>" /></td> 
 							<td><a class="centered" href="http://www.flickr.com/services/apps/create/apply/" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 
 							<!-- MUZU.TV -->	
-							<tr valign="center"> 
-							<th align="left" class="width-140" scope="row"><label><a name="muzu_api_key" id="muzu_api_key"></a>Muzu.tv:</label></th> 
+							<tr class="centered"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="muzu_api_key" id="muzu_api_key"></a>Muzu.tv:</label></th> 
 							<td class="width-30"><input type="text" size="75" class="required" name="ographr_options[muzu_api]" value="<?php echo $options['muzu_api']; ?>" /></td>
 							<td><a class="centered" href="http://www.muzu.tv/api/apiKeyRequest/" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 							
 							<!-- MYVIDEO DEVELOPER -->	
-							<tr valign="center"> 
-							<th align="left" class="width-140" scope="row"><label><a name="myvideo_developer_key" id="myvideo_developer_key"></a>MyVideo (Developer):</label></th> 
+							<tr class="centered"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="myvideo_developer_key" id="myvideo_developer_key"></a>MyVideo (Developer):</label></th> 
 							<td class="width-30"><input type="text" size="75" class="required" name="ographr_options[myvideo_dev_api]" value="<?php if ($options['myvideo_dev_api']) { echo $options['myvideo_dev_api']; } ?>" /></td>
 							<td><a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 							
 							<!-- MYVIDEO WEBSITE -->	
-							<tr valign="center"> 
-							<th align="left" class="width-140" scope="row"><label><a name="myvideo_website_key" id="myvideo_website_key"></a>MyVideo (Website):</label></th> 
+							<tr class="centered"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="myvideo_website_key" id="myvideo_website_key"></a>MyVideo (Website):</label></th> 
 							<td class="width-30"><input type="text" size="75" class="required" name="ographr_options[myvideo_web_api]" value="<?php if ($options['myvideo_web_api']) { echo $options['myvideo_web_api']; } ?>" /></td>
 							<td><a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 							
 							<!-- SOCIALCAM -->	
-							<tr valign="center"> 
-							<th align="left" class="width-140" scope="row"><label><a name="socialcam_api_key" id="socialcam_api_key"></a>Socialcam:</label></th> 
+							<tr class="centered"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="socialcam_api_key" id="socialcam_api_key"></a>Socialcam:</label></th> 
 							<td class="width-30"><input type="text" size="75" class="required" name="ographr_options[socialcam_api]" value="<?php if ($options['socialcam_api']) { echo $options['socialcam_api']; } ?>" /></td>
 							<td><a class="centered" href="http://socialcam.com/developers/applications/new" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 						
 							<!-- SOUNDCLOUD -->	
-							<tr valign="center" class="advanced_opt"> 
-							<th align="left" class="width-140" scope="row"><label>SoundCloud:</label></th> 
+							<tr class="centered advanced_opt"> 
+							<th class="pull-left" class="width-140" scope="row"><label>SoundCloud:</label></th> 
 							<td class="width-30"><input type="text" size="75" name="ographr_options[soundcloud_api]" value="<?php if (($options['soundcloud_api'] != SOUNDCLOUD_API_KEY) && ($options['soundcloud_api'])) { echo $options['soundcloud_api']; } ?>" /></td>
 							<td><a class="centered" href="http://soundcloud.com/you/apps" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 						
 							<!-- USTREAM -->	
-							<tr valign="center" class="advanced_opt"> 
-							<th align="left" class="width-140" scope="row"><label>Ustream:</label></th> 
+							<tr class="centered advanced_opt"> 
+							<th class="pull-left" class="width-140" scope="row"><label>Ustream:</label></th> 
 							<td class="width-30"><input type="text" size="75" name="ographr_options[ustream_api]" value="<?php if (($options['ustream_api'] != USTREAM_API_KEY) && ($options['ustream_api'])) { echo $options['ustream_api']; } ?>" /></td>
 							<td><a class="centered" href="http://developer.ustream.tv/apikey/generate" title="Get an API key" target="_blank">?</a></td>
 							</tr>
 						
 							<!-- VIDDLER  -->
-							<tr valign="center"> 
-							<th align="left" class="width-140" scope="row"><label><a name="viddler_api_key" id="viddler_api_key"></a>Viddler (Legacy):</label></th> 
+							<tr class="centered"> 
+							<th class="pull-left" class="width-140" scope="row"><label><a name="viddler_api_key" id="viddler_api_key"></a>Viddler (Legacy):</label></th> 
 							<td class="width-30"><input type="text" size="75" class="required" name="ographr_options[viddler_api]" value="<?php echo $options['viddler_api']; ?>" /></td>
 							<td><a class="centered" href="http://developers.viddler.com/" title="Get an API key" target="_blank">?</a></td>
 							</tr>
@@ -850,12 +850,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						<div class="postbox advanced_opt">
 							<span class="hndle heading">Expert Settings</span>
 							<div class="inside">
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 									
 								<!-- IMAGE RETRIEVAL -->	
 								<tr> 
-									<th align="left" scope="row"><label>Image Retrieval:</label></th> 
+									<th class="pull-left" scope="row"><label>Image Retrieval:</label></th> 
 									<td colspan="2">
 										<div id="enable_expiry">
 											<label><input name="ographr_options[exec_mode]" type="radio" class="atoggle only_once" data-atarget=".no_expiry" data-astate="1" value="1" <?php if (isset($options['exec_mode'])) { checked('1', $options['exec_mode']); } ?>  />&nbsp;Only once when saving a post (default, better performance)&nbsp;</label><br/>
@@ -868,7 +868,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									
 								<!-- DATA EXPIRY -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Data Expiry:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Data Expiry:</label></th> 
 								<td colspan="2">
 									<select name='ographr_options[data_expiry]' class="no_expiry" <?php if ($options['exec_mode'] == 2) print 'disabled="disabled"'; ?> >
 										<?php if (($options['exec_mode']) && (!isset($options['data_expiry']))) { $options['data_expiry'] = "-1";} ?>
@@ -894,7 +894,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- HTML PREFIX -->
 								<tr> 
-									<th align="left" scope="row"><label>Namespace:</label></th> 
+									<th class="pull-left" scope="row"><label>Namespace:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_prefix]" type="checkbox" value="1" <?php if (isset($options['add_prefix'])) { checked('1', $options['add_prefix']); } ?> /> Add Open Graph prefix to source </label><br/>
 										<p class="description">Facebook advises the inclusion of the Open Graph prefix, though tags will be interpreted without one. However, your Wordpress theme needs to support <a href="http://codex.wordpress.org/Function_Reference/language_attributes" target="_blank">language attributes</a> to make this work! </p>
@@ -904,7 +904,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<!-- MORE TRIGGERS -->
 								<a name="more_triggers"></a> 
 								<tr> 
-									<th align="left" scope="row"><label>More Triggers:</label></th> 
+									<th class="pull-left" scope="row"><label>More Triggers:</label></th> 
 									<td colspan="2">
 
 										<ul class="horizontal">
@@ -928,14 +928,14 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- CANONICAL URL -->
 								<tr> 
-									<th align="left" scope="row"><label>Canonical URL:</label></th> 
+									<th class="pull-left" scope="row"><label>Canonical URL:</label></th> 
 									<td colspan="2">
 								<label><input name="ographr_options[add_trailing_slash]" type="checkbox" value="1" <?php if (isset($options['add_trailing_slash'])) { checked('1', $options['add_trailing_slash']); } ?> /> Add trailing slash to URL if missing </label><br/>
 								<p class="description">To avoid warnings in the Facebook <a href="http://developers.facebook.com/tools/debug" target="_blank">debug tool</a>, make sure to check the effect of this option!</p>
 								
 								<!-- LINK TYPE -->
 								<tr> 
-									<th align="left" scope="row"><label>Link Type:</label></th> 
+									<th class="pull-left" scope="row"><label>Link Type:</label></th> 
 									<td colspan="2">
 								
 								<select name='ographr_options[link_type]' class="link_type">
@@ -945,7 +945,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 								<!-- LANGUAGE -->
 								<tr> 
-									<th align="left" scope="row"><label>Language:</label></th> 
+									<th class="pull-left" scope="row"><label>Language:</label></th> 
 									<td colspan="2">
 								
 								<select name='ographr_options[locale]'>
@@ -974,7 +974,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							
 								<!-- GOOGLE SNIPPETS -->
 								<tr> 
-									<th align="left" scope="row"><label>Alternative tags:</label></th> 
+									<th class="pull-left" scope="row"><label>Alternative tags:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_twitter_meta]" type="checkbox" value="1" <?php if (isset($options['add_twitter_meta'])) { checked('1', $options['add_twitter_meta']); } ?> /> Twitter Cards <a class="centered" href="https://dev.twitter.com/docs/cards" title="Twitter Documentation: Twitter Cards" target="_blank">?</a></label></label>&nbsp;
 										
@@ -987,7 +987,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 								<!-- INTERFACE -->
 								<tr> 
-									<th align="left" scope="row"><label>Interface:</label></th> 
+									<th class="pull-left" scope="row"><label>Interface:</label></th> 
 									<td colspan="2">
 										<label title="Add an OGraphr menu to your admin bar"><input name="ographr_options[add_adminbar]" type="checkbox" value="1" <?php if (isset($options['add_adminbar'])) { checked('1', $options['add_adminbar']); } ?> /> Add menu to admin bar</label>&nbsp;
 										<label title="Add post-specific options to each post"><input name="ographr_options[add_metabox]" type="checkbox" value="1" <?php if (isset($options['add_metabox'])) { checked('1', $options['add_metabox']); } ?> /> Add settings for each article</label>&nbsp;
@@ -997,7 +997,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								
 								<!-- STATISTICS -->
 								<tr class="disable_graph"> 
-									<th align="left" scope="row"><label>Visual Graph:</label></th> 
+									<th class="pull-left" scope="row"><label>Visual Graph:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[fill_curves]" class="disable_graph no_expiry" type="checkbox" value="1" <?php if (isset($options['fill_curves'])) { checked('1', $options['fill_curves']); }; if((!isset($options['add_graph'])) || ($options['exec_mode'] == 2)) print 'disabled="disabled"'; ?>/> Fill curves</label>&nbsp;
 										
@@ -1019,12 +1019,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						<div class="postbox advanced_opt">
 							<span class="hndle heading">Facebook</span>
 							<div class="inside">	
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 
 								<!-- HUMAN READABLE-NAME -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Human-readable Name:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Human-readable Name:</label></th> 
 								<td colspan="2" class="width-30">
 									<input type="text" size="75" name="ographr_options[fb_site_name]" value="<?php echo $options['fb_site_name']; ?>" /><br/>
 									<p class="description">
@@ -1036,7 +1036,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							
 								<!-- OBJECT TYPE -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Object Type:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Object Type:</label></th> 
 								<td colspan="2" class="width-30">
 									<select name='ographr_options[fb_type]'>
 										<?php
@@ -1054,7 +1054,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							
 								<!-- FACEBOOK ADMIN -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Admin ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Admin ID:</label></th> 
 								<td colspan="2" class="width-30">
 									<input type="text" size="75" name="ographr_options[fb_admins]" value="<?php echo $options['fb_admins']; ?>" /><br/>
 									<p class="description">If you administer a page for your blog on Facebook, you can enter your <a href="http://developers.facebook.com/docs/reference/api/user/" target="_blank">User ID</a> above</p>
@@ -1063,7 +1063,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							
 								<!-- FACEBOOK APP -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Application ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Application ID:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[fb_app_id]" value="<?php echo $options['fb_app_id']; ?>" /><br/>
 									<p class="description">If your blog uses a Facebook app, you can enter your <a href="https://developers.facebook.com/apps" target="_blank">Application ID</a> above</p>
@@ -1087,25 +1087,25 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<p>
 									Website owners must <a href="https://dev.twitter.com/cards" target="_blank">opt-in</a> to have cards displayed for your domain, and Twitter must approve the integration. Below you can specify both your <code>@username</code> and/or your user ID. Note that user IDs never change, while <code>@username</code> can be changed by its owner.
 								</p>
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 
 								<!-- WEBSITE USER -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Website User:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Website User:</label></th> 
 								<td colspan="2" class="width-30"><input type="text" size="75" name="ographr_options[twitter_site_user]" value="<?php echo $options['twitter_site_user']; ?>" /></td>
 								</tr>
 							
 								<!-- WEBSITE ID -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Website ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Website ID:</label></th> 
 								<td colspan="2" class="width-30"><input type="text" size="75" name="ographr_options[twitter_site_id]" value="<?php echo $options['twitter_site_id']; ?>" /></td>
 								</tr>
 							
 							
 								<!-- AUTHOR USER -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Author User:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Author User:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[twitter_author_user]" value="<?php echo $options['twitter_author_user']; ?>" /><br/>
 									<p class="description">
@@ -1119,7 +1119,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- AUTHOR ID -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Author ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Author ID:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[twitter_author_id]" value="<?php echo $options['twitter_author_id']; ?>" /><br/>
 									<p class="description">like above, you can use <code>%user_aim%</code>, <code>%user_jabber%</code> or <code>%user_yahoo%</code> &mdash; you can't use the same twice!</p>
@@ -1143,12 +1143,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<p>
 									If you are offering a mobile app for iOS or Android, you can name (and link) them below. At this moment, only <a href="https://dev.twitter.com/docs/cards/app-installs-and-deep-linking" title="Twitter: App Installs and Deep-Linking" target="_blank">Twitter Cards</a> will make use of that information.
 								</p>
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 								<tbody>
 
 								<!-- IPHONE APP -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>iPhone App Name:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>iPhone App Name:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[app_iphone_name]" value="<?php echo $options['app_iphone_name']; ?>" /><br/>
 
@@ -1157,7 +1157,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- IPHONE ID -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>iPhone App ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>iPhone App ID:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[app_iphone_id]" value="<?php echo $options['app_iphone_id']; ?>" /><br/>
 
@@ -1166,7 +1166,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- IPHONE URL -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>App Store URL:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>App Store URL:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[app_iphone_url]" value="<?php echo $options['app_iphone_url']; ?>" /><br/>
 
@@ -1175,7 +1175,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- UNIVERSAL APP -->
 								<tr > 
-									<th align="left" scope="row"><label>&nbsp;</label></th> 
+									<th class="pull-left" scope="row"><label>&nbsp;</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[app_universal]" class="atoggle" type="checkbox" value="1" data-atarget="input.app_ipad" data-astate="0" <?php if (isset($options['app_universal'])) { checked('1', $options['app_universal']); } ?> /> This is an Universal App working on both iPhone and iPad </label>
 									</td>
@@ -1183,7 +1183,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- IPAD APP -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>iPad App Name:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>iPad App Name:</label></th> 
 								<td colspan="2">
 									<input class="app_ipad" type="text" size="75" name="ographr_options[app_ipad_name]" value="<?php echo $options['app_ipad_name']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?>  /><br/>
 
@@ -1192,7 +1192,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- IPAD ID -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>iPad App ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>iPad App ID:</label></th> 
 								<td colspan="2">
 									<input class="app_ipad" type="text" size="75" name="ographr_options[app_ipad_id]" value="<?php echo $options['app_ipad_id']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?> /><br/>
 
@@ -1201,7 +1201,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- IPAD URL -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>App Store URL:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>App Store URL:</label></th> 
 								<td colspan="2">
 									<input class="app_ipad" type="text" size="75" name="ographr_options[app_ipad_url]" value="<?php echo $options['app_ipad_url']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?> /><br/>
 
@@ -1214,7 +1214,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- ANDROID APP -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Android App Name:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Android App Name:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[app_android_name]" value="<?php echo $options['app_android_name']; ?>" /><br/>
 
@@ -1223,7 +1223,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- ANDROID ID -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>Android App ID:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>Android App ID:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[app_android_id]" value="<?php echo $options['app_android_id']; ?>" /><br/>
 
@@ -1232,7 +1232,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 								<!-- ANDROID URL -->	
 								<tr> 
-								<th align="left" class="width-140" scope="row"><label>GooglePlay URL:</label></th> 
+								<th class="pull-left" class="width-140" scope="row"><label>GooglePlay URL:</label></th> 
 								<td colspan="2">
 									<input type="text" size="75" name="ographr_options[app_android_url]" value="<?php echo $options['app_android_url']; ?>" /><br/>
 
@@ -1253,12 +1253,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<a name="developer_settings"></a> 
 							<span class="hndle heading">Developer Settings</span>
 							<div class="inside">
-								<table cellspacing="2" cellpadding="5"> 
+								<table> 
 									<tbody>
 								
 									<!-- AGE -->	
 										<tr> 
-										<th align="left" class="width-140" scope="row"><label>Debug Level:</label></th> 
+										<th class="pull-left" class="width-140" scope="row"><label>Debug Level:</label></th> 
 										<td colspan="2">
 											<select name='ographr_options[debug_level]'>
 			 									<?php for ($i = 0; $i <= 3; $i++) {
@@ -1270,21 +1270,21 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										</tr>
 
 										<tr> 
-										<th align="left" scope="row"><label>Beta:</label></th> 
+										<th class="pull-left" scope="row"><label>Beta:</label></th> 
 											<td colspan="2">
 												<label><input name="ographr_options[enable_beta]" type="checkbox" value="1" <?php if (isset($options['enable_beta'])) { checked('1', $options['enable_beta']); }; ?> /> Enable beta features </label>&nbsp;
 											</td> 
 										</tr>
 
 										<tr> 
-										<th align="left" scope="row"><label>User Agent:</label></th> 
+										<th class="pull-left" scope="row"><label>User Agent:</label></th> 
 											<td colspan="2">
 												<label><input name="ographr_options[ua_testdrive]" type="checkbox" value="1" <?php if (isset($options['ua_testdrive'])) { checked('1', $options['ua_testdrive']); }; ?> /> Enable User Agent test </label>&nbsp;
 											</td> 
 										</tr>
 
 										<tr> 
-										<th align="left" scope="row"><label>Display:</label></th> 
+										<th class="pull-left" scope="row"><label>Display:</label></th> 
 											<td colspan="2">
 												<label><input name="ographr_options[always_devmode]" type="checkbox" value="1" <?php if (isset($options['always_devmode'])) { checked('1', $options['always_devmode']); }; ?> /> Always show developer settings </label>&nbsp;
 											</td> 

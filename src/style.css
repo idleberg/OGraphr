@@ -55,12 +55,22 @@ a.centered {
     vertical-align: middle;
 }
 
+.pull-left {
+    text-align: left;
+}
+
 table {
     width:100%;
+    border-spacing: 2px;
+    border-collapse: separate;
 }
 
 tr {
     vertical-align: top;
+}
+
+td { 
+    padding: 5px;
 }
 
 td.right ul,td.right ul li {
@@ -80,6 +90,10 @@ td.right ul li {
 
 .width-140 {
     width: 140px;
+}
+
+.width-full {
+    width: 100%;
 }
 
 .poststuff p {
