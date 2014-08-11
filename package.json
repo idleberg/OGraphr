@@ -1,16 +1,28 @@
 {
-  "name":    "OGraphr-lint",
+  "name": "gulp-ographr-devkit",
   "version": "0.0.0",
-  "author":  "Jan T. Sott",
-  "license": "MIT",
   "private": true,
   "devDependencies": {
-    "grunt":                 "0.4.4",
-    "grunt-cli":             "0.1.13",
-    "grunt-contrib-watch":   "0.6.1",
-    "grunt-phplint":         "0.0.5"
+    "gulp":         "~3.8.7",
+    "gulp-concat":  "~2.3.4",
+    "gulp-css":     "~0.0.8",
+    "gulp-csslint": "~0.1.5",
+    "gulp-jshint":  "~1.8.4",
+    "gulp-uglify":  "~0.3.1",
+    "gulp-util":    "~3.0.0",
+    "gulp-watch":   "~0.6.9 ",
+    "phplint":      "~0.1.1"
   },
-  "scripts": {
-    "test": "grunt --verbose"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idleberg/OGraphr.git"
+  },
+  "author": "Jan T. Sott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/idleberg/OGraphr/issues"
+  },
+   "scripts": {
+    "test": "gulp lint"
   }
 }

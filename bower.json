@@ -1,0 +1,17 @@
+{
+  "name": "gulp-ographr-devkit",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "jqplot-bower": "1.0.8"
+  },
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/idleberg/OGraphr.git"
+  },
+  "author": "Jan T. Sott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/idleberg/OGraphr/issues"
+  }
+}

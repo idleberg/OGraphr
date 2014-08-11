@@ -1,6 +1,6 @@
 <?php
 
-/*  Copyright 2009 David Gwyer (email : d.v.gwyer@presscoders.com)
+/*  Copyright 200 David Gwyer (email : d.v.gwyer@presscoders.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -171,14 +171,14 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		//global $options;
 		$options = get_option('ographr_options');
 		
-		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/inc/style.min.css', __FILE__) );
-		wp_register_script( 'OGraphr_JScript', plugins_url('/inc/scripts.min.js', __FILE__), array('jquery'), null, true );			
+		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/app/style.min.css', __FILE__) );
+		wp_register_script( 'OGraphr_JScript', plugins_url('/app/scripts.min.js', __FILE__), array('jquery'), null, true );			
 		
 		if (isset($options['add_graph'])) {
-			wp_register_style( 'JQPlot_Stylesheet', plugins_url('/inc/jquery.jqplot.min.css', __FILE__) );
-			wp_register_script( 'JQPlot_Core', plugins_url('/inc/jquery.jqplot.min.js', __FILE__), array('jquery'), null, true );
-			wp_register_script( 'JQPlot_highlighter', plugins_url('/inc/jqplot.highlighter.min.js', __FILE__), array('jquery'), null, true );
-			wp_register_script( 'JQPlot_dateAxis', plugins_url('/inc/jqplot.dateAxisRenderer.min.js', __FILE__), array('jquery'), null, true );
+			wp_register_style( 'JQPlot_Stylesheet', plugins_url('/app/jquery.jqplot.min.css', __FILE__) );
+			wp_register_script( 'JQPlot_Core', plugins_url('/app/jquery.jqplot.min.js', __FILE__), array('jquery'), null, true );
+			wp_register_script( 'JQPlot_highlighter', plugins_url('/app/jqplot.highlighter.min.js', __FILE__), array('jquery'), null, true );
+			wp_register_script( 'JQPlot_dateAxis', plugins_url('/app/jqplot.dateAxisRenderer.min.js', __FILE__), array('jquery'), null, true );
 		}		
 		
 		register_setting( 'ographr_plugin_options', 'ographr_options', array($this, 'ographr_validate_options') );

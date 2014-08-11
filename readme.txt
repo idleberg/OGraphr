@@ -1,10 +1,10 @@
-=== OGraphr ===
+=== OGraphr for Wordpress ===
 Contributors: yathosho
 Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 0.8.24.1
+Stable tag: 0.8.25
 License: GPLv2
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -102,11 +102,15 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 3. a link with a Vimeo player shared on Twitter
 
-4. standard settings page for OGraphr 0.7
+4. standard settings page for OGraphr 0.8
 
-5. advanced settings page for OGraphr 0.7
+5. advanced settings page for OGraphr 0.8
 
 == Changelog ==
+
+= 0.8.25 =
+* added gulp task
+* changed file structure
 
 = 0.8.24.1 =
 * re-added missing JavaScript files
