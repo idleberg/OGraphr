@@ -1320,7 +1320,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<div class="inside">
 							<ul>
 								<li><a class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/" title="Visit the plug-in page on Wordpress.com" target="_blank">Wordpress</a></li>
-								<li class="advanced_opt"><a class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/" title="Contribute to the GitHub repository" target="_blank">GitHub</a></li>
+								<li class="advanced_opt"><a class="lwp" href="https://github.com/idleberg/OGraphr" title="Contribute to the GitHub repository" target="_blank">GitHub</a></li>
 								<li><a class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/faq/" title="Frequently Asked Questions" target="_blank">FAQ</a></li>
 								<li><a class="lwp" href="http://wordpress.org/tags/meta-ographr?forum_id=10" title="Seek help on the OGraphr support forum on Wordpress.com" target="_blank">Need help?</a></li>
 								<li class="advanced_opt"><a title="Read what changed over the last versions" class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/changelog/" target="_blank">Changelog</a></li>
