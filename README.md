@@ -86,7 +86,7 @@ The build tools require [Node.js](http://nodejs.org/), [npm](http://npmjs.org/) 
 
 ## License
 
-OGraphr is dual-licensed under [The GNU General Public License v2.0][5] and [The MIT License][6]
+OGraphr is dual-licensed under [The GNU General Public License v2.0][5] and [The MIT License][6].
 
 ## Donate
 
