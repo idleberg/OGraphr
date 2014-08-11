@@ -1,6 +1,4 @@
-.required {
-    background-color: #ffd;
-}
+
 
 .heading {
     font-size: 14px;
@@ -82,6 +80,10 @@ td.right ul,td.right ul li {
 td.right ul li {
     margin: 0;
     padding: 0;
+}
+
+input.required{
+    background-color: #ffd;
 }
 
 .width-30 {
