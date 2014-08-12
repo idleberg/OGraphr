@@ -36,6 +36,22 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 [View Screenshots](http://wordpress.org/plugins/meta-ographr/screenshots/)
 
+## Developers
+
+The provided `gulpfile.js` will serve as our build tool. In order to use it, we need to have [Node.js](http://nodejs.org/download/) and [Bower](http://bower.io/) installed.
+
+    # install Node packages
+    npm install
+
+    # install Bower and Gulp globally
+    npm install bower gulp -g
+
+    # install and update Bower components
+    bower install
+    bower update
+
+Several gulp tasks are now available. Use `gulp make` to build OGraphr or make use of the `gulp lint` feature. You can also lint files by extensions (`gulp css`, `gulp js` & `gulp php`.)
+
 ## FAQ
 
 ### What is the Open Graph protocol?
@@ -77,22 +93,6 @@ As beta features can be unstable, they can only be enabled through the plugin's 
 ### Why am I getting a class error when activating the plug-in?
 
 here's a [well-known bug](http://xcache.lighttpd.net/ticket/300) in XCache that will make it impossible to run OGraphr (and many other WordPress plug-ins) at the current moment. You can either disable XCache or hope for a future version to fix this. Sorry!
-
-## Developers
-
-The provided `gulpfile.js` will serve as our build tool. In order to use it, we need to have [Node.js](http://nodejs.org/download/) and [Bower](http://bower.io/) installed.
-
-    # install Node packages
-    npm install
-
-    # install Bower and Gulp globally
-    npm install bower gulp -g
-
-    # install and update Bower components
-    bower install
-    bower update
-
-Several gulp tasks are now available. Use `gulp make` to build OGraphr or make use of the `gulp lint` feature. You can also lint files by extensions (`gulp css`, `gulp js` & `gulp php`.)
 
 ## License
 
