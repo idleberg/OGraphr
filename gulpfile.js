@@ -26,12 +26,12 @@ gulp.task( 'default', ['make']);
 gulp.task(      'js', ['jshint', 'uglify']);
 gulp.task(    'lint', ['csslint', 'jshint', 'phplint']);
 gulp.task(    'make', ['cssmin', 'jqplot', 'uglify']);
-gulp.task(    ' php', ['phplint']);
+gulp.task(     'php', ['phplint']);
+gulp.task(  'travis', ['csslint', 'jshint']);
 
 /*
  * Sub-tasks
  */
-
 
 // PHP Code
 gulp.task('phplint', function () {
