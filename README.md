@@ -38,7 +38,7 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 ## Installation
 
-### Wordpress Plugin Directory
+### Plugin Directory
 
 The easiest way to install OGraphr is through the [Plugin Directory](http://wordpress.org/plugins/meta-ographr/), which you can [access](http://codex.wordpress.org/Managing_Plugins) in the Wordpress backend
 
