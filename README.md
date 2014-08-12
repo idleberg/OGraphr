@@ -84,8 +84,6 @@ To lint all components of OGraphr, a `gulpfile.js` is provided. There are severa
 
 The build tools require [Node.js](http://nodejs.org/), [npm](http://npmjs.org/) and [Bower](http://bower.io/).
 
-Install dependencies using gulp
-
     # install Node packages
     npm install
 
@@ -94,8 +92,9 @@ Install dependencies using gulp
 
     # install Bower components
     bower install
+    bower update
 
-Now you can use `gulp make` to build. You can also test files by extensions (`gulp css`, `gulp js` & `gulp php`) or make use of `gulp lint`.
+Now you can use `gulp make` to build. You can also test files by extensions (`gulp css`, `gulp js` & `gulp php`) or make use of the `gulp lint` feature.
 
 ## License
 
