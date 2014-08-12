@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ographr by idleberg</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ographr</h1>
+        <p>A Wordpress plugin that automatically retrieves images from embedded media-players and includes them as Open Graph compatible thumbnails to be displayed on Facebook, Google+ and other social networks. Supports over 20 players, including YouTube, Vimeo, Dailymotion, SoundCloud, Bandcamp, Flickr, Hulu, Ustream and Internet Archive.</p>
+
+        <p class="view"><a href="https://github.com/idleberg/OGraphr">View the Project on GitHub <small>idleberg/OGraphr</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/idleberg/OGraphr/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/idleberg/OGraphr/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/idleberg/OGraphr">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="ographr-for-wordpress-" class="anchor" href="#ographr-for-wordpress-"><span class="octicon octicon-link"></span></a>OGraphr for Wordpress <a href="http://travis-ci.org/idleberg/OGraphr"><img src="https://secure.travis-ci.org/idleberg/OGraphr.png" alt="Build Status"></a>
+</h1>
+
+<h2>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
+
+<p>This plugin adds several <a href="http://ogp.me/">Open Graph</a> tags to the header of your Wordpress site. These include meta information such as site name, a description (the excerpt of a post), the permalink, author, categories and images for your post. As a specialty, images from embedded video and audio players are retrieved as well. Other types of meta-tags are supported as well, including <a href="https://developers.google.com/+/plugins/snippet/">Google+ Snippets</a>, <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> and <a href="http://developers.whatwg.org/links.html">canonical links</a>.</p>
+
+<p>Currently, these media embeds are supported:</p>
+
+<ul>
+<li>8tracks</li>
+<li>Bambuser</li>
+<li>Bandcamp</li>
+<li>Blip.tv</li>
+<li>DailyMotion</li>
+<li>Flickr videos</li>
+<li>Hulu</li>
+<li>Internet Archive</li>
+<li>Justin.tv/Twitch.tv</li>
+<li>Livestream</li>
+<li>Mixcloud</li>
+<li>Muzu.tv</li>
+<li>MyVideo</li>
+<li>Official.fm</li>
+<li>Rdio</li>
+<li>Socialcam</li>
+<li>SoundCloud</li>
+<li>Spotify</li>
+<li>Ustream</li>
+<li>Viddler</li>
+<li>Vimeo</li>
+<li>YouTube</li>
+<li>JW Player</li>
+<li>NVB Player</li>
+<li>Standard HTML5 video-tags</li>
+</ul><p>Open Graph tags will be used by social network sites such as Facebook, Twitter or Google+ to style a shared link or webpages "liked" by any user. Images supposedly attract more attention, so you might find this plug-in useful.</p>
+
+<p><a href="http://wordpress.org/plugins/meta-ographr/screenshots/">View Screenshots</a></p>
+
+<h2>
+<a name="developers" class="anchor" href="#developers"><span class="octicon octicon-link"></span></a>Developers</h2>
+
+<p>The provided <code>gulpfile.js</code> will serve as our build tool. In order to use it, we need to have <a href="http://nodejs.org/download/">Node.js</a> and <a href="http://bower.io/">Bower</a> installed.</p>
+
+<pre><code># install Node packages
+npm install
+
+# install Bower and Gulp globally
+npm install bower gulp -g
+
+# install and update Bower components
+bower install
+bower update
+</code></pre>
+
+<p>Several gulp tasks are now available. Use <code>gulp make</code> to build OGraphr or make use of the <code>gulp lint</code> feature. You can also lint files by extensions (<code>gulp css</code>, <code>gulp js</code> &amp; <code>gulp php</code>.)</p>
+
+<h2>
+<a name="faq" class="anchor" href="#faq"><span class="octicon octicon-link"></span></a>FAQ</h2>
+
+<h3>
+<a name="what-is-the-open-graph-protocol" class="anchor" href="#what-is-the-open-graph-protocol"><span class="octicon octicon-link"></span></a>What is the Open Graph protocol?</h3>
+
+<p>The <a href="http://ogp.me/">Open Graph protocol</a> enables any web page to become a rich object in a social graph. For instance, this is used on Facebook to allow any web page to have the same functionality as any other object on Facebook. The OGraphr plugin for WordPress detects images from popular media players and adds them, alongside other information, to the metadata of your page.</p>
+
+<h3>
+<a name="i-dont-use-social-networks-why-would-i-use-this" class="anchor" href="#i-dont-use-social-networks-why-would-i-use-this"><span class="octicon octicon-link"></span></a>I don't use social networks, why would I use this?</h3>
+
+<p>People share links with their friends on social network sites whether you like it or not. This plug-in gives you some control over how your content is presented on platforms such as Facebook and Google+. Displaying cover artwork or video snapshots with your link usually looks nicer and attracts the attention of potential visitors.</p>
+
+<h3>
+<a name="why-doesnt-facebook-display-the-cover-artwork" class="anchor" href="#why-doesnt-facebook-display-the-cover-artwork"><span class="octicon octicon-link"></span></a>Why doesn't Facebook display the cover artwork?</h3>
+
+<p>Facebook caches previously submitted links for an undisclosed time. If your page has been shared/liked on Facebook before, the cover artwork will not appear until that cache has expired or the page is opened in the <a href="http://developers.facebook.com/tools/debug">Facebook debugger</a>. To make sure the plugin is active and working, you can always look for the og:image tags in the source of your page - or you can force a cache refresh using the <a href="http://developers.facebook.com/tools/debug">Facebook debugger</a>.</p>
+
+<h3>
+<a name="why-do-i-need-a-bandcamp-api-key" class="anchor" href="#why-do-i-need-a-bandcamp-api-key"><span class="octicon octicon-link"></span></a>Why do I need a Bandcamp API key?</h3>
+
+<p>Bandcamp is rather restrictive with access to their API, usually only allowing access to owners of material hosted on their platform. In order to get an API key, you have to apply via email.</p>
+
+<h3>
+<a name="do-i-really-need-a-viddler-api-key" class="anchor" href="#do-i-really-need-a-viddler-api-key"><span class="octicon octicon-link"></span></a>Do I really need a Viddler API key?</h3>
+
+<p>You probably don't. All new Viddler players use HTML5-compliant poster images and these can be detected without making an API call. It's only old "Legacy" players rely on Viddler's API and you need a valid developer key to access it.</p>
+
+<h3>
+<a name="what-about-site-performance" class="anchor" href="#what-about-site-performance"><span class="octicon octicon-link"></span></a>What about site performance?</h3>
+
+<p>Depending on the amount of embed codes in your site, retrieving images and other informations can delay the rendering of a page. This can be avoided by retrieving images only once when an article has been published or updated. You can further restrict OGraphr to trigger only when called by Facebook, Google+, LinkedIn or Twitter.</p>
+
+<h3>
+<a name="why-are-there-no-google-meta-tags-in-my-page-source" class="anchor" href="#why-are-there-no-google-meta-tags-in-my-page-source"><span class="octicon octicon-link"></span></a>Why are there no Google+ meta-tags in my page source?</h3>
+
+<p>Since Google+ is probably the only site using these meta-tags, they will only be added to the source when a link is posted on a profile. However, you can force displaying these meta-tags when activating OGraphr's debug-mode.</p>
+
+<h3>
+<a name="is-there-a-good-reason-to-add-link-elements-for-thumbnails" class="anchor" href="#is-there-a-good-reason-to-add-link-elements-for-thumbnails"><span class="octicon octicon-link"></span></a>Is there a good reason to add link elements for thumbnails?</h3>
+
+<p>Probably not. Link elements were a common way to add website thumbnails before Facebook introduced its Open Graph protocol. There might be a couple of sites still retrieving thumbnails through link elements, Digg used to be one of them.</p>
+
+<h3>
+<a name="how-can-i-use-new-features-marked-as-beta" class="anchor" href="#how-can-i-use-new-features-marked-as-beta"><span class="octicon octicon-link"></span></a>How can I use new features marked as beta?</h3>
+
+<p>As beta features can be unstable, they can only be enabled through the plugin's source. Open the file <code>meta-ographr_index.php</code> and set <code>OGRAPHR_DEVMODE</code> to <code>TRUE</code>. From now on, you will see developer settings on the plugin options page, where you can enable beta features.</p>
+
+<h3>
+<a name="why-am-i-getting-a-class-error-when-activating-the-plug-in" class="anchor" href="#why-am-i-getting-a-class-error-when-activating-the-plug-in"><span class="octicon octicon-link"></span></a>Why am I getting a class error when activating the plug-in?</h3>
+
+<p>here's a <a href="http://xcache.lighttpd.net/ticket/300">well-known bug</a> in XCache that will make it impossible to run OGraphr (and many other WordPress plug-ins) at the current moment. You can either disable XCache or hope for a future version to fix this. Sorry!</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>OGraphr is dual-licensed under <a href="http://www.gnu.org/licenses/gpl-2.0.html">The GNU General Public License v2.0</a> and <a href="http://opensource.org/licenses/MIT">The MIT License</a>.</p>
+
+<h2>
+<a name="donate" class="anchor" href="#donate"><span class="octicon octicon-link"></span></a>Donate</h2>
+
+<p>You are welcome support this project using <a href="https://flattr.com/submit/auto?user_id=idleberg&amp;url=https://github.com/idleberg/OGraphr">Flattr</a> or Bitcoin <code>17CXJuPsmhuTzFV2k4RKYwpEHVjskJktRd</code></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/idleberg">idleberg</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
