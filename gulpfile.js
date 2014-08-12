@@ -16,7 +16,6 @@ var phplint = require('phplint');
 var uglify  = require('gulp-uglify');
 var util    = require('gulp-util');
 var watch   = require('gulp-watch');
-var map     = require('map-stream');
 
 /*
  * Task combos
@@ -76,7 +75,6 @@ gulp.task('jshint', function() {
     ])
     .pipe(jshint())
     .pipe(jshint.reporter())
-    .pipe(errorReporter())
 });
 
 // jqplot (http://www.jqplot.com/)
@@ -116,13 +114,3 @@ gulp.task('watch', function () {
          ],
          ['lint'])
 });
-
-// Error reporter
-var errorReporter = function () {
-  return map(function (file, cb) {
-    if (!file.jshint.success) {
-      process.exit(1);
-    }
-    cb(null, file);
-  });
-};

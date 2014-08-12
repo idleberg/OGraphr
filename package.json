@@ -9,11 +9,9 @@
     "gulp-csslint": "~0.1.5",
     "gulp-jshint":  "~1.8.4",
     "gulp-rimraf":  "~0.1.0",
-    "gulp-symlink": "~1.1.0",
     "gulp-uglify":  "~0.3.1",
     "gulp-util":    "~3.0.0",
     "gulp-watch":   "~0.6.9",
-    "map-stream":   "~0.1.0",
     "phplint":      "~0.1.1"
   },
   "repository": {
