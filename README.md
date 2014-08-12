@@ -80,9 +80,7 @@ here's a [well-known bug](http://xcache.lighttpd.net/ticket/300) in XCache that 
 
 ## Developers
 
-To lint all components of OGraphr, a `gulpfile.js` is provided. There are several [Gulp](http://gulpjs.com/) tasks available to lint, minify and install libraries.
-
-The build tools require [Node.js](http://nodejs.org/), [npm](http://npmjs.org/) and [Bower](http://bower.io/).
+The provided `gulpfile.js` will serve as our build tool. In order to use it, we need to have [Node.js](http://nodejs.org/download/) and [Bower](http://bower.io/) installed.
 
     # install Node packages
     npm install
@@ -94,7 +92,7 @@ The build tools require [Node.js](http://nodejs.org/), [npm](http://npmjs.org/) 
     bower install
     bower update
 
-Now you can use `gulp make` to build. You can also test files by extensions (`gulp css`, `gulp js` & `gulp php`) or make use of the `gulp lint` feature.
+Several gulp tasks are now available. Use `gulp make` to build OGraphr or make use of the `gulp lint` feature. You can also lint files by extensions (`gulp css`, `gulp js` & `gulp php`.)
 
 ## License
 
