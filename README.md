@@ -87,10 +87,10 @@ The build tools require [Node.js](http://nodejs.org/), [npm](http://npmjs.org/) 
     # install Node packages
     npm install
 
-    # globally install Bower and Gulp
+    # install Bower and Gulp globally
     npm install bower gulp -g
 
-    # install Bower components
+    # install and update Bower components
     bower install
     bower update
 
