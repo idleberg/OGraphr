@@ -36,6 +36,20 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 [View Screenshots](http://wordpress.org/plugins/meta-ographr/screenshots/)
 
+## Installation
+
+### Wordpress Plugin Directory
+
+The easiest way to install OGraphr is through the [Plugin Directory](http://wordpress.org/plugins/meta-ographr/), which you can [access](http://codex.wordpress.org/Managing_Plugins) in the Wordpress backend
+
+### GitHub
+
+1. Change directory to `wp-content/plugins`
+
+2. Clone repository `git clone https://github.com/idleberg/OGraphr.git meta-ographr`
+
+3. Activate and set up the plug-in in the Wordpress backend
+
 ## Developers
 
 The provided `gulpfile.js` will serve as our build tool. In order to use it, we need to have [Node.js](http://nodejs.org/download/) and [Bower](http://bower.io/) installed.
