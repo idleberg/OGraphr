@@ -1,9 +1,9 @@
 {
-  "name": "gulp-ographr-devkit",
-  "version": "0.0.0",
+  "name": "OGraphr-devkit",
+  "version": "0.8.25",
   "private": true,
   "devDependencies": {
-    "jqplot-bower": "1.0.8"
+    "jqplot-bower": "~1.0.8"
   },
    "repository": {
     "type": "git",

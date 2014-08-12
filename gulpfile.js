@@ -1,5 +1,5 @@
  /*
-  * gulp-ographr-devkit
+  * OGraphr-devkit
   * https://github.com/idleberg/OGraphr
   *
   * Copyright (c) 2014 Jan T. Sott
