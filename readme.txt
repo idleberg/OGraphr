@@ -1,4 +1,4 @@
-=== OGraphr for Wordpress ===
+=== OGraphr for WordPress ===
 Contributors: yathosho
 Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
@@ -57,7 +57,7 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 = What is the Open Graph protocol? =
 
-The [Open Graph protocol](http://ogp.me/ "Open Graph protocol") enables any web page to become a rich object in a social graph. For instance, this is used on Facebook to allow any web page to have the same functionality as any other object on Facebook. The OGraphr plugin for Wordpress detects images from popular media players and adds them, alongside other information, to the metadata of your page.
+The [Open Graph protocol](http://ogp.me/ "Open Graph protocol") enables any web page to become a rich object in a social graph. For instance, this is used on Facebook to allow any web page to have the same functionality as any other object on Facebook. The OGraphr plugin for WordPress detects images from popular media players and adds them, alongside other information, to the metadata of your page.
 
 = I don't use social networks, why would I use this? =
 
@@ -92,7 +92,7 @@ Probably not. Link elements were a common way to add website thumbnails before F
 As beta features can be unstable, they can only be enabled through the plugin's source. Open the file `meta-ographr_index.php` and set `OGRAPHR_DEVMODE` to `TRUE`. From now on, you will see developer settings on the plugin options page, where you can enable beta features.
 
 = Why am I getting a class error when activating the plug-in? =
-There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug") in XCache that will make it impossible to run OGraphr (and many other Wordpress plug-ins) at the current moment. You can either disable XCache or hope for a future version to fix this. Sorry!
+There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug") in XCache that will make it impossible to run OGraphr (and many other WordPress plug-ins) at the current moment. You can either disable XCache or hope for a future version to fix this. Sorry!
 
 == Screenshots ==
 
@@ -148,7 +148,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 = 0.8.17 =
 * adding a trailing slash to URLs is now optional
-* fixed several warnings occuring in Wordpress debug mode 
+* fixed several warnings occuring in WordPress debug mode 
 
 = 0.8.16 =
 * adds trailing slash to URLs if missing
@@ -225,7 +225,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * added support for twitter:domain
 * fixed SoundCloud image replacement
 * fixed bug in Twitter image selection
-* fixed warnings appearing in Wordpress debug mode
+* fixed warnings appearing in WordPress debug mode
 * improved beta/debug warning
 
 = 0.8.2 =
@@ -268,8 +268,8 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * updated Google+ user-agent
 
 = 0.7.8 =
-* fixed several errors when running Wordpress in debug mode
-* disabled statistics in Wordpress debug mode (until fixed)
+* fixed several errors when running WordPress in debug mode
+* disabled statistics in WordPress debug mode (until fixed)
 * modified standard settings view
 * modified fade effect
 
@@ -287,9 +287,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 = 0.7.5 =
 * added support for NVB Player
-* modified option page layout to better match standard Wordpress UI
+* modified option page layout to better match standard WordPress UI
 * fixed result returned from Official.fm
-* fixed several errors when running Wordpress in debug mode
+* fixed several errors when running WordPress in debug mode
 * fixed bugs in options page HTML
 * improved option page descriptions
 * removed unnecessary comments
@@ -419,7 +419,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * updated Digg user agent
 
 = 0.5.14 =
-* plugin now uses Wordpress' internal JQuery
+* plugin now uses WordPress' internal JQuery
 * disabled upgrade function, needs fixing
 
 = 0.5.13 =
@@ -636,7 +636,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * modified style of save button
 
 = 0.1.2 =
-* added a filter for Wordpress smilies
+* added a filter for WordPress smilies
 * fixed bug not adding all images displayed in a post
 
 = 0.1.1 =
@@ -647,6 +647,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * first release
 
 == Upgrade Notice ==
+
+= 0.8.25 =
+You might have to delete the old version first, should you find yourself in an update loop. Sorry!
 
 = 0.8 =
 All previously indexed data will be overwritten

@@ -29,7 +29,7 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 
 // OGRAPHR OPTIONS
     define("OGRAPHR_VERSION", "0.8.25");
-	// enables developer settings on Wordpress interface, can be overwritten from plug-in settings once activated
+	// enables developer settings on WordPress interface, can be overwritten from plug-in settings once activated
 	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
 	define("OGRAPHR_UATEST", FALSE);
@@ -135,7 +135,7 @@ class OGraphr_Core {
 	// Define default option settings
 	public function ographr_set_defaults() {
 
-			// Set default locale to Wordpress language
+			// Set default locale to WordPress language
 			if (WPLANG != NULL) {
 				$tmp_locale = WPLANG;
 			} else {
@@ -425,7 +425,7 @@ class OGraphr_Core {
 						print " (+beta)";
 					}
 					print "\n";
-					print "\t Wordpress " . get_bloginfo('version') . "\n";
+					print "\t WordPress " . get_bloginfo('version') . "\n";
 					print "\t PHP " . phpversion() . "\n";
 					if( ($options['debug_level'] >= 3) && (strnatcmp(phpversion(),'5.5.0') < 0) ) {
 						print "\t MySQL " . mysql_get_server_info() . "\n";
@@ -1211,25 +1211,25 @@ class OGraphr_Core {
 				$no_gravatar = FALSE;
 				$no_custom_url = TRUE;
 			
-				// filter Wordpress smilies
+				// filter WordPress smilies
 				preg_match('/\/wp-includes\/images\/smilies\/icon_.+/i', $match, $filter);
 				if ((!isset($options['filter_smilies'])) || (!$filter[0])) {
 					$no_smilies = TRUE;
 				}
 			
-				// filter Wordpress theme images
+				// filter WordPress theme images
 				preg_match('/\/wp-content\/themes\//i', $match, $filter);
 				if ((!isset($options['filter_themes'])) || (!$filter[0])) {
 					$no_themes = TRUE;
 				}
 			
-				// filter Wordpress plug-in images
+				// filter WordPress plug-in images
 				preg_match('/\/wp-content\/plugins\//i', $match, $filter);
 				if ((!isset($options['filter_plugins'])) || (!$filter[0])) {
 					$no_plugins = TRUE;
 				}
 
-				// filter Wordpress upload directory
+				// filter WordPress upload directory
 				$upload_dir = wp_upload_dir();
 				$pattern = str_replace($blog_url, NULL, $upload_dir['baseurl']);
 				$pattern = str_replace("/", "\/", $pattern);
@@ -1238,7 +1238,7 @@ class OGraphr_Core {
 					$no_uploads = TRUE;
 				}
 
-				// filter Wordpress include directory
+				// filter WordPress include directory
 				preg_match('/\/wp-includes\//i', $match, $filter);
 				if ((!isset($options['filter_includes'])) || (!$filter[0])) {
 					$no_includes = TRUE;

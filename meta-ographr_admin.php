@@ -150,7 +150,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 				$this->ographr_delete_postmeta();
 			}
 				
-			// Set default locale to Wordpress language
+			// Set default locale to WordPress language
 			if (WPLANG) {
 				$tmp_locale = WPLANG;
 			} else {
@@ -629,7 +629,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 										<td colspan="2">
 											<label title="Filter Gravatar images"><input name="ographr_options[filter_gravatar]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_gravatar'])) { checked('1', $options['filter_gravatar']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?>/> Exclude avatars </label>&nbsp;
 											
-											<label title="Filter Wordpress emoticons"><input name="ographr_options[filter_smilies]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_smilies'])) { checked('1', $options['filter_smilies']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?> /> Exclude emoticons </label>&nbsp;
+											<label title="Filter WordPress emoticons"><input name="ographr_options[filter_smilies]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_smilies'])) { checked('1', $options['filter_smilies']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?> /> Exclude emoticons </label>&nbsp;
 											
 											<label title="Filter images belonging to themes"><input name="ographr_options[filter_themes]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_themes'])) { checked('1', $options['filter_themes']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?> /> Exclude themes </label>&nbsp;
 											
@@ -637,7 +637,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 
 											<label title="Filter images from the uploads folder"><input name="ographr_options[filter_uploads]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_uploads'])) { checked('1', $options['filter_uploads']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?> /> Exclude uploads </label>&nbsp;
 											
-											<label title="Filter images from the Wordpress includes directory"><input name="ographr_options[filter_includes]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_includes'])) { checked('1', $options['filter_includes']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?> /> Exclude includes </label>&nbsp;
+											<label title="Filter images from the WordPress includes directory"><input name="ographr_options[filter_includes]" type="checkbox" value="1" class="disable_filters" <?php if (isset($options['filter_includes'])) { checked('1', $options['filter_includes']); }; if(!$options['add_post_images']) print 'disabled="disabled"'; ?> /> Exclude includes </label>&nbsp;
 										</td> 
 									</tr>
 								
@@ -897,7 +897,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<th class="pull-left" scope="row"><label>Namespace:</label></th> 
 									<td colspan="2">
 										<label><input name="ographr_options[add_prefix]" type="checkbox" value="1" <?php if (isset($options['add_prefix'])) { checked('1', $options['add_prefix']); } ?> /> Add Open Graph prefix to source </label><br/>
-										<p class="description">Facebook advises the inclusion of the Open Graph prefix, though tags will be interpreted without one. However, your Wordpress theme needs to support <a href="http://codex.wordpress.org/Function_Reference/language_attributes" target="_blank">language attributes</a> to make this work! </p>
+										<p class="description">Facebook advises the inclusion of the Open Graph prefix, though tags will be interpreted without one. However, your WordPress theme needs to support <a href="http://codex.wordpress.org/Function_Reference/language_attributes" target="_blank">language attributes</a> to make this work! </p>
 									</td>
 								</tr>
 									
@@ -918,8 +918,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											<li>
 												<ul >
 													<li><label title="Add image tags from your post"><input name="ographr_options[add_post_images]" type="checkbox" class="atoggle" data-atarget="input.disable_filters, textarea.disable_filters" data-astate="1" value="1" <?php if (isset($options['add_post_images'])) { checked('1', $options['add_post_images']); } ?> /> Post images </label></li>
-													<li><label title="Add images uploaded through Wordpress"><input name="ographr_options[add_attached_image]" type="checkbox" value="1" class="atoggle" data-atarget="input.post_thumbnail" data-astate="0" <?php if (isset($options['add_attached_image'])) { checked('1', $options['add_attached_image']); } ?> /> Attached images </label></li>
-													<li class="centered"><label title="Add featured images from your post"><input name="ographr_options[add_post_thumbnail]" type="checkbox" value="1" class="post_thumbnail" <?php if (isset($options['add_post_thumbnail'])) { checked('1', $options['add_post_thumbnail']); }; if ($options['add_attached_image']) { print 'disabled="disabled"'; } ?> /> Featured image <a class="centered" href="http://codex.wordpress.org/Post_Thumbnails" title="Wordpress Codex: Post Thumbnails" target="_blank">?</a></label></label></li>
+													<li><label title="Add images uploaded through WordPress"><input name="ographr_options[add_attached_image]" type="checkbox" value="1" class="atoggle" data-atarget="input.post_thumbnail" data-astate="0" <?php if (isset($options['add_attached_image'])) { checked('1', $options['add_attached_image']); } ?> /> Attached images </label></li>
+													<li class="centered"><label title="Add featured images from your post"><input name="ographr_options[add_post_thumbnail]" type="checkbox" value="1" class="post_thumbnail" <?php if (isset($options['add_post_thumbnail'])) { checked('1', $options['add_post_thumbnail']); }; if ($options['add_attached_image']) { print 'disabled="disabled"'; } ?> /> Featured image <a class="centered" href="http://codex.wordpress.org/Post_Thumbnails" title="WordPress Codex: Post Thumbnails" target="_blank">?</a></label></label></li>
 												</ul>
 											</li>
 										</ul>
@@ -961,11 +961,11 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<p class="description">
 								<?php
 									if (!WPLANG) {
-										print "Wordpress is set to default language (<em>en</em>)"; 
+										print "WordPress is set to default language (<em>en</em>)"; 
 									} else if (!defined('WPLANG')) {
 										print "not defined, using default (<em>en</em>)"; 
 									} else {
-										print "Wordpress is currently set to <code>" . WPLANG . "</code>";
+										print "WordPress is currently set to <code>" . WPLANG . "</code>";
 									}
 								?>
 								</p>
@@ -1319,10 +1319,10 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<span class="hndle heading">Navigator</span>
 							<div class="inside">
 							<ul>
-								<li><a class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/" title="Visit the plug-in page on Wordpress.com" target="_blank">Wordpress</a></li>
+								<li><a class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/" title="Visit the plug-in page on WordPress.com" target="_blank">WordPress</a></li>
 								<li class="advanced_opt"><a class="lwp" href="https://github.com/idleberg/OGraphr" title="Contribute to the GitHub repository" target="_blank">GitHub</a></li>
 								<li><a class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/faq/" title="Frequently Asked Questions" target="_blank">FAQ</a></li>
-								<li><a class="lwp" href="http://wordpress.org/tags/meta-ographr?forum_id=10" title="Seek help on the OGraphr support forum on Wordpress.com" target="_blank">Need help?</a></li>
+								<li><a class="lwp" href="http://wordpress.org/tags/meta-ographr?forum_id=10" title="Seek help on the OGraphr support forum on WordPress.com" target="_blank">Need help?</a></li>
 								<li class="advanced_opt"><a title="Read what changed over the last versions" class="lwp" href="http://wordpress.org/extend/plugins/meta-ographr/changelog/" target="_blank">Changelog</a></li>
 								<li class="advanced_opt"><a class="lwp" href="http://plugins.svn.wordpress.org/meta-ographr/" title="Browse the Subversion repository for older releases of this plug-in" target="_blank">SVN</a></li>
 								<li>&nbsp;</li>

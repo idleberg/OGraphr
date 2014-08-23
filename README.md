@@ -1,8 +1,8 @@
-# OGraphr for Wordpress [![Build Status](https://secure.travis-ci.org/idleberg/OGraphr.svg)](http://travis-ci.org/idleberg/OGraphr) [![devDependency Status](https://david-dm.org/idleberg/OGraphr/dev-status.svg)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
+# OGraphr for WordPress [![Build Status](https://secure.travis-ci.org/idleberg/OGraphr.svg)](http://travis-ci.org/idleberg/OGraphr) [![devDependency Status](https://david-dm.org/idleberg/OGraphr/dev-status.svg)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
 
 ## Description
 
-This plugin adds several [Open Graph][1] tags to the header of your Wordpress site. These include meta information such as site name, a description (the excerpt of a post), the permalink, author, categories and images for your post. As a specialty, images from embedded video and audio players are retrieved as well. Other types of meta-tags are supported as well, including [Google+ Snippets][2], [Twitter Cards][3] and [canonical links][4].
+This plugin adds several [Open Graph][1] tags to the header of your WordPress site. These include meta information such as site name, a description (the excerpt of a post), the permalink, author, categories and images for your post. As a specialty, images from embedded video and audio players are retrieved as well. Other types of meta-tags are supported as well, including [Google+ Snippets][2], [Twitter Cards][3] and [canonical links][4].
 
 Currently, these media embeds are supported:
 
@@ -40,7 +40,7 @@ Open Graph tags will be used by social network sites such as Facebook, Twitter o
 
 ### Plugin Directory
 
-The easiest way to install OGraphr is through the [Plugin Directory](http://wordpress.org/plugins/meta-ographr/), which you can [access](http://codex.wordpress.org/Managing_Plugins) in the Wordpress backend
+The easiest way to install OGraphr is through the [Plugin Directory](http://wordpress.org/plugins/meta-ographr/), which you can [access](http://codex.wordpress.org/Managing_Plugins) in the WordPress backend
 
 ### GitHub
 
@@ -48,7 +48,7 @@ The easiest way to install OGraphr is through the [Plugin Directory](http://word
 
 2. Clone repository `git clone https://github.com/idleberg/OGraphr.git meta-ographr`
 
-3. Activate and set up the plug-in in the Wordpress backend
+3. Activate and set up the plug-in in the WordPress backend
 
 ## Developers
 
