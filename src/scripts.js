@@ -28,5 +28,8 @@ jQuery(function() {
             jQuery(".disable_graph").attr("disabled", true);
         }
     });
+    jQuery('.select-all').click(function() {
+        jQuery(this).closest('ul').find(':checkbox').attr('checked', this.checked);
+    });
     render_stats();
 });
