@@ -432,8 +432,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<input type="text" size="75" name="ographr_options[website_title]" value="<?php if ($options['website_title']) { echo $options['website_title']; } else { echo '%postname%';} ?>" /><br/>
 									<p class="description">
 										<code>%postname%</code> &mdash; page or post title<br/>
-										<code>%sitename%</code> &mdash; your blog's name (<em><? if($mywp['blog_name'] = get_option('blogname')) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br/>
-										<code>%siteurl%</code> &mdash; the URL of your blog (<em><? $wp_url = get_option('home'); $wp_url = (preg_replace('/https?:\/\//', NULL, $wp_url)); echo $wp_url; ?></em>)
+										<code>%sitename%</code> &mdash; your blog's name (<em><?php if($mywp['blog_name'] = get_option('blogname')) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br/>
+										<code>%siteurl%</code> &mdash; the URL of your blog (<em><?php $wp_url = get_option('home'); $wp_url = (preg_replace('/https?:\/\//', NULL, $wp_url)); echo $wp_url; ?></em>)
 									</p>
 								</td> 
 								<td>&nbsp;</td>
@@ -555,12 +555,12 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											</li>
 										</ul>
 
-										<? if((!isset($options['bandcamp_api'])) && (isset($options['enable_bandcamp']))) { echo '<br/><span style="color:red;font-size:x-small;">Bandcamp requires a valid <a href="#bandcamp_api_key" style="color:red;">API key</a></span>';} ?>
-										<? if((!isset($options['muzu_api'])) && (isset($options['enable_muzu']))) { echo '<br/><span style="color:red;font-size:x-small;">Muzu.tv requires a valid <a href="#muzu_api_key" style="color:red;">API key</a></span>';} ?>
-										<? if((!isset($options['myvideo_dev_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_developer_key" style="color:red;">Developer API key</a></span>';} ?>
-										<? if((!isset($options['myvideo_web_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_website_key" style="color:red;">Website API key</a></span>';} ?>
-										<? if((!isset($options['socialcam_api'])) && (isset($options['enable_socialcam']))) { echo '<br/><span style="color:red;font-size:x-small;">Socialcam requires a valid <a href="#socialcam_api_key" style="color:red;">API key</a></span>';} ?>
-										<? if((!isset($options['viddler_api'])) && (isset($options['enable_viddler']))) { echo '<br/><span style="color:red;font-size:x-small;">Viddler requires a valid <a href="#viddler_api_key" style="color:red;">API key</a></span>';} ?>
+										<?php if((!isset($options['bandcamp_api'])) && (isset($options['enable_bandcamp']))) { echo '<br/><span style="color:red;font-size:x-small;">Bandcamp requires a valid <a href="#bandcamp_api_key" style="color:red;">API key</a></span>';} ?>
+										<?php if((!isset($options['muzu_api'])) && (isset($options['enable_muzu']))) { echo '<br/><span style="color:red;font-size:x-small;">Muzu.tv requires a valid <a href="#muzu_api_key" style="color:red;">API key</a></span>';} ?>
+										<?php if((!isset($options['myvideo_dev_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_developer_key" style="color:red;">Developer API key</a></span>';} ?>
+										<?php if((!isset($options['myvideo_web_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_website_key" style="color:red;">Website API key</a></span>';} ?>
+										<?php if((!isset($options['socialcam_api'])) && (isset($options['enable_socialcam']))) { echo '<br/><span style="color:red;font-size:x-small;">Socialcam requires a valid <a href="#socialcam_api_key" style="color:red;">API key</a></span>';} ?>
+										<?php if((!isset($options['viddler_api'])) && (isset($options['enable_viddler']))) { echo '<br/><span style="color:red;font-size:x-small;">Viddler requires a valid <a href="#viddler_api_key" style="color:red;">API key</a></span>';} ?>
 									</td> 
 								</tr>
 								
@@ -602,7 +602,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<td colspan="2" class="width-30">
 										<input type="text" size="75" name="ographr_options[website_description]" class="enable_triggers" value="<?php echo $options['website_description']; ?>" /><br/>
 										<p class="description">
-											<code>%tagline%</code> &mdash; your blog's tagline (<em><? if(get_bloginfo('description')) { echo get_bloginfo('description'); } else { echo '<span style="color:red;">empty</span>';} ?></em>)
+											<code>%tagline%</code> &mdash; your blog's tagline (<em><?php if(get_bloginfo('description')) { echo get_bloginfo('description'); } else { echo '<span style="color:red;">empty</span>';} ?></em>)
 										</p>
 									</td> 
 								</tr>
@@ -645,7 +645,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<tr> 
 										<th class="pull-left" class="width-140" scope="row"><label>Custom URLs:</label></th> 
 										<td colspan="2"><textarea name="ographr_options[filter_custom_urls]" cols="76%" rows="4" class="disable_filters"><?php echo $options['filter_custom_urls']; ?></textarea><br/>
-											<p class="description">You can enter filenames and URLs (e.g. <em><? echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</p>
+											<p class="description">You can enter filenames and URLs (e.g. <em><?php echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</p>
 										</td> 
 									</tr>
 
@@ -1028,8 +1028,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<td colspan="2" class="width-30">
 									<input type="text" size="75" name="ographr_options[fb_site_name]" value="<?php echo $options['fb_site_name']; ?>" /><br/>
 									<p class="description">
-										<code>%sitename%</code> &mdash; your blog's name (<em><? if($wp_url) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br />
-										<code>%siteurl%</code> &mdash; the URL of your blog (<em><? echo $wp_url; ?></em>)
+										<code>%sitename%</code> &mdash; your blog's name (<em><?php if($wp_url) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br />
+										<code>%siteurl%</code> &mdash; the URL of your blog (<em><?php echo $wp_url; ?></em>)
 									<p>
 								</td>
 								</tr>
@@ -1309,7 +1309,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 						</form>
 						<!-- *********************** END: Main Content ********************* -->
 						<br/>
-						<p class="description"><a style="" href="http://wordpress.org/extend/plugins/meta-ographr/" target="_blank">OGraphr <? echo OGRAPHR_VERSION ?></a> &copy <? $this_year = date('Y'); if (date('Y') > 2012) { print "2012-$this_year"; } else { print "2012"; } ?> by Jan T. Sott</p>
+						<p class="description"><a style="" href="http://wordpress.org/extend/plugins/meta-ographr/" target="_blank">OGraphr <?php echo OGRAPHR_VERSION ?></a> &copy <?php $this_year = date('Y'); if (date('Y') > 2012) { print "2012-$this_year"; } else { print "2012"; } ?> by Jan T. Sott</p>
 						</td> <!-- [left] -->
 
 						<td class="right">
@@ -1533,8 +1533,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 					
 			function render_stats() {
 				// does not work in WP_DEBUG mode (yet?)
-				var line1=[<? print $posts_total; ?>];
-				var line2=[<? print $posts_indexed; ?>];
+				var line1=[<?php print $posts_total; ?>];
+				var line2=[<?php print $posts_indexed; ?>];
 			  	var plot1 = jQuery.jqplot('chartdiv', [line1, line2], {
 					series:[{color:'#bd8cbf'},{color:'#8560a8'}],
 					axesDefaults: {
@@ -1546,14 +1546,14 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 					seriesDefaults: {
 						lineWidth: '1.5',
 						showMarker: true,
-						fill: <? if ($options['fill_curves']) { print "true"; } else { print "false"; } ?>,
+						fill: <?php if ($options['fill_curves']) { print "true"; } else { print "false"; } ?>,
 						fillAlpha: 0.9,
 						markerOptions: {
 							size:<?php if ($interval >= 35) { print 0; } else { print 5; } ?>,
 						 	<?php if ($options['fill_curves']) { print 'color: "#ed1c24",'; } ?>
 						},
 						rendererOptions: {
-							smooth: <? if ($options['smooth_curves']) { print "true"; } else { print "false"; } ?>,
+							smooth: <?php if ($options['smooth_curves']) { print "true"; } else { print "false"; } ?>,
 							}
 						},
 					grid: {
@@ -1566,7 +1566,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 				        xaxis:{
 				          renderer:jQuery.jqplot.DateAxisRenderer,
 				          tickInterval:'<?php if ($interval > 8760) { print "10 years"; } else if ($interval > 720 ) { print "1 year"; } else if ($interval > 90 ) { print "1 month"; } else if ($interval > 21 ) { print "1 week"; } else { print "1 day"; } ?>',
-				          min: <? print '"' . date("F j, Y", strtotime(array_shift(array_keys($stats))) ) . '"'; ?>,
+				          min: <?php print '"' . date("F j, Y", strtotime(array_shift(array_keys($stats))) ) . '"'; ?>,
 				          tickOptions:{
 				            formatString:'%F'
 				          }		
