@@ -3,8 +3,8 @@ Contributors: yathosho
 Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 0.8.26
+Tested up to: 4.0
+Stable tag: 0.8.27
 License: GPLv2, MIT
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -107,6 +107,11 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 5. advanced settings page for OGraphr 0.8
 
 == Changelog ==
+
+= 0.8.27 =
+* displays link to screenshot guidelines if no screenshot was found
+* render_stats() is only called when visual graph is enabled
+* updated devDependencies
 
 = 0.8.26 =
 * fixed JavaScript for checkbox groups
@@ -655,7 +660,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 == Upgrade Notice ==
 
 = 0.8.25 =
-You might have to delete the old version first, should you find yourself in an update loop. Sorry!
+Should you find yourself in an update loop, please remove the old plugin first. Sorry about this!
 
 = 0.8 =
 All previously indexed data will be overwritten
