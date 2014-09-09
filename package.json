@@ -1,17 +1,17 @@
 {
   "name": "OGraphr-devkit",
-  "version": "0.8.26",
+  "version": "0.8.27",
   "private": true,
   "devDependencies": {
     "gulp":         "~3.8.7",
-    "gulp-concat":  "~2.3.4",
+    "gulp-concat":  "~2.4.0",
     "gulp-css":     "~0.0.9",
     "gulp-csslint": "~0.1.5",
     "gulp-jshint":  "~1.8.4",
     "gulp-rimraf":  "~0.1.0",
     "gulp-uglify":  "~1.0.0",
     "gulp-util":    "~3.0.0",
-    "gulp-watch":   "~0.7.0",
+    "gulp-watch":   "~1.0.2",
     "phplint":      "~0.1.1"
   },
   "repository": {
