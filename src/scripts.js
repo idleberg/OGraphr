@@ -31,5 +31,7 @@ jQuery(function() {
     jQuery('.select-all').click(function() {
         jQuery(this).closest('ul').find(':checkbox').attr('checked', this.checked);
     });
-    render_stats();
+    if(jQuery().jqplot) {
+      render_stats();
+    };
 });
