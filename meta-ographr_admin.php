@@ -453,7 +453,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 												if ($result) {
 													print '(<a href="' . $theme_path . '/screenshot.png" target="_blank">preview</a>)';
 												} else {
-													print "(<span style=\"color:red;\">none</span>)";
+													print "(<a href=\"http://codex.wordpress.org/Theme_Development#Screenshot\" target="_blank">none</a>)";
 												}
 													 ?>
 										</p>
