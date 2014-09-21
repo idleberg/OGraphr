@@ -1,4 +1,5 @@
-# OGraphr for WordPress [![Build Status](https://secure.travis-ci.org/idleberg/OGraphr.svg)](http://travis-ci.org/idleberg/OGraphr) [![devDependency Status](https://david-dm.org/idleberg/OGraphr/dev-status.svg)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
+# OGraphr for WordPress
+[![GitHub version](https://badge.fury.io/gh/idleberg%2FOGraphr.svg)](http://badge.fury.io/gh/idleberg%2FOGraphr) [![Build Status](https://secure.travis-ci.org/idleberg/OGraphr.svg)](http://travis-ci.org/idleberg/OGraphr) [![devDependency Status](https://david-dm.org/idleberg/OGraphr/dev-status.svg)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
 
 ## Description
 
