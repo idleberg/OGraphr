@@ -15,31 +15,31 @@ This plugin adds several Open Graph meta-tags to the header of your theme. These
 
 Currently, these media embeds are supported:
 
-*  8tracks
-*  Bambuser
-*  Bandcamp
-*  Blip.tv
-*  DailyMotion
-*  Flickr videos
-*  Hulu
-*  Internet Archive
-*  Justin.tv/Twitch.tv
-*  Livestream
-*  Mixcloud
-*  Muzu.tv
-*  MyVideo
-*  Official.fm
-*  Rdio
-*  Socialcam
-*  SoundCloud
-*  Spotify
-*  Ustream
-*  Viddler
-*  Vimeo
-*  YouTube
-*  JW Player
-*  NVB Player
-*  Standard HTML5 video-tags
+* 8tracks
+* Bambuser
+* Bandcamp
+* Blip.tv
+* DailyMotion
+* Flickr videos
+* Hulu
+* Internet Archive
+* Justin.tv/Twitch.tv
+* Livestream
+* Mixcloud
+* Muzu.tv
+* MyVideo
+* Official.fm
+* Rdio
+* Socialcam
+* SoundCloud
+* Spotify
+* Ustream
+* Viddler
+* Vimeo
+* YouTube
+* JW Player
+* NVB Player
+* Standard HTML5 video-tags
 
 Open Graph tags will be used by social network sites such as Facebook, Twitter or Google+ to style a shared link or webpages "liked" by any user. Images supposedly attract more attention, so you might find this plug-in useful.
 
@@ -107,6 +107,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 5. advanced settings page for OGraphr 0.8
 
 == Changelog ==
+
+= 0.8.28 =
+* added more quicklinks to top-menu
 
 = 0.8.27 =
 * displays link to screenshot guidelines if no screenshot was found
