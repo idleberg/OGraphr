@@ -2099,36 +2099,48 @@ class OGraphr_Core {
 		global $wp_admin_bar;
 
 	    if (current_user_can('manage_options')) {				
-				$published = wp_count_posts();
-				$published = $published->publish;
-				$args = array( 'numberposts' => $published, 'meta_key' => 'ographr_urls' );
-				$myposts = get_posts( $args );
-				$harvested = count($myposts);
-				
-	            $menu_items = array(
-	                array(
-	                    'id' => 'ographr',
-	                    'title' => "OGraphr [$harvested/$published]",
-						'href' => admin_url('options-general.php?page=meta-ographr/meta-ographr_admin.php')
-	                ),
-					array(
-	                    'id' => 'ographr-settings',
-						'parent' => 'ographr',
-	                    'title' => 'Settings',
-						'href' => admin_url('options-general.php?page=meta-ographr/meta-ographr_admin.php')
-	                ),
-					array(
-	                    'id' => 'ographr-home',
-						'parent' => 'ographr',
-	                    'title' => 'Website',
-						'href' => 'http://wordpress.org/extend/plugins/meta-ographr/'
-	                )
-	            );
+	    		$published = wp_count_posts();
+	    		$published = $published->publish;
+	    		$args = array( 'numberposts' => $published, 'meta_key' => 'ographr_urls' );
+	    		$myposts = get_posts( $args );
+	    		$harvested = count($myposts);
+	    		
+	    		$menu_items = array(
+	    			array(
+	    				'id' => 'ographr',
+	    				'title' => "OGraphr [$harvested/$published]",
+	    				'href' => admin_url('options-general.php?page=meta-ographr/meta-ographr_admin.php')
+	    			),
+	    			array(
+	    				'id' => 'ographr-settings',
+	    				'parent' => 'ographr',
+	    				'title' => 'Settings',
+	    				'href' => admin_url('options-general.php?page=meta-ographr/meta-ographr_admin.php')
+	    			),
+	    			array(
+	    				'id' => 'ographr-faq',
+	    				'parent' => 'ographr',
+	    				'title' => 'FAQ',
+	    				'href' => 'http://wordpress.org/extend/plugins/meta-ographr/faq/'
+	    			),
+	    			array(
+	    				'id' => 'ographr-support',
+	    				'parent' => 'ographr',
+	    				'title' => 'Support',
+	    				'href' => 'https://wordpress.org/tags/meta-ographr?forum_id=10'
+	    			),
+	    			array(
+	    				'id' => 'ographr-git',
+	    				'parent' => 'ographr',
+	    				'title' => 'GitHub',
+	    				'href' => 'http://github.com/idleberg/OGraphr'
+	    			)
+	    		);
 
-	        foreach ($menu_items as $menu_item) {
-	            $wp_admin_bar->add_menu($menu_item);
-	        }
-	    }	
+	    	foreach ($menu_items as $menu_item) {
+	    		$wp_admin_bar->add_menu($menu_item);
+	    	}
+	    }
 	}
 
 }; // end of class
