@@ -2,6 +2,7 @@
   "name": "OGraphr-devkit",
   "version": "0.8.27",
   "private": true,
+  "homepage": "https://github.com/idleberg/OGraphr",
   "devDependencies": {
     "del":          "^0.1.3",
     "gulp":         "^3.8.10",
