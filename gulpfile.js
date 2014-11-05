@@ -6,7 +6,9 @@
   * Licensed under the MIT license.
   */
 
-var clean   = require('gulp-rimraf');
+var meta = require('./package.json');
+
+var del     = require('del');
 var concat  = require('gulp-concat');
 var csslint = require('gulp-csslint');
 var cssmin  = require('gulp-css');
@@ -20,7 +22,7 @@ var watch   = require('gulp-watch');
 /*
  * Task combos
  */
-
+gulp.task(   'clean', ['cssclean', 'jsclean']);
 gulp.task(     'css', ['csslint', 'cssmin']);
 gulp.task( 'default', ['make']);
 gulp.task(      'js', ['jshint', 'uglify']);
@@ -91,17 +93,15 @@ gulp.task('jqplot', function() {
 
 // Cleaning tasks
 gulp.task('cssclean', function () {
-  return gulp.src([
+    del([
       './app/*.css'
-    ], {read: false})
-    .pipe(clean());
+    ])
 });
 
 gulp.task('jsclean', function () {
-  return gulp.src([
+    del([
       './app/*.js'
-    ], {read: false})
-    .pipe(clean());
+    ])
 });
 
 // Watch task
@@ -114,3 +114,20 @@ gulp.task('watch', function () {
          ],
          ['lint'])
 });
+
+
+// Help
+gulp.task('help', function() {
+
+  console.log('\n' + meta.name + ' v' + meta.version)
+  console.log('======================\n')
+  console.log('Available tasks:')
+  console.log('         help - this dialog')
+  console.log('        clean - delete CSS and JS files')
+  console.log('         make - concatenate and minify CSS and JS')
+  console.log('         lint - run tasks to lint all CSS, JavaScript and PHP files')
+  console.log('         make - minify all CSS and JavaScript files')
+  console.log('\nFor further details visit the GitHub repository:')
+  console.log('https://github.com/idleberg/OGraphr\n')
+
+} )
