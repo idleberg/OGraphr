@@ -128,6 +128,6 @@ gulp.task('help', function() {
   console.log('         lint - run tasks to lint all CSS, JavaScript and PHP files')
   console.log('         make - minify all CSS and JavaScript files')
   console.log('\nFor further details visit the GitHub repository:')
-  console.log('https://github.com/idleberg/OGraphr\n')
+  console.log(meta.homepage)
 
 } )
