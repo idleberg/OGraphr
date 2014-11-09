@@ -62,9 +62,6 @@ npm install bower gulp -g
 
 # install Node dependencies
 npm install
-
-# install and update Bower components
-bower install; bower update
 ```
 
 Several gulp tasks are now available. Use `gulp make` to build OGraphr or make use of the `gulp lint` feature. You can also lint files by extensions (`gulp css`, `gulp js` & `gulp php`.)
