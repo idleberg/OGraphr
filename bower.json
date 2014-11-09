@@ -2,7 +2,7 @@
   "name": "OGraphr-devkit",
   "version": "0.8.27",
   "private": true,
-  "devDependencies": {
+  "dependencies": {
     "jqplot-bower": "~1.0.8"
   },
    "repository": {
