@@ -26,6 +26,6 @@
     "url": "https://github.com/idleberg/OGraphr/issues"
   },
    "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "bower install"
   }
 }
