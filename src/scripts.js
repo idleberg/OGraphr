@@ -33,5 +33,5 @@ jQuery(function() {
     });
     if(jQuery().jqplot) {
       render_stats();
-    };
+    }
 });
