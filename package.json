@@ -25,7 +25,6 @@
     "url": "https://github.com/idleberg/OGraphr/issues"
   },
    "scripts": {
-    "postinstall": "bower install",
-    "test": "gulp travis"
+    "postinstall": "bower install"
   }
 }
