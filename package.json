@@ -1,6 +1,6 @@
 {
   "name": "OGraphr-devkit",
-  "version": "0.8.27",
+  "version": "0.8.28",
   "private": true,
   "homepage": "https://github.com/idleberg/OGraphr",
   "devDependencies": {

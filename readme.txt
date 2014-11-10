@@ -4,7 +4,7 @@ Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 0.8.27
+Stable tag: 0.8.28
 License: GPLv2, MIT
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -110,6 +110,7 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 = 0.8.28 =
 * added more quicklinks to top-menu
+* improved build tools
 
 = 0.8.27 =
 * displays link to screenshot guidelines if no screenshot was found
