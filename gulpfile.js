@@ -38,19 +38,20 @@ gulp.task(  'travis', ['csslint', 'jshint']);
 // PHP Code
 gulp.task('phplint', function () {
   return phplint([
-        './meta-ographr_admin.php',
-        './meta-ographr_index.php'
+        './admin.php',
+        './index.php'
     ]);
 });
 
 // Custom CSS
 gulp.task('cssmin', ['cssclean'], function() {
   gulp.src([
-      './src/style.css'
+      './src/style.css',
+      '!jquery.jqplot.min.css'
     ])
     .pipe(concat('./style.min.css'))
     .pipe(cssmin())
-    .pipe(gulp.dest('./app/'))
+    .pipe(gulp.dest('./assets/'))
 });
 
 gulp.task('csslint', function() {
@@ -64,11 +65,14 @@ gulp.task('csslint', function() {
 // Custom Javascript
 gulp.task('uglify', ['jsclean'], function() {
   gulp.src([
-      './src/scripts.js'
+      './src/scripts.js',
+      '!jquery.jqplot.min.js',
+      '!plugins/jqplot.dateAxisRenderer.min.js',
+      '!plugins/jqplot.highlighter.min.js'
     ])
     .pipe(uglify())
     .pipe(concat('./scripts.min.js'))
-    .pipe(gulp.dest('./app/'))
+    .pipe(gulp.dest('./assets/'))
 });
 
 gulp.task('jshint', function() {
@@ -88,27 +92,27 @@ gulp.task('jqplot', function() {
       './bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js',
       './bower_components/jqplot-bower/dist/plugins/jqplot.highlighter.min.js'
     ])
-    .pipe(gulp.dest('./app/'));
+    .pipe(gulp.dest('./assets/'));
 });
 
 // Cleaning tasks
 gulp.task('cssclean', function () {
     del([
-      './app/*.css'
+      './assets/*.css'
     ])
 });
 
 gulp.task('jsclean', function () {
     del([
-      './app/*.js'
+      './assets/*.js'
     ])
 });
 
 // Watch task
 gulp.task('watch', function () {
    gulp.watch([
-            './meta-ographr_admin.php',
-            './meta-ographr_index.php',
+            './admin.php',
+            './index.php',
             './src/scripts.js',
             './src/style.css'
          ],
@@ -124,7 +128,6 @@ gulp.task('help', function() {
   console.log('Available tasks:')
   console.log('         help - this dialog')
   console.log('        clean - delete CSS and JS files')
-  console.log('         make - concatenate and minify CSS and JS')
   console.log('         lint - run tasks to lint all CSS, JavaScript and PHP files')
   console.log('         make - minify all CSS and JavaScript files')
   console.log('\nFor further details visit the GitHub repository:')
