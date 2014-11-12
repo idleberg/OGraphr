@@ -3,7 +3,7 @@
 Plugin Name: OGraphr
 Plugin URI: https://github.com/idleberg/OGraphr
 Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social networks can use these to style shared or "liked" articles.
-Version: 0.8.28
+Version: 0.8.29
 Author: Jan T. Sott
 Author URI: https://github.com/idleberg
 License: GPLv2 
@@ -28,7 +28,7 @@ Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSand
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.28");
+    define("OGRAPHR_VERSION", "0.8.29");
 	// enables developer settings on WordPress interface, can be overwritten from plug-in settings once activated
 	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
@@ -127,7 +127,7 @@ if (isset($options['disable_jetpack']))
 	add_filter( 'jetpack_enable_open_graph', '__return_false', 99 );
 
 if ( is_admin() ) {
-	require_once dirname( __FILE__ ) . '/meta-ographr_admin.php';
+	require_once dirname( __FILE__ ) . '/admin.php';
 }
 
 class OGraphr_Core {
@@ -1946,7 +1946,7 @@ class OGraphr_Core {
 	public function ographr_plugin_action_links( $links, $file ) {
 
 		if ( $file == plugin_basename( __FILE__ ) ) {
-			$ographr_links = '<a href="'.get_admin_url().'options-general.php?page=meta-ographr/meta-ographr_admin.php">' .__('Settings').'</a>';
+			$ographr_links = '<a href="'.get_admin_url().'options-general.php?page=meta-ographr/admin.php">' .__('Settings').'</a>';
 
 			// make the 'Settings' link appear first
 			array_unshift( $links, $ographr_links );
@@ -1992,18 +1992,18 @@ class OGraphr_Core {
 			echo '<div class="error">
 	       		<p>OGraphr is currently running in debug mode.';
        		if(OGRAPHR_DEVMODE == TRUE) {
-       			echo ' You can disable it in the <a href="'. get_admin_url() . 'options-general.php?page=meta-ographr/meta-ographr_admin.php#developer_settings">developer settings</a>!</p></div>';
+       			echo ' You can disable it in the <a href="'. get_admin_url() . 'options-general.php?page=meta-ographr/admin.php#developer_settings">developer settings</a>!</p></div>';
        		} else {
-       			echo ' Activate the developer mode in the <a href="'.get_admin_url().'plugin-editor.php?file=meta-ographr%2Fmeta-ographr_index.php&plugin=meta-ographr%2Fmeta-ographr_index.php">plug-in editor</a> to control your debug level!</p></div>';
+       			echo ' Activate the developer mode in the <a href="'.get_admin_url().'plugin-editor.php?file=meta-ographr%2Findex.php&plugin=meta-ographr%2Findex.php">plug-in editor</a> to control your debug level!</p></div>';
        		}
 	       		
 		} else if( (isset($options['enable_beta'])) && ($options['enable_beta'] != 0) && (current_user_can('manage_options')) ) {
 			echo '<div class="updated">
 	       		<p>OGraphr is currently running with beta features enabled.';
 	    	if(OGRAPHR_DEVMODE == TRUE) {
-       			echo ' You can disable it in the <a href="'. get_admin_url() . 'options-general.php?page=meta-ographr/meta-ographr_admin.php#developer_settings">developer settings</a>!</p></div>';
+       			echo ' You can disable it in the <a href="'. get_admin_url() . 'options-general.php?page=meta-ographr/admin.php#developer_settings">developer settings</a>!</p></div>';
        		} else {
-       			echo ' Activate the developer mode in the <a href="'.get_admin_url().'plugin-editor.php?file=meta-ographr%2Fmeta-ographr_index.php&plugin=meta-ographr%2Fmeta-ographr_index.php">plug-in editor</a> to control beta features!</p></div>';
+       			echo ' Activate the developer mode in the <a href="'.get_admin_url().'plugin-editor.php?file=meta-ographr%2Findex.php&plugin=meta-ographr%2Findex.php">plug-in editor</a> to control beta features!</p></div>';
        		}
 		}
 	}
@@ -2109,13 +2109,13 @@ class OGraphr_Core {
 	    			array(
 	    				'id' => 'ographr',
 	    				'title' => "OGraphr [$harvested/$published]",
-	    				'href' => admin_url('options-general.php?page=meta-ographr/meta-ographr_admin.php')
+	    				'href' => admin_url('options-general.php?page=meta-ographr/admin.php')
 	    			),
 	    			array(
 	    				'id' => 'ographr-settings',
 	    				'parent' => 'ographr',
 	    				'title' => 'Settings',
-	    				'href' => admin_url('options-general.php?page=meta-ographr/meta-ographr_admin.php')
+	    				'href' => admin_url('options-general.php?page=meta-ographr/admin.php')
 	    			),
 	    			array(
 	    				'id' => 'ographr-faq',
