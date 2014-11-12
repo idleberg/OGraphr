@@ -4,7 +4,7 @@ Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 0.8.28
+Stable tag: 0.8.29
 License: GPLv2, MIT
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -89,7 +89,7 @@ Probably not. Link elements were a common way to add website thumbnails before F
 
 = How can I use new features marked as beta? =
 
-As beta features can be unstable, they can only be enabled through the plugin's source. Open the file `meta-ographr_index.php` and set `OGRAPHR_DEVMODE` to `TRUE`. From now on, you will see developer settings on the plugin options page, where you can enable beta features.
+As beta features can be unstable, they can only be enabled through the plugin's source. Open the file `index.php` and set `OGRAPHR_DEVMODE` to `TRUE`. From now on, you will see developer settings on the plugin options page, where you can enable beta features.
 
 = Why am I getting a class error when activating the plug-in? =
 There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug") in XCache that will make it impossible to run OGraphr (and many other WordPress plug-ins) at the current moment. You can either disable XCache or hope for a future version to fix this. Sorry!
@@ -107,6 +107,13 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 5. advanced settings page for OGraphr 0.8
 
 == Changelog ==
+
+= 0.8.29 =
+* fixed admin page layout
+* renamed PHP files
+* renamed assets folder
+* removed duplicate command in gulp help
+* improved gulp make task
 
 = 0.8.28 =
 * added more quicklinks to top-menu
@@ -662,6 +669,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 * first release
 
 == Upgrade Notice ==
+
+= 0.8.29 =
+Some files have been renamed, hence there could be problems updating. Please check whether the plugin is still activated. In worst case, a re-install should fix all issues. Don't worry, your settings will be preserved.
 
 = 0.8.25 =
 Should you find yourself in an update loop, please remove the old plugin first. Sorry about this!
