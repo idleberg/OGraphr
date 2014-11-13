@@ -57,7 +57,7 @@ The easiest way to install OGraphr is through the [Plugin Directory](http://word
 The provided `gulpfile.js` will serve as our build tool. In order to use it, we need to have [Node.js](http://nodejs.org/download/) and [Bower](http://bower.io/) installed.
 
 ```bash
-# install Bower and Gulp globally
+# install Gulp globally (can be skipped using npm 2.x)
 npm install gulp -g
 
 # install Node dependencies
