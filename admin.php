@@ -429,7 +429,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Link Title:</label></th> 
 								<td>
-									<input type="text" size="75" name="ographr_options[website_title]" value="<?php if ($options['website_title']) { echo $options['website_title']; } else { echo '%postname%';} ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[website_title]" value="<?php if ($options['website_title']) { echo $options['website_title']; } else { echo '%postname%';} ?>" /><br/>
 									<p class="description">
 										<code>%postname%</code> &mdash; page or post title<br/>
 										<code>%sitename%</code> &mdash; your blog's name (<em><?php if($mywp['blog_name'] = get_option('blogname')) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br/>
@@ -443,7 +443,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 									<th class="pull-left" scope="row"><label>Thumbnail:</label></th> 
 									<td colspan="2">
-										<input type="text" size="75" name="ographr_options[website_thumbnail]" value="<?php echo $options['website_thumbnail']; ?>" /><br/>
+										<input type="text" size="60" name="ographr_options[website_thumbnail]" value="<?php echo $options['website_thumbnail']; ?>" /><br/>
 										
 										<p class="description">
 												<code>%screenshot%</code> &mdash; your theme's default screenshot
@@ -600,7 +600,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 									<th class="pull-left width-140" scope="row"><label>Custom Description:</label></th> 
 									<td colspan="2">
-										<input type="text" size="75" name="ographr_options[website_description]" class="enable_triggers" value="<?php echo $options['website_description']; ?>" /><br/>
+										<input type="text" size="60" name="ographr_options[website_description]" class="enable_triggers" value="<?php echo $options['website_description']; ?>" /><br/>
 										<p class="description">
 											<code>%tagline%</code> &mdash; your blog's tagline (<em><?php if(get_bloginfo('description')) { echo get_bloginfo('description'); } else { echo '<span style="color:red;">empty</span>';} ?></em>)
 										</p>
@@ -762,78 +762,100 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<!-- 8TRACKS -->	
 							<tr class="centered  advanced_opt"> 
 							<th class="pull-left width-140" scope="row"><label><a id="etracks_api_key"></a>8tracks:</label></th> 
-							<td><input type="text"  size="75" name="ographr_options[etracks_api]" value="<?php if (($options['etracks_api'] != ETRACKS_API_KEY) && ($options['etracks_api'])) { echo $options['etracks_api']; } ?>" /></td>
-							<td><a class="centered" href="http://8tracks.com/developers/new" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="centered" name="ographr_options[etracks_api]" value="<?php if (($options['etracks_api'] != ETRACKS_API_KEY) && ($options['etracks_api'])) { echo $options['etracks_api']; } ?>" />
+								<a class="centered" href="http://8tracks.com/developers/new" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 							
 							<!-- BAMBUSER -->	
 							<tr class="centered  advanced_opt"> 
 							<th class="pull-left width-140" scope="row"><label><a id="bambuser_api_key"></a>Bambuser:</label></th> 
-							<td><input type="text" size="75" name="ographr_options[bambuser_api]" value="<?php if (($options['bambuser_api'] != BAMBUSER_API_KEY) && ($options['bambuser_api'])) { echo $options['bambuser_api']; } ?>" /></td>
-							<td><a class="centered" href="http://bambuser.com/api/keys" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="centered" name="ographr_options[bambuser_api]" value="<?php if (($options['bambuser_api'] != BAMBUSER_API_KEY) && ($options['bambuser_api'])) { echo $options['bambuser_api']; } ?>" />
+								<a class="centered" href="http://bambuser.com/api/keys" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 
 							<!-- BANDCAMP -->	
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="bandcamp_api_key"></a>Bandcamp:</label></th> 
-							<td><input type="text" size="75" class="required" name="ographr_options[bandcamp_api]" value="<?php echo $options['bandcamp_api']; ?>" /></td>
-							<td><a class="centered" href="http://bandcamp.com/developer#key_request" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="required centered" name="ographr_options[bandcamp_api]" value="<?php echo $options['bandcamp_api']; ?>" />
+								<a class="centered" href="http://bandcamp.com/developer#key_request" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 						
 							<!-- FLICKR -->	
 							<tr class="centered  advanced_opt"> 
 							<th class="pull-left width-140" scope="row"><label>Flickr:</label></th> 
-							<td><input type="text" size="75" name="ographr_options[flickr_api]" value="<?php if (($options['flickr_api'] != FLICKR_API_KEY) && ($options['flickr_api'])) { echo $options['flickr_api']; } ?>" /></td>
-							<td><a class="centered" href="http://www.flickr.com/services/apps/create/apply/" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="centered" name="ographr_options[flickr_api]" value="<?php if (($options['flickr_api'] != FLICKR_API_KEY) && ($options['flickr_api'])) { echo $options['flickr_api']; } ?>" />
+								<a class="centered" href="http://www.flickr.com/services/apps/create/apply/" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 
 							<!-- MUZU.TV -->	
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="muzu_api_key"></a>Muzu.tv:</label></th> 
-							<td><input type="text" size="75" class="required" name="ographr_options[muzu_api]" value="<?php echo $options['muzu_api']; ?>" /></td>
-							<td><a class="centered" href="http://www.muzu.tv/api/apiKeyRequest/" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="required centered" name="ographr_options[muzu_api]" value="<?php echo $options['muzu_api']; ?>" />
+								<a class="centered" href="http://www.muzu.tv/api/apiKeyRequest/" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 							
 							<!-- MYVIDEO DEVELOPER -->	
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="myvideo_developer_key"></a>MyVideo (Developer):</label></th> 
-							<td><input type="text" size="75" class="required" name="ographr_options[myvideo_dev_api]" value="<?php if ($options['myvideo_dev_api']) { echo $options['myvideo_dev_api']; } ?>" /></td>
-							<td><a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="required centered" name="ographr_options[myvideo_dev_api]" value="<?php if ($options['myvideo_dev_api']) { echo $options['myvideo_dev_api']; } ?>" />
+								<a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 							
 							<!-- MYVIDEO WEBSITE -->	
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="myvideo_website_key"></a>MyVideo (Website):</label></th> 
-							<td><input type="text" size="75" class="required" name="ographr_options[myvideo_web_api]" value="<?php if ($options['myvideo_web_api']) { echo $options['myvideo_web_api']; } ?>" /></td>
-							<td><a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="required centered" name="ographr_options[myvideo_web_api]" value="<?php if ($options['myvideo_web_api']) { echo $options['myvideo_web_api']; } ?>" />
+								<a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 							
 							<!-- SOCIALCAM -->	
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="socialcam_api_key"></a>Socialcam:</label></th> 
-							<td><input type="text" size="75" class="required" name="ographr_options[socialcam_api]" value="<?php if ($options['socialcam_api']) { echo $options['socialcam_api']; } ?>" /></td>
-							<td><a class="centered" href="http://socialcam.com/developers/applications/new" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="required centered" name="ographr_options[socialcam_api]" value="<?php if ($options['socialcam_api']) { echo $options['socialcam_api']; } ?>" />
+								<a class="centered" href="http://socialcam.com/developers/applications/new" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 						
 							<!-- SOUNDCLOUD -->	
 							<tr class="centered  advanced_opt"> 
 							<th class="pull-left width-140" scope="row"><label>SoundCloud:</label></th> 
-							<td><input type="text" size="75" name="ographr_options[soundcloud_api]" value="<?php if (($options['soundcloud_api'] != SOUNDCLOUD_API_KEY) && ($options['soundcloud_api'])) { echo $options['soundcloud_api']; } ?>" /></td>
-							<td><a class="centered" href="http://soundcloud.com/you/apps" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="centered" name="ographr_options[soundcloud_api]" value="<?php if (($options['soundcloud_api'] != SOUNDCLOUD_API_KEY) && ($options['soundcloud_api'])) { echo $options['soundcloud_api']; } ?>" />
+								<a class="centered" href="http://soundcloud.com/you/apps" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 						
 							<!-- USTREAM -->	
 							<tr class="centered  advanced_opt"> 
 							<th class="pull-left width-140" scope="row"><label>Ustream:</label></th> 
-							<td><input type="text" size="75" name="ographr_options[ustream_api]" value="<?php if (($options['ustream_api'] != USTREAM_API_KEY) && ($options['ustream_api'])) { echo $options['ustream_api']; } ?>" /></td>
-							<td><a class="centered" href="http://developer.ustream.tv/apikey/generate" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="centered" name="ographr_options[ustream_api]" value="<?php if (($options['ustream_api'] != USTREAM_API_KEY) && ($options['ustream_api'])) { echo $options['ustream_api']; } ?>" />
+								<a class="centered" href="http://developer.ustream.tv/apikey/generate" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 						
 							<!-- VIDDLER  -->
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="viddler_api_key"></a>Viddler (Legacy):</label></th> 
-							<td><input type="text" size="75" class="required" name="ographr_options[viddler_api]" value="<?php echo $options['viddler_api']; ?>" /></td>
-							<td><a class="centered" href="http://developers.viddler.com/" title="Get an API key" target="_blank">?</a></td>
+							<td>
+								<input type="text" size="60" class="required centered" name="ographr_options[viddler_api]" value="<?php echo $options['viddler_api']; ?>" />
+								<a class="centered" href="http://developers.viddler.com/" title="Get an API key" target="_blank">?</a></td>
+							</td>
 							</tr>
 						
 							</tbody></table>
@@ -1030,7 +1052,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Human-readable Name:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[fb_site_name]" value="<?php echo $options['fb_site_name']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[fb_site_name]" value="<?php echo $options['fb_site_name']; ?>" /><br/>
 									<p class="description">
 										<code>%sitename%</code> &mdash; your blog's name (<em><?php if($wp_url) { echo $mywp['blog_name']; } else { echo '<span style="color:red;">empty</span>';} ?></em>)<br />
 										<code>%siteurl%</code> &mdash; the URL of your blog (<em><?php echo $wp_url; ?></em>)
@@ -1060,7 +1082,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Admin ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[fb_admins]" value="<?php echo $options['fb_admins']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[fb_admins]" value="<?php echo $options['fb_admins']; ?>" /><br/>
 									<p class="description">If you administer a page for your blog on Facebook, you can enter your <a href="http://developers.facebook.com/docs/reference/api/user/" target="_blank">User ID</a> above</p>
 								</td>
 								</tr>
@@ -1069,7 +1091,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Application ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[fb_app_id]" value="<?php echo $options['fb_app_id']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[fb_app_id]" value="<?php echo $options['fb_app_id']; ?>" /><br/>
 									<p class="description">If your blog uses a Facebook app, you can enter your <a href="https://developers.facebook.com/apps" target="_blank">Application ID</a> above</p>
 								</td>
 								</tr>	
@@ -1097,13 +1119,13 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<!-- WEBSITE USER -->	
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Website User:</label></th> 
-								<td colspan="2"><input type="text" size="75" name="ographr_options[twitter_site_user]" value="<?php echo $options['twitter_site_user']; ?>" /></td>
+								<td colspan="2"><input type="text" size="60" name="ographr_options[twitter_site_user]" value="<?php echo $options['twitter_site_user']; ?>" /></td>
 								</tr>
 							
 								<!-- WEBSITE ID -->	
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Website ID:</label></th> 
-								<td colspan="2"><input type="text" size="75" name="ographr_options[twitter_site_id]" value="<?php echo $options['twitter_site_id']; ?>" /></td>
+								<td colspan="2"><input type="text" size="60" name="ographr_options[twitter_site_id]" value="<?php echo $options['twitter_site_id']; ?>" /></td>
 								</tr>
 							
 							
@@ -1111,7 +1133,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Author User:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[twitter_author_user]" value="<?php echo $options['twitter_author_user']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[twitter_author_user]" value="<?php echo $options['twitter_author_user']; ?>" /><br/>
 									<p class="description">
 											<code>%user_twitter%</code> &mdash; use Twitter name saved in your <a href="<?php print get_admin_url() . "profile.php";?>">user profile</a> (requires plug-in, e.g. <a href="http://wordpress.org/extend/plugins/twitter-profile-field/" target="_blank">Twitter Profile Field</a>)<br/>
 											<code>%user_aim%</code> &mdash; abuse <em>AIM</em> name saved in your profile<br/>
@@ -1125,7 +1147,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Author ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[twitter_author_id]" value="<?php echo $options['twitter_author_id']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[twitter_author_id]" value="<?php echo $options['twitter_author_id']; ?>" /><br/>
 									<p class="description">like above, you can use <code>%user_aim%</code>, <code>%user_jabber%</code> or <code>%user_yahoo%</code> &mdash; you can't use the same twice!</p>
 								</td>
 								</tr>
@@ -1154,7 +1176,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>iPhone App Name:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[app_iphone_name]" value="<?php echo $options['app_iphone_name']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[app_iphone_name]" value="<?php echo $options['app_iphone_name']; ?>" /><br/>
 
 								</td>
 								</tr>
@@ -1163,7 +1185,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>iPhone App ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[app_iphone_id]" value="<?php echo $options['app_iphone_id']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[app_iphone_id]" value="<?php echo $options['app_iphone_id']; ?>" /><br/>
 
 								</td>
 								</tr>
@@ -1172,7 +1194,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>App Store URL:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[app_iphone_url]" value="<?php echo $options['app_iphone_url']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[app_iphone_url]" value="<?php echo $options['app_iphone_url']; ?>" /><br/>
 
 								</td>
 								</tr>
@@ -1189,7 +1211,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>iPad App Name:</label></th> 
 								<td colspan="2">
-									<input class="app_ipad" type="text" size="75" name="ographr_options[app_ipad_name]" value="<?php echo $options['app_ipad_name']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?>  /><br/>
+									<input class="app_ipad" type="text" size="60" name="ographr_options[app_ipad_name]" value="<?php echo $options['app_ipad_name']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?>  /><br/>
 
 								</td>
 								</tr>
@@ -1198,7 +1220,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>iPad App ID:</label></th> 
 								<td colspan="2">
-									<input class="app_ipad" type="text" size="75" name="ographr_options[app_ipad_id]" value="<?php echo $options['app_ipad_id']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?> /><br/>
+									<input class="app_ipad" type="text" size="60" name="ographr_options[app_ipad_id]" value="<?php echo $options['app_ipad_id']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?> /><br/>
 
 								</td>
 								</tr>
@@ -1207,7 +1229,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>App Store URL:</label></th> 
 								<td colspan="2">
-									<input class="app_ipad" type="text" size="75" name="ographr_options[app_ipad_url]" value="<?php echo $options['app_ipad_url']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?> /><br/>
+									<input class="app_ipad" type="text" size="60" name="ographr_options[app_ipad_url]" value="<?php echo $options['app_ipad_url']; ?>" <?php if (isset($options['app_universal'])) { print 'disabled="disabled"';} ?> /><br/>
 
 								</td>
 								</tr>
@@ -1220,7 +1242,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Android App Name:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[app_android_name]" value="<?php echo $options['app_android_name']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[app_android_name]" value="<?php echo $options['app_android_name']; ?>" /><br/>
 
 								</td>
 								</tr>
@@ -1229,7 +1251,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Android App ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[app_android_id]" value="<?php echo $options['app_android_id']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[app_android_id]" value="<?php echo $options['app_android_id']; ?>" /><br/>
 
 								</td>
 								</tr>
@@ -1238,7 +1260,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>GooglePlay URL:</label></th> 
 								<td colspan="2">
-									<input type="text" size="75" name="ographr_options[app_android_url]" value="<?php echo $options['app_android_url']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[app_android_url]" value="<?php echo $options['app_android_url']; ?>" /><br/>
 
 								</td>
 								</tr>
