@@ -112,6 +112,7 @@ gulp.task('jsclean', function () {
 gulp.task('watch', function () {
    gulp.watch([
             './admin.php',
+            './config.php',
             './index.php',
             './src/scripts.js',
             './src/style.css'
