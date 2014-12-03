@@ -11,7 +11,42 @@
 	Thanks to Sutherland Boswell, Matthias Gutjahr, Michael Wöhrer and David DeSandro
 */
 
-require_once('config.php');
+// set version
+define("OGRAPHR_VERSION", "0.8.31");
+// enables developer settings on WordPress interface, can be overwritten from plug-in settings once activated
+define("OGRAPHR_DEVMODE", FALSE);
+// replace default description with user agent in use
+define("OGRAPHR_UATEST", FALSE);
+// specify timeout for all HTTP requests (default is 1 second, http://googlecode.blogspot.co.at/2012/01/lets-make-tcp-faster.html)
+define("OGRAPHR_TIMEOUT", 1);
+
+if(file_exists('config.php')) {
+	// will be default as of 0.9
+	require_once('config.php');
+} else {
+	define("ATTACHMENT_IMAGE_SIZE", "medium");
+	define("BAMBUSER_API_KEY",      "0b2d6b4a0c990fe87c64af3fff13832e");
+	define("BANDCAMP_IMAGE_SIZE",   "large_art_url");
+	define("ETRACKS_API_KEY",       "e310c354bf4633de8dca0e7fb0a3a23fcc1614fe");
+	define("ETRACKS_IMAGE_SIZE",    "max200");
+	define("FLICKR_API_KEY",        "2250a1cc92a662d9ea156b4e04ca7a88");
+	define("FLICKR_IMAGE_SIZE",     "n");
+	define("JUSTINTV_IMAGE_SIZE",   "image_url_large");
+	define("MIXCLOUD_IMAGE_SIZE",   "extra_large");
+	define("OFFICIAL_IMAGE_SIZE",   "large");
+	define("SOCIALCAM_IMAGE_SIZE",  "small_thumb");
+	define("SOUNDCLOUD_API_KEY",    "15fd95172fa116c0837c4af8e45aa702");
+	define("SOUNDCLOUD_IMAGE_SIZE", "t500x500");
+	define("SPOTIFY_IMAGE_SIZE",    "640");
+	define("TWITTER_CARD_TYPE",     "summary");
+	define("USTREAM_API_KEY",       "8E640EF9692DE21E1BC4373F890F853C");
+	define("USTREAM_IMAGE_SIZE",    "medium");
+	define("VIMEO_IMAGE_SIZE",      "thumbnail_large");
+	define("FACEBOOK_USERAGENT",    '/facebookexternalhit/i');
+	define("GOOGLEPLUS_USERAGENT",  '/Google \(\+https:\/\/developers\.google\.com\/\+\/web\/snippet\/\)/i');
+	define("LINKEDIN_USERAGENT",    '/LinkedInBot/i');
+	define("TWITTER_USERAGENT",     '/Twitterbot/i');
+}
 
 $core = new OGraphr_Core();
 

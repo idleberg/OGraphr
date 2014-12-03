@@ -1,14 +1,5 @@
 <?php
 
-// OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.31");
-    // enables developer settings on WordPress interface, can be overwritten from plug-in settings once activated
-    define("OGRAPHR_DEVMODE", FALSE);
-    // replace default description with user agent in use
-    define("OGRAPHR_UATEST", FALSE);
-    // specify timeout for all HTTP requests (default is 1 second, http://googlecode.blogspot.co.at/2012/01/lets-make-tcp-faster.html)
-    define("OGRAPHR_TIMEOUT", 1);
-
 // ATTACHMENT IMAGE
     // default image size (thumbnail, medium, large, full)
     define("ATTACHMENT_IMAGE_SIZE", "medium");
