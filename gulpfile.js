@@ -39,6 +39,7 @@ gulp.task(  'travis', ['csslint', 'jshint']);
 gulp.task('phplint', function () {
   return phplint([
         './admin.php',
+        './config.php',
         './index.php'
     ]);
 });
