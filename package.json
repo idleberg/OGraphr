@@ -1,6 +1,6 @@
 {
   "name": "OGraphr",
-  "version": "0.8.31",
+  "version": "0.8.32",
   "private": true,
   "homepage": "https://github.com/idleberg/OGraphr",
   "devDependencies": {
@@ -11,7 +11,7 @@
     "gulp-css":     "^0.1.0",
     "gulp-csslint": "^0.1.5",
     "gulp-jshint":  "^1.9.0",
-    "gulp-uglify":  "^1.0.1",
+    "gulp-uglify":  "^1.0.2",
     "gulp-util":    "^3.0.1",
     "gulp-watch":   "^3.0.0",
     "phplint":      "^0.1.1"
