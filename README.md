@@ -1,9 +1,9 @@
 # OGraphr for WordPress
 
-[![GitHub version](https://badge.fury.io/gh/idleberg%2FOGraphr.svg)](http://badge.fury.io/gh/idleberg%2FOGraphr)
-[![Build Status](https://secure.travis-ci.org/idleberg/OGraphr.svg)](http://travis-ci.org/idleberg/OGraphr)
-[![devDependency Status](https://david-dm.org/idleberg/OGraphr/dev-status.svg)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
-[![Wordpress Plugin Directory](https://img.shields.io/wordpress/plugin/dt/meta-ographr.svg)](http://wordpress.org/plugins/meta-ographr/)
+[![GitHub release](https://img.shields.io/github/release/idleberg/OGraphr.svg?style=flat-square)](https://github.com/idleberg/OGraphr/releases)
+[![Travis](https://img.shields.io/travis/idleberg/OGraphr.svg?style=flat-square)](https://travis-ci.org/idleberg/OGraphr)
+[![David](https://img.shields.io/david/dev/idleberg/OGraphr.svg?style=flat-square)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
+[![Wordpress](https://img.shields.io/wordpress/plugin/dt/meta-ographr.svg?style=flat-square)](https://wordpress.org/plugins/meta-ographr)
 
 ## Description
 
