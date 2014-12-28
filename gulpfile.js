@@ -14,7 +14,7 @@ var csslint = require('gulp-csslint');
 var cssmin  = require('gulp-css');
 var gulp    = require('gulp');
 var jshint  = require('gulp-jshint');
-// var phplint = require('phplint');
+// var phplint = require('phplint').lint;
 var uglify  = require('gulp-uglify');
 var util    = require('gulp-util');
 var watch   = require('gulp-watch');
@@ -26,10 +26,9 @@ gulp.task(   'clean', ['cssclean', 'jsclean']);
 gulp.task(     'css', ['csslint', 'cssmin']);
 gulp.task( 'default', ['make']);
 gulp.task(      'js', ['jshint', 'uglify']);
-// gulp.task(    'lint', ['csslint', 'jshint', 'phplint']);
 gulp.task(    'lint', ['csslint', 'jshint']);
 gulp.task(    'make', ['cssmin', 'jqplot', 'uglify']);
-gulp.task(     'php', ['phplint']);
+// gulp.task(     'php', ['phplint']);
 gulp.task(  'travis', ['csslint', 'jshint']);
 
 /*
@@ -37,13 +36,19 @@ gulp.task(  'travis', ['csslint', 'jshint']);
  */
 
 // PHP Code
-gulp.task('phplint', function () {
-  return phplint([
-        './admin.php',
-        './config.php',
-        './index.php'
-    ]);
-});
+// gulp.task('phplint', function(cb) {
+//   phplint([
+//       'admin.php',
+//       'config.php',
+//       'index.php'
+//     ], {limit: 10}, function (err, stdout, stderr) {
+//     if (err) {
+//       cb(err);
+//       process.exit(1);
+//     }
+//     cb();
+//   });
+// });
 
 // Custom CSS
 gulp.task('cssmin', ['cssclean'], function() {
@@ -60,7 +65,9 @@ gulp.task('csslint', function() {
   gulp.src([
       './src/style.css'
     ])
-    .pipe(csslint())
+    .pipe(csslint({
+      'overqualified-elements': false
+    }))
     .pipe(csslint.reporter())
 });
 
