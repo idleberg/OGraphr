@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/idleberg/OGraphr/issues"
   },
-   "scripts": {
-    "postinstall": "bower install"
-  }
+ "scripts": {
+  "postinstall": "bower install"
+}
 }
