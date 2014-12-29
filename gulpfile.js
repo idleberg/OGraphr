@@ -9,6 +9,7 @@
 var meta = require('./package.json');
 
 var del     = require('del');
+var cache   = require('gulp-cached');
 var concat  = require('gulp-concat');
 var csslint = require('gulp-csslint');
 var cssmin  = require('gulp-css');
@@ -56,15 +57,15 @@ gulp.task('cssmin', ['cssclean'], function() {
       './src/style.css',
       '!jquery.jqplot.min.css'
     ])
-    .pipe(concat('./style.min.css'))
     .pipe(cssmin())
     .pipe(gulp.dest('./assets/'))
 });
 
 gulp.task('csslint', function() {
-  gulp.src([
+  return gulp.src([
       './src/style.css'
     ])
+    .pipe(cache('linting'))
     .pipe(csslint({
       'overqualified-elements': false
     }))
@@ -85,9 +86,10 @@ gulp.task('uglify', ['jsclean'], function() {
 });
 
 gulp.task('jshint', function() {
-  gulp.src([
+  return gulp.src([
       './src/scripts.js'
     ])
+    .pipe(cache('linting'))
     .pipe(jshint())
     .pipe(jshint.reporter())
 });
