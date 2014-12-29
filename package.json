@@ -7,6 +7,7 @@
     "bower":        "^1.3.12",
     "del":          "^1.0.0",
     "gulp":         "^3.8.10",
+    "gulp-cached":  "^1.0.1",
     "gulp-concat":  "^2.4.2",
     "gulp-css":     "^0.1.0",
     "gulp-csslint": "^0.1.5",
