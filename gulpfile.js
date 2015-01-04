@@ -28,7 +28,7 @@ gulp.task(     'css', ['csslint', 'cssmin']);
 gulp.task( 'default', ['make']);
 gulp.task(      'js', ['jshint', 'uglify']);
 gulp.task(    'lint', ['csslint', 'jshint']);
-gulp.task(    'make', ['cssmin', 'jqplot', 'uglify']);
+gulp.task(    'make', ['cssmin', 'uglify']);
 // gulp.task(     'php', ['phplint']);
 gulp.task(  'travis', ['csslint', 'jshint']);
 
@@ -54,9 +54,10 @@ gulp.task(  'travis', ['csslint', 'jshint']);
 // Custom CSS
 gulp.task('cssmin', ['cssclean'], function() {
   gulp.src([
-      './src/style.css',
-      '!jquery.jqplot.min.css'
+      'bower_components/jqplot-bower/dist/jquery.jqplot.min.css',
+      'src/style.css'
     ])
+    .pipe(concat('styles.min.css'))
     .pipe(cssmin())
     .pipe(gulp.dest('./assets/'))
 });
@@ -65,7 +66,7 @@ gulp.task('csslint', function() {
   return gulp.src([
       './src/style.css'
     ])
-    .pipe(cache('linting'))
+    .pipe(cache('linting_css'))
     .pipe(csslint({
       'overqualified-elements': false
     }))
@@ -75,13 +76,13 @@ gulp.task('csslint', function() {
 // Custom Javascript
 gulp.task('uglify', ['jsclean'], function() {
   gulp.src([
-      './src/scripts.js',
-      '!jquery.jqplot.min.js',
-      '!plugins/jqplot.dateAxisRenderer.min.js',
-      '!plugins/jqplot.highlighter.min.js'
+      'bower_components/jqplot-bower/dist/jquery.jqplot.min.js',
+      'bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js',
+      'bower_components/jqplot-bower/dist/plugins/jqplot.highlighter.min.js',
+      'src/scripts.js'
     ])
+    .pipe(concat('scripts.min.js'))
     .pipe(uglify())
-    .pipe(concat('./scripts.min.js'))
     .pipe(gulp.dest('./assets/'))
 });
 
@@ -89,21 +90,9 @@ gulp.task('jshint', function() {
   return gulp.src([
       './src/scripts.js'
     ])
-    .pipe(cache('linting'))
+    .pipe(cache('linting_js'))
     .pipe(jshint())
     .pipe(jshint.reporter())
-});
-
-// jqplot (http://www.jqplot.com/)
-gulp.task('jqplot', function() {
-
-  gulp.src([
-      './bower_components/jqplot-bower/dist/jquery.jqplot.min.css',
-      './bower_components/jqplot-bower/dist/jquery.jqplot.min.js',
-      './bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js',
-      './bower_components/jqplot-bower/dist/plugins/jqplot.highlighter.min.js'
-    ])
-    .pipe(gulp.dest('./assets/'));
 });
 
 // Cleaning tasks
@@ -130,7 +119,6 @@ gulp.task('watch', function () {
          ],
          ['lint'])
 });
-
 
 // Help
 gulp.task('help', function() {

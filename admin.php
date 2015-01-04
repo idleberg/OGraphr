@@ -171,15 +171,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		//global $options;
 		$options = get_option('ographr_options');
 		
-		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/assets/style.min.css', __FILE__) );
-		wp_register_script( 'OGraphr_JScript', plugins_url('/assets/scripts.min.js', __FILE__), array('jquery'), null, true );			
-		
-		if (isset($options['add_graph'])) {
-			wp_register_style( 'JQPlot_Stylesheet', plugins_url('/assets/jquery.jqplot.min.css', __FILE__) );
-			wp_register_script( 'JQPlot_Core', plugins_url('/assets/jquery.jqplot.min.js', __FILE__), array('jquery'), null, true );
-			wp_register_script( 'JQPlot_highlighter', plugins_url('/assets/jqplot.highlighter.min.js', __FILE__), array('jquery'), null, true );
-			wp_register_script( 'JQPlot_dateAxis', plugins_url('/assets/jqplot.dateAxisRenderer.min.js', __FILE__), array('jquery'), null, true );
-		}		
+		wp_register_style( 'OGraphr_Stylesheet', plugins_url('/assets/styles.min.css', __FILE__) );
+		wp_register_script( 'OGraphr_JScript', plugins_url('/assets/scripts.min.js', __FILE__), array('jquery'), null, true );	
 		
 		register_setting( 'ographr_plugin_options', 'ographr_options', array($this, 'ographr_validate_options') );
 
