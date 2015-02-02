@@ -634,7 +634,7 @@ class OGraphr_Core {
 				$title = $options['website_title'];
 				$site_name = $options['fb_site_name'];
 				$mywp = array();
-				$mywp['title'] = get_the_title();
+				$mywp['title'] = esc_html(get_the_title());
 				$mywp['blog_name'] = get_bloginfo('name');
 				$mywp['home_url'] = get_option('home');
 				$mywp['home_url'] = preg_replace('/https?:\/\//', NULL, $mywp['home_url']);
