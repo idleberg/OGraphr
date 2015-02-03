@@ -3,7 +3,7 @@
 	Plugin Name: OGraphr
 	Plugin URI: https://github.com/idleberg/OGraphr
 	Description: This plugin scans posts for embedded video and music players and adds their thumbnails URL as an OpenGraph meta-tag. While at it, the plugin also adds OpenGraph tags for the title, description (excerpt) and permalink. Facebook and other social networks can use these to style shared or "liked" articles.
-	Version: 0.8.33
+	Version: 0.8.34
 	Author: Jan T. Sott
 	Author URI: https://github.com/idleberg
 	License: GPLv2, MIT
@@ -12,9 +12,8 @@
 */
 
 // OGRAPHR OPTIONS
-    define("OGRAPHR_VERSION", "0.8.33");
+    define("OGRAPHR_VERSION", "0.8.34");
 	// enables developer settings on WordPress interface, can be overwritten from plug-in settings once activated
-	define("OGRAPHR_DEVMODE", FALSE);
 	// replace default description with user agent in use
 	define("OGRAPHR_UATEST", FALSE);
 	// specify timeout for all HTTP requests (default is 1 second, http://googlecode.blogspot.co.at/2012/01/lets-make-tcp-faster.html)
@@ -313,7 +312,7 @@ class OGraphr_Core {
 		$options = get_option('ographr_options');
 		global $post;
 
-		if( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) {
+		if( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) {
 			$s_time = microtime(true);
 		}
 
@@ -391,7 +390,7 @@ class OGraphr_Core {
 			}
 			
 			// debugging?
-			if( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) {
+			if( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) {
 				print "<!--\tOGRAPHR DEBUGGER [".$options['debug_level']."]\n";
 
 				if($options['debug_level'] >= 2) {
@@ -580,9 +579,9 @@ class OGraphr_Core {
 						//print "\n";
 					}
 				} else {
-					if( ( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) && ($options['exec_mode'] == 1) && ($expiry >= $interval) ){
+					if( ( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) && ($options['exec_mode'] == 1) && ($expiry >= $interval) ){
 						print "\n\t Empty post-meta, retrieving images\n\n";
-					} else if( ( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) && ($options['exec_mode'] == 1) && ($expiry < $interval) ) {
+					} else if( ( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) && ($options['exec_mode'] == 1) && ($expiry < $interval) ) {
 						print "\n\t Data expired, indexing\n\n";
 					}
 					
@@ -617,7 +616,7 @@ class OGraphr_Core {
 		
 		}
 				// close debugger tag
-				if( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) {	
+				if( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) {	
 					$e_time = microtime(true);
 					$time = $e_time - $s_time;
 					print "\n\tBenchmark\n";
@@ -626,7 +625,7 @@ class OGraphr_Core {
 				}
 								
 				// Let's print all this
-				if(($options['add_comment']) && ($options['debug_level'] == 0) || ( ($options['debug_level'] > 0) && (!current_user_can('edit_plugins')) ) ){
+				if(($options['add_comment']) && (isset($options['debug_level'])) && ($options['debug_level'] > 0) || ( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (!current_user_can('edit_plugins')) ) ){
 					print "<!-- OGraphr v" . OGRAPHR_VERSION . " - https://github.com/idleberg/OGraphr -->\n";
 				}
 		
@@ -1106,7 +1105,7 @@ class OGraphr_Core {
 				}
 				
 				// Print Open Graph tags
-				if (( (isset($options['limit_opengraph'])) && (preg_match(FACEBOOK_USERAGENT, $user_agent)) ) || ( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) || (!isset($options['limit_opengraph'])) ) {
+				if (( (isset($options['limit_opengraph'])) && (preg_match(FACEBOOK_USERAGENT, $user_agent)) ) || ( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) || (!isset($options['limit_opengraph'])) ) {
 					if(is_array($opengraph_meta['og:image'])) {
 						$opengraph_meta['og:image'] = array_unique($opengraph_meta['og:image']); // unlikely, but hey!
 					}
@@ -1123,7 +1122,7 @@ class OGraphr_Core {
 				}
 				
 				// Print Facebook-specific tags
-				if( (preg_match(FACEBOOK_USERAGENT, $user_agent)) || ( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) ){
+				if( (preg_match(FACEBOOK_USERAGENT, $user_agent)) || ( (isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) ){
 					// Print OG article tags
 					foreach($facebook_meta as $key => $value) {
 						if ($key == "article:section") {
@@ -1839,15 +1838,15 @@ class OGraphr_Core {
 		}			
 
 		// Get API keys
-		if ( (!$options['etracks_api']) || (!$options['bambuser_api']) || (!$options['flickr_api']) || (!$options['myvideo_dev_api']) || (!$options['myvideo_web_api']) || (!$options['socialcam_api']) || (!$options['soundcloud_api']) || (!$options['ustream_api']) || ($options['last_update'] != OGRAPHR_VERSION) ) {
-			if (!$options['etracks_api']) { $options['etracks_api'] = ETRACKS_API_KEY; }
-			if (!$options['bambuser_api']) { $options['bambuser_api'] = BAMBUSER_API_KEY; }
-			if (!$options['flickr_api']) { $options['flickr_api'] = FLICKR_API_KEY; }
-			if (!$options['myvideo_dev_api']) { $myvideo_dev_api = $options['myvideo_dev_api']; }
-			if (!$options['myvideo_web_api']) { $myvideo_web_api = $options['myvideo_web_api']; }
-			if (!$options['socialcam_api']) { $socialcam_api = $options['socialcam_api']; }
-			if (!$options['soundcloud_api']) { $options['soundcloud_api'] = SOUNDCLOUD_API_KEY; $soundcloud_api = $options['soundcloud_api']; }
-			if (!$options['ustream_api']) { $options['ustream_api'] = USTREAM_API_KEY; $ustream_api = $options['ustream_api']; }
+		if ( (!isset($options['etracks_api'])) || (!isset($options['bambuser_api'])) || (!isset($options['flickr_api'])) || (!isset($options['myvideo_dev_api'])) || (!isset($options['myvideo_web_api'])) || (!isset($options['socialcam_api'])) || (!isset($options['soundcloud_api'])) || (!isset($options['ustream_api'])) || ((isset($options['last_update']) && $options['last_update'] != OGRAPHR_VERSION)) ) {
+			if (!isset($options['etracks_api'])) { $options['etracks_api'] = ETRACKS_API_KEY; }
+			if (!isset($options['bambuser_api'])) { $options['bambuser_api'] = BAMBUSER_API_KEY; }
+			if (!isset($options['flickr_api'])) { $options['flickr_api'] = FLICKR_API_KEY; }
+			if (isset($options['myvideo_dev_api'])) { $myvideo_dev_api = $options['myvideo_dev_api']; }
+			if (isset($options['myvideo_web_api'])) { $myvideo_web_api = $options['myvideo_web_api']; }
+			if (isset($options['socialcam_api'])) { $socialcam_api = $options['socialcam_api']; }
+			if (!isset($options['soundcloud_api'])) { $options['soundcloud_api'] = SOUNDCLOUD_API_KEY; $soundcloud_api = $options['soundcloud_api']; }
+			if (!isset($options['ustream_api'])) { $options['ustream_api'] = USTREAM_API_KEY; $ustream_api = $options['ustream_api']; }
 			
 			//upgrades
 			if(isset($options['last_update'])) {
@@ -1964,7 +1963,7 @@ class OGraphr_Core {
 		$options = get_option('ographr_options');
 
 		// Debug
-		if (($options['debug_level'] > 0) && (current_user_can('manage_options'))) {
+		if ((isset($options['debug_level'])) && ($options['debug_level'] > 0) && (current_user_can('manage_options'))) {
 			echo '<div class="error">
 	       		<p>OGraphr is currently running in debug mode.';
        		if(OGRAPHR_DEVMODE == TRUE) {
