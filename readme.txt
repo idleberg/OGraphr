@@ -4,7 +4,7 @@ Donate link: https://www.gittip.com/idleberg/
 Tags: opengraph,open-graph,open graph,open graph meta,metatags,facebook,google+,google snippets,twitter cards,thumbnails,soundcloud,mixcloud,bandcamp,vimeo,youtube,dailymotion,blip.tv,hulu,internet archive,archive.org,myvideo,official.fm,ustream,viddler,html5,livestream video,jwplayer,nvbplayer,flickr,justin.tv,twitch.tv,8tracks,bambuser,rdio,socialcam,spotify,muzu.tv
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 0.8.33
+Stable tag: 0.8.34
 License: GPLv2, MIT
 
 Retrieves the images of audio/video players in your posts and embeds them as thumbnails on Facebook and other social networks.
@@ -81,7 +81,7 @@ Depending on the amount of embed codes in your site, retrieving images and other
 
 = Why are there no Google+ meta-tags in my page source? =
 
-Since Google+ is probably the only site using these meta-tags, they will only be added to the source when a link is posted on a profile. However, you can force displaying these meta-tags when activating OGraphr's debug-mode.
+Since Google+ is probably the only site using these meta-tags, they will only be added to the source when a link is posted on a profile. However, you can force displaying these meta-tags when activating the WordPress debug-mode.
 
 = Is there a good reason to add link elements for thumbnails? =
 
@@ -107,6 +107,12 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 5. advanced settings page for OGraphr 0.8
 
 == Changelog ==
+
+= 0.8.34 =
+* escape special characters in title (#4)
+* removed OGRAPHR_DEVMODE, use WP_DEBUG instead
+* reduced warnings in displayed in debug mode
+* also: Houston, we need a rewrite!
 
 = 0.8.33 =
 * concatenated all assets

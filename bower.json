@@ -1,6 +1,6 @@
 {
   "name": "OGraphr-devkit",
-  "version": "0.8.33",
+  "version": "0.8.34",
   "private": true,
   "dependencies": {
     "jqplot-bower": "~1.0.8"
