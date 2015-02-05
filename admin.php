@@ -1,6 +1,6 @@
 <?php
 
-/*  Copyright 2009 David Gwyer (email : d.v.gwyer@presscoders.com)
+/*  Copyright 200 David Gwyer (email : d.v.gwyer@presscoders.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -637,7 +637,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 									<!-- CUSTOM URLS -->
 									<tr> 
 										<th class="pull-left width-140" scope="row"><label>Custom URLs:</label></th> 
-										<td colspan="2"><textarea name="ographr_options[filter_custom_urls]" cols="76%" rows="4" class="disable_filters"><?php if (isset($options['filter_custom_urls'])) echo $options['filter_custom_urls']; ?></textarea><br/>
+										<td colspan="2"><textarea name="ographr_options[filter_custom_urls]" cols="76%" rows="4" class="disable_filters"><?php echo $options['filter_custom_urls']; ?></textarea><br/>
 											<p class="description">You can enter filenames and URLs (e.g. <em><?php echo 'http://' . $wp_url . '/wp-content'; ?></em>) to the filter-list above</p>
 										</td> 
 									</tr>
@@ -774,7 +774,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="bandcamp_api_key"></a>Bandcamp:</label></th> 
 							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[bandcamp_api]" value="<?php if (isset($options['bandcamp_api'])) echo $options['bandcamp_api']; ?>" />
+								<input type="text" size="60" class="required centered" name="ographr_options[bandcamp_api]" value="<?php echo $options['bandcamp_api']; ?>" />
 								<a class="centered" href="http://bandcamp.com/developer#key_request" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
@@ -792,7 +792,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="muzu_api_key"></a>Muzu.tv:</label></th> 
 							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[muzu_api]" value="<?php if (isset($options['muzu_api'])) echo $options['muzu_api']; ?>" />
+								<input type="text" size="60" class="required centered" name="ographr_options[muzu_api]" value="<?php echo $options['muzu_api']; ?>" />
 								<a class="centered" href="http://www.muzu.tv/api/apiKeyRequest/" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
@@ -801,7 +801,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="myvideo_developer_key"></a>MyVideo (Developer):</label></th> 
 							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[myvideo_dev_api]" value="<?php if (isset($options['myvideo_dev_api'])) echo $options['myvideo_dev_api']; ?>" />
+								<input type="text" size="60" class="required centered" name="ographr_options[myvideo_dev_api]" value="<?php if ($options['myvideo_dev_api']) { echo $options['myvideo_dev_api']; } ?>" />
 								<a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
@@ -810,7 +810,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="myvideo_website_key"></a>MyVideo (Website):</label></th> 
 							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[myvideo_web_api]" value="<?php if (isset($options['myvideo_web_api'])) echo $options['myvideo_web_api']; ?>" />
+								<input type="text" size="60" class="required centered" name="ographr_options[myvideo_web_api]" value="<?php if ($options['myvideo_web_api']) { echo $options['myvideo_web_api']; } ?>" />
 								<a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
@@ -819,7 +819,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="socialcam_api_key"></a>Socialcam:</label></th> 
 							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[socialcam_api]" value="<?php if (isset($options['socialcam_api'])) echo $options['socialcam_api']; ?>" />
+								<input type="text" size="60" class="required centered" name="ographr_options[socialcam_api]" value="<?php if ($options['socialcam_api']) { echo $options['socialcam_api']; } ?>" />
 								<a class="centered" href="http://socialcam.com/developers/applications/new" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
@@ -846,7 +846,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<tr class="centered "> 
 							<th class="pull-left width-140" scope="row"><label><a id="viddler_api_key"></a>Viddler (Legacy):</label></th> 
 							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[viddler_api]" value="<?php  if (isset($options['viddler_api'])) echo $options['viddler_api']; ?>" />
+								<input type="text" size="60" class="required centered" name="ographr_options[viddler_api]" value="<?php echo $options['viddler_api']; ?>" />
 								<a class="centered" href="http://developers.viddler.com/" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
@@ -1075,7 +1075,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Admin ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="60" name="ographr_options[fb_admins]" value="<?php if (isset($options['fb_admins'])) echo $options['fb_admins']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[fb_admins]" value="<?php echo $options['fb_admins']; ?>" /><br/>
 									<p class="description">If you administer a page for your blog on Facebook, you can enter your <a href="http://developers.facebook.com/docs/reference/api/user/" target="_blank">User ID</a> above</p>
 								</td>
 								</tr>
@@ -1084,7 +1084,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Application ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="60" name="ographr_options[fb_app_id]" value="<?php if (isset($options['fb_app_id'])) echo $options['fb_app_id']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[fb_app_id]" value="<?php echo $options['fb_app_id']; ?>" /><br/>
 									<p class="description">If your blog uses a Facebook app, you can enter your <a href="https://developers.facebook.com/apps" target="_blank">Application ID</a> above</p>
 								</td>
 								</tr>	
@@ -1112,13 +1112,13 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<!-- WEBSITE USER -->	
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Website User:</label></th> 
-								<td colspan="2"><input type="text" size="60" name="ographr_options[twitter_site_user]" value="<?php if (isset($options['twitter_site_userP;'])) echo $options['twitter_site_user']; ?>" /></td>
+								<td colspan="2"><input type="text" size="60" name="ographr_options[twitter_site_user]" value="<?php echo $options['twitter_site_user']; ?>" /></td>
 								</tr>
 							
 								<!-- WEBSITE ID -->	
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Website ID:</label></th> 
-								<td colspan="2"><input type="text" size="60" name="ographr_options[twitter_site_id]" value="<?php if (isset($options['twitter_site_id'])) echo $options['twitter_site_id']; ?>" /></td>
+								<td colspan="2"><input type="text" size="60" name="ographr_options[twitter_site_id]" value="<?php echo $options['twitter_site_id']; ?>" /></td>
 								</tr>
 							
 							
@@ -1126,7 +1126,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Author User:</label></th> 
 								<td colspan="2">
-									<input type="text" size="60" name="ographr_options[twitter_author_user]" value="<?php if (isset($options['twitter_author_user'])) echo $options['twitter_author_user']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[twitter_author_user]" value="<?php echo $options['twitter_author_user']; ?>" /><br/>
 									<p class="description">
 											<code>%user_twitter%</code> &mdash; use Twitter name saved in your <a href="<?php print get_admin_url() . "profile.php";?>">user profile</a> (requires plug-in, e.g. <a href="http://wordpress.org/extend/plugins/twitter-profile-field/" target="_blank">Twitter Profile Field</a>)<br/>
 											<code>%user_aim%</code> &mdash; abuse <em>AIM</em> name saved in your profile<br/>
@@ -1140,7 +1140,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<tr> 
 								<th class="pull-left width-140" scope="row"><label>Author ID:</label></th> 
 								<td colspan="2">
-									<input type="text" size="60" name="ographr_options[twitter_author_id]" value="<?php if (isset($options['twitter_author_id'])) echo $options['twitter_author_id']; ?>" /><br/>
+									<input type="text" size="60" name="ographr_options[twitter_author_id]" value="<?php echo $options['twitter_author_id']; ?>" /><br/>
 									<p class="description">like above, you can use <code>%user_aim%</code>, <code>%user_jabber%</code> or <code>%user_yahoo%</code> &mdash; you can't use the same twice!</p>
 								</td>
 								</tr>
@@ -1266,7 +1266,7 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							</div>
 						</div>
 
-						<?php if( (OGRAPHR_DEVMODE == TRUE) || (isset($options['always_devmode'])) ){ ?>
+						<?php if( (WP_DEBUG == TRUE) || (isset($options['always_devmode'])) ){ ?>
 						<!-- D E V E L O P E R -->
 						<div class="postbox advanced_opt">
 							<a name="developer_settings"></a> 
