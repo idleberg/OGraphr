@@ -1,5 +1,7 @@
 # OGraphr for WordPress
 
+[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![GNU General Public License](https://img.shields.io/badge/license-GPL%20v2-orange.svg?style=flat-square)](http://www.gnu.org/licenses/gpl-2.0.html)
 [![GitHub release](https://img.shields.io/github/release/idleberg/OGraphr.svg?style=flat-square)](https://github.com/idleberg/OGraphr/releases)
 [![Travis](https://img.shields.io/travis/idleberg/OGraphr.svg?style=flat-square)](https://travis-ci.org/idleberg/OGraphr)
 [![David](https://img.shields.io/david/dev/idleberg/OGraphr.svg?style=flat-square)](https://david-dm.org/idleberg/OGraphr#info=devDependencies)
