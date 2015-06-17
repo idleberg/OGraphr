@@ -1631,9 +1631,9 @@ class OGraphr_Core {
 									'name' => 'YouTube',
 									'patterns' => array(
 										'#<object[^>]+>.+?https?://w*.?youtube.com/[ve]/([A-Za-z0-9\-_]+).+?</object>#s',
-										'#//w*.?youtube.com/embed/([A-Za-z0-9\-_]+)#s',
+										'#//w*.?(?:youtube.com|youtube-nocookie.com)/embed/([A-Za-z0-9\-_]+)#s',
 										'/\[youtube.*?]https?:\/\/w*.?youtube.com\/watch\?v=([A-Za-z0-9\-_]+).+?\[\/youtube]/i',
-										'/^(?:href\=){0,1}https?:\/\/w*.?(?:youtube.com|youtu.be)\/(?:watch\/\?v=|v\/)([A-Za-z0-9\-_]+)/i',
+										'/^(?:href\=){0,1}https?:\/\/w*.?(?:youtube.com|youtu.be|youtube-nocookie.com)\/(?:watch\/\?v=|v\/)([A-Za-z0-9\-_]+)/i',
 									),
 									'url' => 'http://img.youtube.com/vi/%MATCH%',
 									'queries' => array(
