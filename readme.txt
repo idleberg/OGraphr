@@ -108,6 +108,9 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 == Changelog ==
 
+= 0.8.37 =
+* fix: re-add missing assets
+
 = 0.8.36 =
 * add support for YouTube's privacy-enhanced mode
 

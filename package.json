@@ -1,6 +1,6 @@
 {
   "name": "OGraphr",
-  "version": "0.8.36",
+  "version": "0.8.37",
   "private": true,
   "homepage": "https://github.com/idleberg/OGraphr",
   "devDependencies": {
