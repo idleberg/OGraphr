@@ -5,9 +5,9 @@
   "homepage": "https://github.com/idleberg/OGraphr",
   "devDependencies": {
     "bower": "^1.5.3",
-    "del": "^1.2.1",
+    "del": "^2.0.2",
     "gulp": "^3.9.0",
-    "gulp-cached": "^2.0.2",
+    "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-css": "^0.1.0",
     "gulp-csslint": "^0.2.0",
