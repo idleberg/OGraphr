@@ -66,7 +66,7 @@ The provided `gulpfile.js` will serve as our build tool. In order to use it, we 
 npm install gulp -g
 
 # install Node dependencies
-npm install
+yarn || npm install
 ```
 
 Several gulp tasks are now available. Use `gulp make` to build OGraphr or make use of the `gulp lint` feature. You can also lint files by extensions (`gulp css`, `gulp js` & `gulp php`.)
