@@ -16,7 +16,8 @@
     "gulp-jshint": "^2.0.4",
     "gulp-uglify": "^2.0.1",
     "gulp-util": "^3.0.8",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "jshint": "^2.9.4"
   },
   "repository": {
     "type": "git",
