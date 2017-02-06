@@ -2,7 +2,7 @@
   * OGraphr-devkit
   * https://github.com/idleberg/OGraphr
   *
-  * Copyright (c) 2014 Jan T. Sott
+  * Copyright (c) 2014-2017 Jan T. Sott
   * Licensed under the MIT license.
   */
 
@@ -15,7 +15,6 @@ var csslint = require('gulp-csslint');
 var cssmin  = require('gulp-css');
 var gulp    = require('gulp');
 var jshint  = require('gulp-jshint');
-// var phplint = require('phplint').lint;
 var uglify  = require('gulp-uglify');
 var util    = require('gulp-util');
 var watch   = require('gulp-watch');
@@ -36,25 +35,10 @@ gulp.task(  'travis', ['csslint', 'jshint']);
  * Sub-tasks
  */
 
-// PHP Code
-// gulp.task('phplint', function(cb) {
-//   phplint([
-//       'admin.php',
-//       'config.php',
-//       'index.php'
-//     ], {limit: 10}, function (err, stdout, stderr) {
-//     if (err) {
-//       cb(err);
-//       process.exit(1);
-//     }
-//     cb();
-//   });
-// });
-
 // Custom CSS
 gulp.task('cssmin', ['cssclean'], function() {
   gulp.src([
-      'bower_components/jqplot-bower/dist/jquery.jqplot.min.css',
+      'node_modules/jqplot/src/jquery.jqplot.min.css',
       'src/style.css'
     ])
     .pipe(concat('styles.min.css'))
@@ -70,15 +54,15 @@ gulp.task('csslint', function() {
     .pipe(csslint({
       'overqualified-elements': false
     }))
-    .pipe(csslint.reporter())
+    .pipe(csslint())
 });
 
 // Custom Javascript
 gulp.task('uglify', ['jsclean'], function() {
   gulp.src([
-      'bower_components/jqplot-bower/dist/jquery.jqplot.min.js',
-      'bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js',
-      'bower_components/jqplot-bower/dist/plugins/jqplot.highlighter.min.js',
+      'node_modules/jqplot/src/jquery.jqplot.js',
+      'node_modules/jqplot/src/plugins/jqplot.dateAxisRenderer.min.js',
+      'node_modules/jqplot/src/plugins/jqplot.highlighter.min.js',
       'src/scripts.js'
     ])
     .pipe(concat('scripts.min.js'))
