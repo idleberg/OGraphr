@@ -108,11 +108,8 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 
 == Changelog ==
 
-= 0.8.39 =
-* load jqPlot from GitHub repository
-* update devDependencies
-
 = 0.8.38 =
+* load jqPlot from GitHub repository
 * update devDependencies
 
 = 0.8.37 =
