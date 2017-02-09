@@ -18,21 +18,18 @@ Currently, these media embeds are supported:
 * 8tracks
 * Bambuser
 * Bandcamp
-* Blip.tv
 * DailyMotion
 * Flickr videos
 * Hulu
 * Internet Archive
-* Justin.tv/Twitch.tv
 * Livestream
 * Mixcloud
-* Muzu.tv
 * MyVideo
 * Official.fm
 * Rdio
-* Socialcam
 * SoundCloud
 * Spotify
+* Twitch.tv
 * Ustream
 * Viddler
 * Vimeo
@@ -107,6 +104,10 @@ There's a [well-known bug](http://xcache.lighttpd.net/ticket/300 "well-known bug
 5. advanced settings page for OGraphr 0.8
 
 == Changelog ==
+
+= 0.8.38 =
+* remove support for discontinued services
+* fix jqPlot concatention
 
 = 0.8.38 =
 * load jqPlot from GitHub repository

@@ -46,9 +46,6 @@
 // OFFICIAL.FM
 	// default artwork size (tiny=40x40, small=120x120, medium=300x300, large=600x600)
 	define("OFFICIAL_IMAGE_SIZE", "large");
-// SOCIALCAM
-	// default artwork size (main_thumb, small_thumb)
-	define("SOCIALCAM_IMAGE_SIZE", "small_thumb");
 // SOUNDCLOUD
 	// no need to change this unless you want to use your own SoundCloud API key (-> http://soundcloud.com/you/apps)
 	define("SOUNDCLOUD_API_KEY", "15fd95172fa116c0837c4af8e45aa702");
@@ -140,7 +137,6 @@ class OGraphr_Core {
 							"enable_etracks" => "1",
 							"enable_bambuser" => "1",
 							"enable_bandcamp" => NULL,
-							"enable_bliptv" => "1",
 							"enable_dailymotion" => "1",
 							"enable_flickr" => "1",
 							"enable_hulu" => "1",
@@ -148,15 +144,11 @@ class OGraphr_Core {
 							"enable_justintv" => "1",
 							"enable_livestream" => "1",
 							"enable_mixcloud" => "1",
-							"enable_muzu" => NULL,
 							"enable_myvideo" => NULL,
 							"enable_official" => "1",
-							"enable_rdio" => "1",
-							"enable_socialcam" => NULL,
 							"enable_soundcloud" => "1",
 							"enable_spotify" => "1",
 							"enable_ustream" => "1",
-							"enable_viddler" => NULL,
 							"enable_vimeo" => "1",
 							"enable_youtube" => "1",
 							"add_post_images" => "1",
@@ -257,14 +249,6 @@ class OGraphr_Core {
 	// Get JSON Thumbnail
 	public function get_json_thumbnail($services, $json_url, $json_query) {
 			$output = wp_remote_retrieve_body( wp_remote_get($json_url, array('timeout' => OGRAPHR_TIMEOUT)) );
-		
-		// special treatment
-		if ($services['name'] == "Blip.tv") {
-			$output = preg_match('/(?:blip_ws_results\(\[)(.*)(?:\]\);)/smi', $output, $match); // fix Blip.tv JSON file
-			$output = $match[1];
-		} else if (($services['name'] == "Muzu.tv") || ($services['name'] == "Vimeo")) {
-			$output = substr($output, 1, -1);
-		}
 		
 		$output = json_decode($output);
 		
@@ -477,7 +461,6 @@ class OGraphr_Core {
 					if (isset($options['enable_etracks'])) { print "\t 8tracks enabled\n"; }
 					if (isset($options['enable_bambuser'])) { print "\t Bambuser enabled\n"; }
 					if (isset($options['enable_bandcamp'])) { print "\t Bandcamp enabled\n"; }
-					if (isset($options['enable_bliptv'])) { print "\t Blip.tv enabled\n"; }
 					if (isset($options['enable_dailymotion'])) { print "\t Dailymotion enabled\n"; }
 					if (isset($options['enable_flickr'])) { print "\t Flickr enabled\n"; }
 					if (isset($options['enable_hulu'])) { print "\t Hulu enabled\n"; }
@@ -485,15 +468,11 @@ class OGraphr_Core {
 					if (isset($options['enable_justintv'])) { print "\t Justin.tv enabled\n"; }
 					if (isset($options['enable_livestream'])) { print "\t Livestream enabled\n"; }
 					if (isset($options['enable_mixcloud'])) { print "\t Mixcloud enabled\n"; }
-					if (isset($options['enable_muzu'])) { print "\t Muzu.tv enabled\n"; }
 					if (isset($options['enable_myvideo'])) { print "\t MyVideo enabled\n"; }
 					if (isset($options['enable_official'])) { print "\t Official.fm enabled\n"; }
-					if (isset($options['enable_rdio'])) { print "\t Rdio enabled\n"; }
-					if (isset($options['enable_socialcam'])) { print "\t Socialcam enabled\n"; }
 					if (isset($options['enable_soundcloud'])) { print "\t SoundCloud enabled\n"; }
 					if (isset($options['enable_spotify'])) { print "\t Spotify enabled\n"; }
 					if (isset($options['enable_ustream'])) { print "\t Ustream enabled\n"; }
-					if (isset($options['enable_viddler'])) { print "\t Viddler enabled\n"; }
 					if (isset($options['enable_vimeo'])) { print "\t Vimeo enabled\n"; }
 					if (isset($options['enable_youtube'])) { print "\t YouTube enabled\n"; }
 				}
@@ -504,13 +483,10 @@ class OGraphr_Core {
 					if ($bambuser_api = $options['bambuser_api']) { print "\t Bambuser: $bambuser_api\n"; }
 					if ($bandcamp_api = $options['bandcamp_api']) { print "\t Bandcamp: $bandcamp_api\n"; }
 					if ($flickr_api = $options['flickr_api']) { print "\t Flickr: $flickr_api\n"; }
-					if ($muzu_api = $options['muzu_api']) { print "\t Muzu.tv: $muzu_api\n"; }
 					if ($myvideo_dev_api = $options['myvideo_dev_api']) { print "\t MyVideo (Developer): $myvideo_dev_api\n"; }
 					if ($myvideo_web_api = $options['myvideo_web_api']) { print "\t MyVideo (Website): $myvideo_web_api\n"; }
-					if ($socialcam_api = $options['socialcam_api']) { print "\t Socialcam: $socialcam_api\n"; }
 					if ($soundcloud_api = $options['soundcloud_api']) { print "\t SoundCloud : $soundcloud_api\n"; }
 					if ($ustream_api = $options['ustream_api']) { print "\t Ustream: $ustream_api\n"; }
-					if ($viddler_api = $options['viddler_api']) { print "\t Viddler: $viddler_api\n"; }
 				}
 
 				print "\n\tImages\n";
@@ -999,10 +975,6 @@ class OGraphr_Core {
 					    	$player = 'http:\/\/bandcamp.com\/EmbeddedPlayer.swf\/size=venti\/track=' . $thumbnails[0]['id'] . '\/';
 					    	$player_html5 = 'https://bandcamp.com/EmbeddedPlayer/v=2/track=' . $thumbnails[0]['id'] . '/size=venti/';
 					    	break;
-					    case "Blip.tv":
-					    	$player = 'http://blip.tv/play/' . $thumbnails[0]['id'] . '.x?p=1';
-					    	$player_html5 = 'https://blip.tv/play/' . $thumbnails[0]['id'] . '.html?p=1';
-					    	break;
 					    case "Dailymotion":
 					    	$player = 'http://www.dailymotion.com/swf/video/' . $thumbnails[0]['id'] . '?autoPlay=1';
 					    	$player_html5 = 'https://www.dailymotion.com/embed/video/' . $thumbnails[0]['id'];
@@ -1014,9 +986,6 @@ class OGraphr_Core {
 					    case "Official.fm":
 					    	$player = 'https://official.fm/flash/ofm_player.swf?referer=facebook.com&autoplay=true&feed=/feed/tracks/' . $thumbnails[0]['id'] . '.json&skin_bg=000000&skin_fg=FFFFFF';
 					    	$player_html5 = 'https://official.fm/player?width=435&height=200&artwork=1&artwork_left=1&tracklist=1&feed=%2Ffeed%2Ftracks%2F' . $thumbnails[0]['id'] . '.json&skin_bg=000000&skin_fg=FFFFFF';
-					    	break;
-					    case "Rdio":
-					    	$player = 'https://rd.io/e/%MATCH%' . $thumbnails[0]['id']; // = HTML5 player
 					    	break;
 					    case "SoundCloud track":
 					    	$player = 'http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F' . $thumbnails[0]['id'] . '&amp;color=3b5998&amp;auto_play=true';
@@ -1255,7 +1224,6 @@ class OGraphr_Core {
 		if (isset($options['enable_videoposter'])) {
 			preg_match_all('/<video.+?poster=[\'"]([^\'"]+)[\'"].*?>/i', $markup, $matches);
 			foreach($matches[1] as $match) {
-				$match = preg_replace('/^\/\/+?/', 'http://', $match); // fix Viddler thumbnail URL
 				$match = $this->ographr_rel2abs($match, $blog_url);
 			  	if( ( ($options['debug_level'] > 0) && (current_user_can('edit_plugins')) ) && (is_single()) || (is_front_page()) ) {
 					print "\t Video poster: $match\n";
@@ -1408,19 +1376,6 @@ class OGraphr_Core {
 										'hd' => 105,
 									),
 								),
-					'bliptv' => array(
-									'name' => 'Blip.tv',
-									'patterns' => array(
-										'/blip.tv\/play\/([A-Za-z0-9]+)/i',
-										'/a.blip.tv\/api.swf#([A-Za-z0-9%]+)/i',
-									),
-									'url' => 'http://blip.tv/players/episode/%MATCH%?skin=json',
-									'queries' => array(
-										'img' => 'Post->thumbnailUrl',
-										'w' => 'Post->media->width',
-										'h' => 'Post->media->height',
-									),
-								),
 					'dailymotion' => array(
 									'name' => 'Dailymotion',
 									'patterns' => array(
@@ -1470,9 +1425,9 @@ class OGraphr_Core {
 									),
 								),
 					'justintv' => array(
-									'name' => 'Justin.tv/Twitch',
+									'name' => 'Twitch',
 									'patterns' => array(
-										'/(?:justin|twitch).tv\/widgets\/live_embed_player.swf\?channel=([A-Za-z0-9-_]+)/i'
+										'/(?:twitch).tv\/widgets\/live_embed_player.swf\?channel=([A-Za-z0-9-_]+)/i'
 									),
 									'url' => 'http://api.justin.tv/api/stream/list.json?channel=%MATCH%',
 									'queries' => array(
@@ -1503,18 +1458,6 @@ class OGraphr_Core {
 										'hd' => 460,
 									),
 								),
-					'muzu' => array(
-									'name' => 'Muzu.tv',
-									'patterns' => array(
-										'/player.muzu.tv\/player\/getPlayer\/(?:a|i)\/2074\/vidId=([0-9]+)/i'
-									),
-									'url' => 'http://www.muzu.tv/api/video/details/?id=%MATCH%&format=json&muzuid=' . $options['muzu_api'],
-									'queries' => array(
-										'img' => 'thumbnail_2->url',
-										'wd' => 'thumbnail_2->width',
-										'hd' => 'thumbnail_2->height',
-									),
-								),
 					'myvideo' => array(
 									'name' => 'MyVideo',
 									'patterns' => array(
@@ -1536,28 +1479,6 @@ class OGraphr_Core {
 										'img' => 'track->cover->urls->' . OFFICIAL_IMAGE_SIZE,
 										'wd' => 440,
 										'hd' => 240
-									),
-								),
-					'rdio' => array(
-									'name' => 'Rdio',
-									'patterns' => array(
-										'/rd.io\/i\/([A-Za-z0-9]+)/i'
-									),
-									'url' => 'http://www.rdio.com/api/oembed/?format=json&url=http://rd.io/x/%MATCH%',
-									'queries' => array(
-										'img' => 'thumbnail_url',
-										'w' => 'width',
-										'h' => 'height'
-									),
-								),
-					'socialcam' => array(
-									'name' => 'Socialcam',
-									'patterns' => array(
-										'/socialcam.com\/videos\/([A-Za-z0-9]+)/i'
-									),
-									'url' => 'https://api.socialcam.com/v1/videos/%MATCH%.json?access_token=' . $options['socialcam_api'],
-									'queries' => array(
-										'img' => SOCIALCAM_IMAGE_SIZE . '->url'
 									),
 								),
 					'soundcloud_track' => array(
@@ -1600,16 +1521,6 @@ class OGraphr_Core {
 									'url' => 'http://api.ustream.tv/json/channel/%MATCH%/getInfo?key=' . $options['ustream_api'],
 									'queries' => array(
 										'img' => 'results->imageUrl->' . USTREAM_IMAGE_SIZE
-									),
-								),
-					'viddler' => array(
-									'name' => 'Viddler',
-									'patterns' => array(
-										'//viddler.com\/embed\/([A-Za-z0-9]+)/i'
-									),
-									'url' => 'http://api.viddler.com/api/v2/viddler.api.getDetails.json?video_id=%MATCH%&key=' . $options['viddler_api'],
-									'queries' => array(
-										'img' => 'video->thumbnail_url'
 									),
 								),
 					'vimeo' => array(
@@ -1837,13 +1748,12 @@ class OGraphr_Core {
 		}			
 
 		// Get API keys
-		if ( (!$options['etracks_api']) || (!$options['bambuser_api']) || (!$options['flickr_api']) || (!$options['myvideo_dev_api']) || (!$options['myvideo_web_api']) || (!$options['socialcam_api']) || (!$options['soundcloud_api']) || (!$options['ustream_api']) || ($options['last_update'] != OGRAPHR_VERSION) ) {
+		if ( (!$options['etracks_api']) || (!$options['bambuser_api']) || (!$options['flickr_api']) || (!$options['myvideo_dev_api']) || (!$options['myvideo_web_api']) || (!$options['soundcloud_api']) || (!$options['ustream_api']) || ($options['last_update'] != OGRAPHR_VERSION) ) {
 			if (!$options['etracks_api']) { $options['etracks_api'] = ETRACKS_API_KEY; }
 			if (!$options['bambuser_api']) { $options['bambuser_api'] = BAMBUSER_API_KEY; }
 			if (!$options['flickr_api']) { $options['flickr_api'] = FLICKR_API_KEY; }
 			if (!$options['myvideo_dev_api']) { $myvideo_dev_api = $options['myvideo_dev_api']; }
 			if (!$options['myvideo_web_api']) { $myvideo_web_api = $options['myvideo_web_api']; }
-			if (!$options['socialcam_api']) { $socialcam_api = $options['socialcam_api']; }
 			if (!$options['soundcloud_api']) { $options['soundcloud_api'] = SOUNDCLOUD_API_KEY; $soundcloud_api = $options['soundcloud_api']; }
 			if (!$options['ustream_api']) { $options['ustream_api'] = USTREAM_API_KEY; $ustream_api = $options['ustream_api']; }
 			

@@ -516,7 +516,6 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 													<li><label><input name="ographr_options[enable_bandcamp]" type="checkbox" value="1" <?php if ((isset($options['enable_bandcamp'])) && ($options['bandcamp_api'])) { checked('1', $options['enable_bandcamp']); } ?> />&nbsp;Bandcamp</label></li>
 													<li><label><input name="ographr_options[enable_mixcloud]" type="checkbox" value="1" <?php if (isset($options['enable_mixcloud'])) { checked('1', $options['enable_mixcloud']); } ?> />&nbsp;Mixcloud</label></li>
 													<li><label><input name="ographr_options[enable_official]" type="checkbox" value="1" <?php if (isset($options['enable_official'])) { checked('1', $options['enable_official']); } ?> />&nbsp;Official.fm</label></li>
-													<li><label><input name="ographr_options[enable_rdio]" type="checkbox" value="1" <?php if (isset($options['enable_rdio'])) { checked('1', $options['enable_rdio']); } ?> />&nbsp;Rdio</label></li>
 													<li><label><input name="ographr_options[enable_soundcloud]" type="checkbox" value="1" <?php if (isset($options['enable_soundcloud'])) { checked('1', $options['enable_soundcloud']); } ?> />&nbsp;SoundCloud</label></li>
 													<li><label><input name="ographr_options[enable_spotify]" type="checkbox" value="1" <?php if (isset($options['enable_spotify'])) { checked('1', $options['enable_spotify']); } ?> />&nbsp;Spotify</label></li>
 												</ul>
@@ -524,14 +523,11 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 											<li>
 												<ul >
 													<li><label title="Click to toggle all items in this group"><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Video</strong></label></li>
-													<li><label><input name="ographr_options[enable_bliptv]" type="checkbox" value="1" <?php if (isset($options['enable_bliptv'])) { checked('1', $options['enable_bliptv']); } ?> />&nbsp;Blip.tv</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_dailymotion]" type="checkbox" value="1" <?php if (isset($options['enable_dailymotion'])) { checked('1', $options['enable_dailymotion']); } ?> />&nbsp;Dailymotion</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_flickr]" type="checkbox" value="1" <?php if (isset($options['enable_flickr'])) { checked('1', $options['enable_flickr']); } ?> />&nbsp;Flickr</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_hulu]" type="checkbox" value="1" <?php if (isset($options['enable_hulu'])) { checked('1', $options['enable_hulu']); } ?> />&nbsp;Hulu</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_internetarchive]" type="checkbox" value="1" <?php if ((isset($options['enable_internetarchive'])) && ($options['enable_internetarchive'])) { checked('1', $options['enable_internetarchive']); } ?> />&nbsp;Internet Archive</label>&nbsp;</li>
-													<li><label><input name="ographr_options[enable_muzu]" type="checkbox" value="1" <?php if ((isset($options['enable_muzu'])) && ($options['muzu_api'])) { checked('1', $options['enable_muzu']); } ?> />&nbsp;Muzu.tv</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_myvideo]" type="checkbox" value="1" <?php if ((isset($options['enable_myvideo'])) && ($options['myvideo_dev_api']) && ($options['myvideo_web_api'])) { checked('1', $options['enable_myvideo']); } ?> />&nbsp;MyVideo</label>&nbsp;</li>
-													<li><label><input name="ographr_options[enable_viddler]" type="checkbox" value="1" <?php if ((isset($options['enable_viddler'])) && ($options['viddler_api'])) { checked('1', $options['enable_viddler']); } ?> />&nbsp;Viddler</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_vimeo]" type="checkbox" value="1" <?php if (isset($options['enable_vimeo'])) { checked('1', $options['enable_vimeo']); } ?> />&nbsp;Vimeo</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_youtube]" type="checkbox" value="1" <?php if (isset($options['enable_youtube'])) { checked('1', $options['enable_youtube']); } ?> />&nbsp;YouTube</label></li>
 												</ul>
@@ -540,20 +536,16 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 												<ul>
 													<li><label title="Click to toggle all items in this group"><input class="select-all" type="checkbox" value="0"><strong>&nbsp;Feed</strong></label></li>
 													<li><label><input name="ographr_options[enable_bambuser]" type="checkbox" value="1" <?php if ((isset($options['enable_bambuser'])) && ($options['bambuser_api'])) { checked('1', $options['enable_bambuser']); } ?> />&nbsp;Bambuser</label>&nbsp;</li>
-													<li><label><input name="ographr_options[enable_justintv]" type="checkbox" value="1" <?php if (isset($options['enable_justintv'])) { checked('1', $options['enable_justintv']); } ?> />&nbsp;Justin.tv</label>&nbsp;</li>
+													<li><label><input name="ographr_options[enable_justintv]" type="checkbox" value="1" <?php if (isset($options['enable_justintv'])) { checked('1', $options['enable_justintv']); } ?> />&nbsp;Twitch.tv</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_livestream]" type="checkbox" value="1" <?php if (isset($options['enable_livestream'])) { checked('1', $options['enable_livestream']); } ?> />&nbsp;Livestream</label>&nbsp;</li>
-													<li><label><input name="ographr_options[enable_socialcam]" type="checkbox" value="1" <?php if ((isset($options['enable_socialcam'])) && ($options['socialcam_api'])) { checked('1', $options['enable_socialcam']); } ?> />&nbsp;Socialcam</label>&nbsp;</li>
 													<li><label><input name="ographr_options[enable_ustream]" type="checkbox" value="1" <?php if (isset($options['enable_ustream'])) { checked('1', $options['enable_ustream']); } ?> />&nbsp;Ustream</label>&nbsp;</li>
 												</ul>
 											</li>
 										</ul>
 
 										<?php if((!isset($options['bandcamp_api'])) && (isset($options['enable_bandcamp']))) { echo '<br/><span style="color:red;font-size:x-small;">Bandcamp requires a valid <a href="#bandcamp_api_key" style="color:red;">API key</a></span>';} ?>
-										<?php if((!isset($options['muzu_api'])) && (isset($options['enable_muzu']))) { echo '<br/><span style="color:red;font-size:x-small;">Muzu.tv requires a valid <a href="#muzu_api_key" style="color:red;">API key</a></span>';} ?>
 										<?php if((!isset($options['myvideo_dev_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_developer_key" style="color:red;">Developer API key</a></span>';} ?>
 										<?php if((!isset($options['myvideo_web_api'])) && (isset($options['enable_myvideo']))) { echo '<br/><span style="color:red;font-size:x-small;">MyVideo requires a valid <a href="#myvideo_website_key" style="color:red;">Website API key</a></span>';} ?>
-										<?php if((!isset($options['socialcam_api'])) && (isset($options['enable_socialcam']))) { echo '<br/><span style="color:red;font-size:x-small;">Socialcam requires a valid <a href="#socialcam_api_key" style="color:red;">API key</a></span>';} ?>
-										<?php if((!isset($options['viddler_api'])) && (isset($options['enable_viddler']))) { echo '<br/><span style="color:red;font-size:x-small;">Viddler requires a valid <a href="#viddler_api_key" style="color:red;">API key</a></span>';} ?>
 									</td> 
 								</tr>
 								
@@ -787,15 +779,6 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<a class="centered" href="http://www.flickr.com/services/apps/create/apply/" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
-
-							<!-- MUZU.TV -->	
-							<tr class="centered "> 
-							<th class="pull-left width-140" scope="row"><label><a id="muzu_api_key"></a>Muzu.tv:</label></th> 
-							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[muzu_api]" value="<?php echo $options['muzu_api']; ?>" />
-								<a class="centered" href="http://www.muzu.tv/api/apiKeyRequest/" title="Get an API key" target="_blank">?</a></td>
-							</td>
-							</tr>
 							
 							<!-- MYVIDEO DEVELOPER -->	
 							<tr class="centered "> 
@@ -814,15 +797,6 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 								<a class="centered" href="http://myvideo.de/API" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
-							
-							<!-- SOCIALCAM -->	
-							<tr class="centered "> 
-							<th class="pull-left width-140" scope="row"><label><a id="socialcam_api_key"></a>Socialcam:</label></th> 
-							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[socialcam_api]" value="<?php if ($options['socialcam_api']) { echo $options['socialcam_api']; } ?>" />
-								<a class="centered" href="http://socialcam.com/developers/applications/new" title="Get an API key" target="_blank">?</a></td>
-							</td>
-							</tr>
 						
 							<!-- SOUNDCLOUD -->	
 							<tr class="centered  advanced_opt"> 
@@ -839,15 +813,6 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 							<td>
 								<input type="text" size="60" class="centered" name="ographr_options[ustream_api]" value="<?php if (($options['ustream_api'] != USTREAM_API_KEY) && ($options['ustream_api'])) { echo $options['ustream_api']; } ?>" />
 								<a class="centered" href="http://developer.ustream.tv/apikey/generate" title="Get an API key" target="_blank">?</a></td>
-							</td>
-							</tr>
-						
-							<!-- VIDDLER  -->
-							<tr class="centered "> 
-							<th class="pull-left width-140" scope="row"><label><a id="viddler_api_key"></a>Viddler (Legacy):</label></th> 
-							<td>
-								<input type="text" size="60" class="required centered" name="ographr_options[viddler_api]" value="<?php echo $options['viddler_api']; ?>" />
-								<a class="centered" href="http://developers.viddler.com/" title="Get an API key" target="_blank">?</a></td>
 							</td>
 							</tr>
 						
@@ -1435,10 +1400,8 @@ class OGraphr_Admin_Core extends OGraphr_Core {
 		$input['flickr_api'] = htmlentities($input['flickr_api']);
 		$input['myvideo_dev_api'] = htmlentities($input['myvideo_dev_api']);
 		$input['myvideo_web_api'] = htmlentities($input['myvideo_web_api']);
-		$input['socialcam_api'] = htmlentities($input['socialcam_api']);
 		$input['soundcloud_api'] = htmlentities($input['soundcloud_api']);
 		$input['ustream_api'] = htmlentities($input['ustream_api']);
-		$input['viddler_api'] = htmlentities($input['viddler_api']);
 		$input['fb_site_name'] = htmlentities($input['fb_site_name']);
 		if(isset($input['twitter_site_user']))
 			$input['twitter_site_user'] = htmlentities($input['twitter_site_user']);

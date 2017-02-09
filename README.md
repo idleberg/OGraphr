@@ -16,23 +16,19 @@ Currently, these media embeds are supported:
 * 8tracks
 * Bambuser
 * Bandcamp
-* Blip.tv
 * DailyMotion
 * Flickr videos
 * Hulu
 * Internet Archive
-* Justin.tv/Twitch.tv
 * Livestream
 * Mixcloud
 * Muzu.tv
 * MyVideo
 * Official.fm
-* Rdio
-* Socialcam
 * SoundCloud
 * Spotify
+* Twitch.tv
 * Ustream
-* Viddler
 * Vimeo
 * YouTube
 * JW Player
