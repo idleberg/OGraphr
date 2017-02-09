@@ -38,7 +38,7 @@ gulp.task(  'travis', ['csslint', 'jshint']);
 // Custom CSS
 gulp.task('cssmin', ['cssclean'], function() {
   gulp.src([
-      'node_modules/jqplot/src/jquery.jqplot.min.css',
+      'node_modules/jqplot/src/jquery.jqplot.css',
       'src/style.css'
     ])
     .pipe(concat('styles.min.css'))
@@ -60,9 +60,28 @@ gulp.task('csslint', function() {
 // Custom Javascript
 gulp.task('uglify', ['jsclean'], function() {
   gulp.src([
-      'node_modules/jqplot/src/jquery.jqplot.js',
-      'node_modules/jqplot/src/plugins/jqplot.dateAxisRenderer.min.js',
-      'node_modules/jqplot/src/plugins/jqplot.highlighter.min.js',
+      // 'node_modules/jqplot/src/jquery.jqplot.js',
+      'node_modules/jqplot/src/jqplot.core.js',
+      'node_modules/jqplot/src/jqplot.axisLabelRenderer.js',
+      'node_modules/jqplot/src/jqplot.axisTickRenderer.js',
+      'node_modules/jqplot/src/jqplot.canvasGridRenderer.js',
+      'node_modules/jqplot/src/jqplot.divTitleRenderer.js',
+      'node_modules/jqplot/src/jqplot.linePattern.js',
+      'node_modules/jqplot/src/jqplot.lineRenderer.js',
+      'node_modules/jqplot/src/jqplot.linearAxisRenderer.js',
+      'node_modules/jqplot/src/jqplot.linearTickGenerator.js',
+      'node_modules/jqplot/src/jqplot.markerRenderer.js',
+      'node_modules/jqplot/src/jqplot.shadowRenderer.js',
+      'node_modules/jqplot/src/jqplot.shapeRenderer.js',
+      'node_modules/jqplot/src/jqplot.tableLegendRenderer.js',
+      'node_modules/jqplot/src/jqplot.themeEngine.js',
+      'node_modules/jqplot/src/jqplot.toImage.js',
+      'node_modules/jqplot/src/jsdate.js',
+      'node_modules/jqplot/src/jqplot.sprintf.js',
+      'node_modules/jqplot/src/jqplot.effects.core.js',
+      'node_modules/jqplot/src/jqplot.effects.blind.js',
+      'node_modules/jqplot/src/plugins/jqplot.dateAxisRenderer.js',
+      'node_modules/jqplot/src/plugins/jqplot.highlighter.js',
       'src/scripts.js'
     ])
     .pipe(concat('scripts.min.js'))
